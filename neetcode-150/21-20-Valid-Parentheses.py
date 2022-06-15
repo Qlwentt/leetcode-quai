@@ -1,0 +1,20 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        parens = {
+            '(' : ')',
+            '[' : ']',
+            '{' : '}'
+        }
+        stack = []
+        
+        for char in s:
+            if char in parens:
+                stack.append(char)
+            elif stack and parens[stack[-1]] == char:
+                stack.pop()
+            else:
+                return False
+            
+        return len(stack) == 0
+# O(n) time
+# O(n) space          
