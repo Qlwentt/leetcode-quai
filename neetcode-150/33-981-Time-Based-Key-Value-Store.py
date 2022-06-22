@@ -32,10 +32,3 @@ class TimeMap:
             elif target < arr[mid][0]:
                 r = mid - 1
         return res  
-        
-        
-
-# Your TimeMap object will be instantiated and called as such:
-# obj = TimeMap()
-# obj.set(key,value,timestamp)
-# param_2 = obj.get(key,timestamp)
