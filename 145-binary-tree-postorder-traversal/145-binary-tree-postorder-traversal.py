@@ -7,12 +7,28 @@
 class Solution:
     def __init__(self):
         self.result = []
-    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        #LRV
-        if not root:
-            return self.result
+#     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+#         #LRV
+#         if not root:
+#             return self.result
         
-        self.postorderTraversal(root.left)
-        self.postorderTraversal(root.right)
-        self.result.append(root.val)
-        return self.result
+#         self.postorderTraversal(root.left)
+#         self.postorderTraversal(root.right)
+#         self.result.append(root.val)
+#         return self.result
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        stack = [(root, False)]
+        result = []
+        #LRV
+        while stack:
+            node, toBeVisited = stack.pop()
+            if not node:
+                continue
+            if toBeVisited:
+                result.append(node.val)
+            else:
+                stack.extend([(node,True),(node.right,False),(node.left,False)])
+                
+        return result
+                
+                    
