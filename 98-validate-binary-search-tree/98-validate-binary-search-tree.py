@@ -6,25 +6,18 @@
 #         self.right = right
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        treeArray = []
-        def dfs(root):
+        prev = float('-inf')
+        def inorder(root):
+            nonlocal prev
             if not root:
-                return treeArray
-            dfs(root.left)
-            if root:
-                treeArray.append(root.val)
-            dfs(root.right)
-            
-        def isSorted(lst):
-            for i in range(len(lst)-1):
-                if lst[i] > lst[i+1]:
-                    return False
+                return True
+            if not inorder(root.left):
+                return False
+            if not root.val > prev:
+                return False
+            prev = root.val
+            if not inorder(root.right):
+                return False
             return True
-        dfs(root)
+        return inorder(root)    
         
-        
-        
-        isSorted = isSorted(treeArray)
-        noDup = len(treeArray) == len(set(treeArray))
-        
-        return isSorted and noDup
