@@ -14,9 +14,17 @@ class Solution:
             if root:
                 treeArray.append(root.val)
             dfs(root.right)
+            
+        def isSorted(lst):
+            for i in range(len(lst)-1):
+                if lst[i] > lst[i+1]:
+                    return False
+            return True
         dfs(root)
         
-        isSorted = treeArray == sorted(treeArray)
+        
+        
+        isSorted = isSorted(treeArray)
         noDup = len(treeArray) == len(set(treeArray))
         
         return isSorted and noDup
