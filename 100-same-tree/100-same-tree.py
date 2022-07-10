@@ -9,17 +9,10 @@ class Solution:
         if not p and not q:
             return True
         
-        pVal = p.val if p else None
-        qVal = q.val if q else None
+        if not q or not p:
+            return False
+              
+        leftsAreEqual = self.isSameTree(p.left,q.left)
+        rightsAreEqual = self.isSameTree(p.right,q.right)
         
-        leftP = p.left if p else None
-        leftQ = q.left if q else None
-        
-        rightP = p.right if p else None
-        rightQ = q.right if q else None
-        
-        
-        leftsAreEqual = self.isSameTree(leftP,leftQ)
-        rightsAreEqual = self.isSameTree(rightP,rightQ)
-        
-        return pVal == qVal and leftsAreEqual and rightsAreEqual
+        return p.val == q.val and leftsAreEqual and rightsAreEqual
