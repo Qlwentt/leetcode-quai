@@ -8,15 +8,18 @@ class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         if not p and not q:
             return True
+        
         pVal = p.val if p else None
         qVal = q.val if q else None
         
-        pleft, pRight = (p.left, p.right) if p else (None,None)
-        qleft, qRight = (q.left, q.right) if q else (None,None)
+        leftP = p.left if p else None
+        leftQ = q.left if q else None
         
-        leftsAreEqual = self.isSameTree(pleft , qleft)
-        rightsAreEqual = self.isSameTree(pRight, qRight)
+        rightP = p.right if p else None
+        rightQ = q.right if q else None
         
-        if pVal == qVal and leftsAreEqual and rightsAreEqual:
-            return True
-        return False
+        
+        leftsAreEqual = self.isSameTree(leftP,leftQ)
+        rightsAreEqual = self.isSameTree(rightP,rightQ)
+        
+        return pVal == qVal and leftsAreEqual and rightsAreEqual
