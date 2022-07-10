@@ -15,5 +15,6 @@ class Solution:
                 current = current.left
             elif p.val > current.val and q.val > current.val:
                 current = current.right
-            else:
+            else: # one of node is on left and one node is on the right or one is equal to current
                 return current
+            
