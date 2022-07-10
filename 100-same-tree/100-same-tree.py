@@ -9,10 +9,10 @@ class Solution:
         if not p and not q:
             return True
         
-        if not q or not p:
+        if not p or not q:
             return False
-              
-        leftsAreEqual = self.isSameTree(p.left,q.left)
-        rightsAreEqual = self.isSameTree(p.right,q.right)
         
-        return p.val == q.val and leftsAreEqual and rightsAreEqual
+        leftSubTreesSame = self.isSameTree(p.left,q.left)
+        rightSubTreesSame = self.isSameTree(p.right,q.right)
+        
+        return p.val == q.val and leftSubTreesSame and rightSubTreesSame
