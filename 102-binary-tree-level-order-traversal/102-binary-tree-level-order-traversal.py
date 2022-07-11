@@ -7,13 +7,11 @@ from collections import deque
 #         self.right = right
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        if not root:
-            return []
         
         q = deque([(root, 1)])
         i = 1
         result = []
-        while q:
+        while q and q[0][0]:
             level = []
             while q and q[0][1] == i:
                 node, j = q.popleft()
