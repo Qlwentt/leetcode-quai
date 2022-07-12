@@ -10,23 +10,23 @@ class Solution:
         
         def dfs(root):
             nonlocal res
-            
             if not root:
                 return 0
             
-            leftMax = dfs(root.left)
-            rightMax = dfs(root.right)
+            maxLeft = dfs(root.left)
+            maxRight = dfs(root.right)
             
-            leftMax = max(leftMax, 0)
-            rightMax = max(rightMax, 0)
+            maxLeft = max(maxLeft, 0)
+            maxRight = max(maxRight, 0)
             
-            # calc with split
+            res = max(res, maxLeft+maxRight+root.val)
             
-            res = max(res, leftMax + rightMax + root.val)
-            
-            return max(leftMax,rightMax) + root.val
+            #return max without a split
+            return max(maxLeft, maxRight) + root.val
+        
         dfs(root)
         return res
+            
             
             
         
