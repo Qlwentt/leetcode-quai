@@ -12,8 +12,8 @@ class Solution:
         mid = inorder.index(root.val)
         
         leftLen = len(inorder[:mid])
-    
-        root.left = self.buildTree(preorder[1:leftLen+1], inorder[:mid])
-        root.right = self.buildTree(preorder[leftLen+1:], inorder[leftLen+1:])
-        return root
         
+        root.left = self.buildTree(preorder[1:1+leftLen], inorder[:mid])
+        root.right = self.buildTree(preorder[1+leftLen:], inorder[mid+1:])
+        
+        return root
