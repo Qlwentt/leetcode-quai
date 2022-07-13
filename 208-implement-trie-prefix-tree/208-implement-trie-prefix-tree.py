@@ -2,9 +2,6 @@ class TrieNode:
     def __init__(self):
         self.children = {}
         self.endOfWord = False
-        
-    def __str__(self):
-        return ",".join(self.children.keys())
 
 class Trie:
 
@@ -18,7 +15,6 @@ class Trie:
                 current.children[char] = TrieNode()
             current = current.children[char]
         current.endOfWord = True
-        print(self.root)
         
 
     def search(self, word: str) -> bool:
