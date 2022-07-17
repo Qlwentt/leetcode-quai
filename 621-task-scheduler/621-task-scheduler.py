@@ -28,7 +28,9 @@ class Solution:
         while not maxHeap.empty() or q:
             time += 1
             
-            if not maxHeap.empty():
+            if maxHeap.empty():
+                time = q[0][1]
+            else:
                 task = maxHeap.pop()
                 task -= 1
                 if task:
