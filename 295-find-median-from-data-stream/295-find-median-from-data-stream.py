@@ -1,18 +1,19 @@
 class MaxHeap:
     def __init__(self):
         self.heap = []
-    
-    def push(self,val):
+
+    def push(self, val):
         heapq.heappush(self.heap, val * -1)
-        
-    def top(self):
-        return self.heap[0] * -1
         
     def pop(self):
         return heapq.heappop(self.heap) * -1
     
+    def top(self):
+        return self.heap[0] * -1
+    
     def length(self):
         return len(self.heap)
+
 class MedianFinder:
 
     def __init__(self):
@@ -22,13 +23,13 @@ class MedianFinder:
     def addNum(self, num: int) -> None:
         self.small.push(num)
         
-        # max value in small is greater than min value in large
+        # max ele in small needs to be less than min in large
         if self.small.length() > 0 and self.large and self.small.top() > self.large[0]:
             tooBig = self.small.pop()
             heapq.heappush(self.large, tooBig)
         
+        # the lengths of the two heaps must not differ by more than 1
         if abs(self.small.length() - len(self.large)) > 1:
-               #small is too big
             if self.small.length() > len(self.large):
                 tooBig = self.small.pop()
                 heapq.heappush(self.large, tooBig)
