@@ -11,18 +11,20 @@ class Solution:
             '9': 'wxyz'
         }
      
-        if len(digits) == 0:
-            return []
-        if len(digits) == 1:
-            return list(numMap[digits[0]])
+        result = []
         
-        digitList = list(digits)
-        currentDigit = digitList.pop()
-        prevCombos = self.letterCombinations("".join(digitList))
-        answer = []
-        for combo in prevCombos:
-            comboList = list(combo)
-            addLetters = numMap[currentDigit]
-            for addLetter in addLetters:
-                answer.append("".join(comboList[:]+[addLetter]))
-        return answer
+        def backtrack(i, combo):
+            if len(digits) == 0:
+                return result
+            if len(combo) == len(digits):
+                result.append("".join(combo))
+                return
+            currentDigit = digits[i]
+            
+            for letter in numMap[currentDigit]:
+                combo.append(letter)
+                backtrack(i+1, combo)
+                combo.pop()
+        backtrack(0,[])
+        return result
+                
