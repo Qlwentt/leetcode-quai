@@ -13,7 +13,7 @@ class Solution:
         yDiagTally = [False] * (((n-1) * 2 )+1)
         
         def backtrack(possibleChoices):
-            if not possibleChoices  and self.isSolution(board):
+            if not possibleChoices:
                 validBoards.append(board[:])
                 return
             
