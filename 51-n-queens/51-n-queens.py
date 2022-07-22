@@ -7,7 +7,6 @@ class Solution:
         validBoards = []
         board = []
         
-        rowTally = [False] * n
         colTally = [False] * n
         xDiagTally = [False] * (((n-1) * 2) +1)
         yDiagTally = [False] * (((n-1) * 2 )+1)
@@ -21,8 +20,7 @@ class Solution:
                 r = queenPosition
                 c = len(board)
                 
-                if (rowTally[r] or
-                    colTally[c] or 
+                if (colTally[c] or 
                     xDiagTally[r-c + n - 1] or
                     yDiagTally[r+c]):
                     continue
@@ -32,7 +30,6 @@ class Solution:
                 row = "".join(row)
                 board.append(row)
                 
-                rowTally[r] = True
                 colTally[c] = True
                 xDiagTally[r-c + n - 1] = True
                 yDiagTally[r+c] = True
@@ -40,7 +37,6 @@ class Solution:
                 backtrack(possibleChoices[:i]+possibleChoices[i+1:])
                 
                 board.pop()
-                rowTally[r] = False
                 colTally[c] = False
                 xDiagTally[r-c + n - 1] = False
                 yDiagTally[r+c] = False
