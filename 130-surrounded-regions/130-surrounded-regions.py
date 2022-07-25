@@ -6,7 +6,6 @@ class Solution:
         
         numRows = len(board)
         numCols = len(board[0])
-        visited = set()
         toKeep = set()
         
         def markToKeep(r,c):
