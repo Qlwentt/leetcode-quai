@@ -24,16 +24,14 @@ class Solution:
             if current in visited:
                 continue
             for neighbor in current.neighbors:
-                # if neighbor.val != current.val:
-                    if neighbor in nodesAndCopies:
-                        neighborCopy = nodesAndCopies[neighbor]
-                    else:
-                        neighborCopy = Node(neighbor.val)
-                        nodesAndCopies[neighbor] = neighborCopy
-                    currentCopy.neighbors.append(neighborCopy)
-                    q.append((neighbor, neighborCopy))
-                # else:
-                #     currentCopy.neighbors.append(currentCopy)
+                if neighbor in nodesAndCopies:
+                    neighborCopy = nodesAndCopies[neighbor]
+                else:
+                    neighborCopy = Node(neighbor.val)
+                    nodesAndCopies[neighbor] = neighborCopy
+                currentCopy.neighbors.append(neighborCopy)
+                q.append((neighbor, neighborCopy))
+               
             nodesAndCopies[current] = currentCopy
             visited.add(current)
     
