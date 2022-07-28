@@ -24,7 +24,7 @@ class Solution:
             if current in visited:
                 continue
             for neighbor in current.neighbors:
-                if neighbor.val != current.val:
+                # if neighbor.val != current.val:
                     if neighbor in nodesAndCopies:
                         neighborCopy = nodesAndCopies[neighbor]
                     else:
@@ -32,8 +32,8 @@ class Solution:
                         nodesAndCopies[neighbor] = neighborCopy
                     currentCopy.neighbors.append(neighborCopy)
                     q.append((neighbor, neighborCopy))
-                else:
-                    currentCopy.neighbors.append(currentCopy)
+                # else:
+                #     currentCopy.neighbors.append(currentCopy)
             nodesAndCopies[current] = currentCopy
             visited.add(current)
     
