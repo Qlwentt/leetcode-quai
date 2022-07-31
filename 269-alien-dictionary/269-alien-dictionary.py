@@ -3,17 +3,33 @@ class Solution:
     def alienOrder(self, words: List[str]) -> str:
         
         adjList = {char: set() for word in words for char in word}
+    
 
-        for i in range(len(words) - 1):
-            w1, w2 = words[i], words[i + 1]
-            minLen = min(len(w1), len(w2))
-            if len(w1) > len(w2) and w1[:minLen] == w2[:minLen]:
-                return ""
-            for j in range(minLen):
-
-                if w1[j] != w2[j]:
-                    adjList[w1[j]].add(w2[j])
-                    break
+        def getEdge(word1,word2):
+            p1 = 0
+            p2 = 0
+            while p1 < len(word1):
+                char1 = word1[p1]
+                char2 = word2[p2] if p2 < len(word2) else None
+                if not char2:
+                    return -1
+                if char1 != char2:
+                    return [char1, char2]
+                p1 += 1
+                p2 += 1
+            return None
+        
+        for i in range(len(words)):
+            word1 = words[i]
+            for j in range(i+1, len(words)):
+                word2 = words[j]
+                edge = getEdge(word1,word2)
+                if not edge:
+                    continue
+                if edge == -1:
+                    return ""
+                node, neigh = edge
+                adjList[node].add(neigh)
                 
         
         visiting = set()
@@ -34,7 +50,7 @@ class Solution:
             order.append(node)
             return True
         nodes = list(adjList.keys())
-        for i in adjList:
+        for i in nodes:
             if not visitInOrder(i):
                 return ""
         order.reverse()
