@@ -10,14 +10,13 @@ class Solution:
         target = total // 2
         
         for i in range(len(nums) -1, -1, -1):
-            newDP = set()
+            newDP = dp.copy()
             for t in dp:
                 if nums[i] + t == target:
                     return True
                 if t == target:
                     return True
                 newDP.add(nums[i] + t)
-                newDP.add(t)
             dp = newDP
         
         return False
