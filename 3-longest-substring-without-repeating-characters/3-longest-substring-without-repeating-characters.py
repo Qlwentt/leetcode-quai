@@ -4,15 +4,12 @@ class Solution:
         r = 0
         maxSize = 0
         seen = set()
-        size = 0
 
         while r < len(s):
-            size += 1
             while s[r] in seen:
                 seen.remove(s[l])
                 l += 1
-                size -= 1
             seen.add(s[r])
-            maxSize = max(size, maxSize)
+            maxSize = max(maxSize, (r-l+1))
             r+= 1
         return maxSize
