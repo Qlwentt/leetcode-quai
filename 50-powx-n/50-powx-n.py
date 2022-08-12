@@ -21,5 +21,4 @@ class Solution(object):
         if n > 0:
             return powPositive(x,n)
         else:
-            result = powPositive(x,-n)
-            return 1/result
+            return powPositive(1/x,-n)
