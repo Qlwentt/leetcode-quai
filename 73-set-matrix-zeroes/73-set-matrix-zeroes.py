@@ -1,8 +1,7 @@
-class Solution(object):
-    def setZeroes(self, matrix):
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
         """
-        :type matrix: List[List[int]]
-        :rtype: None Do not return anything, modify matrix in-place instead.
+        Do not return anything, modify matrix in-place instead.
         """
         n = len(matrix)
         m = len(matrix[0])
