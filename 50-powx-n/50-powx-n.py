@@ -1,10 +1,5 @@
-class Solution(object):
-    def myPow(self, x, n):
-        """
-        :type x: float
-        :type n: int
-        :rtype: float
-        """
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
         def powPositive(x,n):
             if n == 0:
                 return 1
@@ -21,4 +16,4 @@ class Solution(object):
         if n > 0:
             return powPositive(x,n)
         else:
-            return powPositive(1/x,-n)
+            return powPositive(1/x,-n) 
