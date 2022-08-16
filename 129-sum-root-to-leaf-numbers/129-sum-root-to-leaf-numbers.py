@@ -17,5 +17,4 @@ class Solution:
                 visitLeaves(root.right)
                 number.pop()
         visitLeaves(root)
-        print(numbers)
         return sum([int(num) for num in numbers])
