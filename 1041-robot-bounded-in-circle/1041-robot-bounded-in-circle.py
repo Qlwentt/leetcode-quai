@@ -2,13 +2,14 @@ class Solution:
     def isRobotBounded(self, instructions: str) -> bool:
         x = 0
         y = 0
+        print (1%4)
         direction = 0 #0 is north, 1 is east, 2 is south, 3 is west
         for _ in range(4):
             for instruction in instructions:
                 if instruction == "L":
-                    direction = (direction + 1) % 4
-                elif instruction == "R":
                     direction = (direction - 1) % 4
+                elif instruction == "R":
+                    direction = (direction + 1) % 4
                 elif instruction == "G":
                     if direction == 0:
                         y += 1
