@@ -7,7 +7,7 @@ class Solution:
             durForKey = durations[keysPressed[i]]
             
             durations[keysPressed[i]] = max(durForKey, duration)
-        print(durations)
+
         alphabet = "abcdefghijklmnopqrstuvwxyz"
         alphaIndices = {char: -(i+1) for i, char in enumerate(alphabet)}
         maxHeap = [(-duration, alphaIndices[char]) for char, duration in durations.items()]
