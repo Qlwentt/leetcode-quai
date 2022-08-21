@@ -1,10 +1,5 @@
-class Solution(object):
-    def smallestDistancePair(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: int
-        """
+class Solution:
+    def smallestDistancePair(self, nums: List[int], k: int) -> int:
         nums.sort()
         
         def isPossibleKth(guess,):
@@ -26,4 +21,3 @@ class Solution(object):
             else:
                 low = mid + 1
         return low
-            
