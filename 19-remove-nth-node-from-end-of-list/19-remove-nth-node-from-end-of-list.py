@@ -11,18 +11,16 @@ class Solution:
         while curr:
             length += 1
             curr = curr.next
-            
-        targetNode = length - n - 1
-        i = 0
-        if targetNode < 0:
-            return head.next if head else None
+        dummy = ListNode(0,head)    
+        targetNode = length - n
         
-        curr = head
+        i = 0
+        curr = dummy
         while i < targetNode:
             i += 1
             curr = curr.next
         
         curr.next = curr.next.next
-        return head
+        return dummy.next
         
         
