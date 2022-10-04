@@ -1,9 +1,5 @@
-class Solution(object):
-    def minMeetingRooms(self, intervals):
-        """
-        :type intervals: List[List[int]]
-        :rtype: int
-        """
+class Solution:
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
         start = [i for i, j in intervals]
         end = [j for i, j in intervals]
         
@@ -24,5 +20,3 @@ class Solution(object):
             maxMeetings = max(simultMeetings, maxMeetings)
         
         return maxMeetings
-            
-        
