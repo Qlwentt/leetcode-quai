@@ -1,57 +1,58 @@
 class Node:
-    def __init__(self, key, value):
-        self.key = key
-        self.value = value
-        self.prev = None
+    def __init__(self, key, val):
         self.next = None
+        self.prev = None
+        self.key = key
+        self.val = val
 class LRUCache:
 
     def __init__(self, capacity: int):
-        self.store = {} #key: Node
+        self.header = Node(None, 0) # most recent ----- least recent
+        self.footer = Node(None, 0)
         self.capacity = capacity
-        self.header = Node(None,0) # most recently used
-        self.footer = Node(None,0) # least recently used
-        #most recent --------- least recent
-        
+        self.store = {} #key: key, val: Node
         self.header.next = self.footer
         self.footer.prev = self.header
         
     def _remove(self, node):
-        # header->1->footer
-        #       <- <-
         node.prev.next = node.next
         node.next.prev = node.prev
-
+    
     def _insertFront(self, node):
-        node.prev = self.header
         node.next = self.header.next
+        node.prev = self.header
         self.header.next.prev = node
         self.header.next = node
-            
     
     def get(self, key: int) -> int:
         res = -1
         if key in self.store:
             node = self.store[key]
-            res = node.value
-            # move to most recently used
+            res = node.val
+            # move to front
             self._remove(node)
             self._insertFront(node)
         return res
+            
 
     def put(self, key: int, value: int) -> None:
+        # if already in store, update val
         if key in self.store:
             node = self.store[key]
-            node.value = value
+            node.val = value
+            # take from current pos
             self._remove(node)
         else:
-            node = Node(key,value)
+            node = Node(key, value)
             self.store[key] = node
-        # move to most recently used
+        # move to front
         self._insertFront(node)
-        if  len(self.store) > self.capacity:
-            del self.store[self.footer.prev.key]
-            self._remove(self.footer.prev)
+        
+        # evict least recently used
+        if len(self.store) > self.capacity:
+            lru = self.footer.prev
+            del self.store[lru.key]
+            self._remove(lru)
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
