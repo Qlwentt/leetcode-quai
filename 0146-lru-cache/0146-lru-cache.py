@@ -1,18 +1,18 @@
 class Node:
-    def __init__(self, key, val):
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
         self.next = None
         self.prev = None
-        self.key = key
-        self.val = val
 class LRUCache:
 
     def __init__(self, capacity: int):
-        self.header = Node(None, 0) # most recent ----- least recent
+        self.store = {} # key : Node
+        self.header = Node(None, 0) # most recent ---- least recent
         self.footer = Node(None, 0)
-        self.capacity = capacity
-        self.store = {} #key: key, val: Node
         self.header.next = self.footer
         self.footer.prev = self.header
+        self.capacity = capacity
         
     def _remove(self, node):
         node.prev.next = node.next
@@ -28,7 +28,7 @@ class LRUCache:
         res = -1
         if key in self.store:
             node = self.store[key]
-            res = node.val
+            res = node.value
             # move to front
             self._remove(node)
             self._insertFront(node)
@@ -36,11 +36,10 @@ class LRUCache:
             
 
     def put(self, key: int, value: int) -> None:
-        # if already in store, update val
         if key in self.store:
             node = self.store[key]
-            node.val = value
-            # take from current pos
+            # update val
+            node.value = value
             self._remove(node)
         else:
             node = Node(key, value)
@@ -48,7 +47,7 @@ class LRUCache:
         # move to front
         self._insertFront(node)
         
-        # evict least recently used
+        # evict lru
         if len(self.store) > self.capacity:
             lru = self.footer.prev
             del self.store[lru.key]
