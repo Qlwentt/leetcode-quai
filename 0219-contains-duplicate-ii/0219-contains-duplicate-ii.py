@@ -10,18 +10,21 @@ class Solution:
 #                 numsDict[num] = i
         
 #         return False
-        L = 0
-        R = 1
-        numsSet = set([nums[L]])    
 
-        while R < len(nums):            
+        numsSet = set()
+        L = 0
+        R = 0
+        
+        while R < len(nums):
             if abs(L-R) > k:
                 numsSet.remove(nums[L])
-                L += 1       
-            if nums[R] in numsSet and abs(L-R) <= k:
+                L += 1
+            if nums[R] in numsSet:
                 return True
             numsSet.add(nums[R])
             R += 1
         return False
+
+
 
                 
