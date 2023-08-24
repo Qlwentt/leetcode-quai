@@ -1,22 +1,14 @@
 class Solution:
     def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
-#         numsDict = {}
-        
-#         for i,num in enumerate(nums):
-#             j = numsDict.get(num, None)
-#             if j != None and (abs(i-j) <= k):
-#                 return True
-#             else:
-#                 numsDict[num] = i
-        
-#         return False
+        # [1,2,3,1] 3
+        # [1,2,3,1,2,3] 2
 
         numsSet = set()
         L = 0
         R = 0
-        
+
         while R < len(nums):
-            if abs(L-R) > k:
+            if abs(R-L) > k:
                 numsSet.remove(nums[L])
                 L += 1
             if nums[R] in numsSet:
@@ -24,6 +16,7 @@ class Solution:
             numsSet.add(nums[R])
             R += 1
         return False
+
 
 
 
