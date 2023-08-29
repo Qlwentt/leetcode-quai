@@ -20,8 +20,8 @@ class Solution:
             curChar = s[R]
             if curChar in counterS:
                 counterS[curChar] += 1
-            
-            while all(value >= 0 for value in [counterS[key] - counterT[key] for key in counterS.keys()]):
+                
+            while all(counterS[key] >= counterT[key] for key in counterS.keys()):    
                 if R - L + 1 < minLen: # 6 < inf, 10 < 6, 8 < 6, 7 < 6, 6 < 6, 7 < 6, 6 < 6, 5 < 6 4 < 5
                     pos = (L,R) # (0, 5),(8,12), (9, 12)
                     minLen = (R - L + 1) # 6 5 4
