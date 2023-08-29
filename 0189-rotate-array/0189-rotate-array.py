@@ -5,21 +5,24 @@ class Solution:
         """
         k = k % len(nums)
         
-        left = nums[:-k]
-        right = nums[-k:]
-        print(left)
-        print(right)
-        answer = right+left
+#         left = nums[:-k]
+#         right = nums[-k:]
+#         answer = right+left
         
-        nums[:] = answer
+#         nums[:] = answer
+        def reverse(start, stop):
+            L = start
+            R = stop
+            
+            while L < R:
+                nums[L], nums[R] = nums[R], nums[L]
+                L += 1
+                R -= 1
+        reverse(0,len(nums)-1)
+        reverse(0, k-1)
+        reverse(k, len(nums)-1)
         
-      #   [4,5,6,7,2,3,1] 
-      # #        L           
-      # #              R 
-      #   [7,1,2,3,4,5,6]
-      #   [6,7,1,2,3,4,5]
-      #   [5,6,7,1,2,3,4]
-      #   [4,5,6,7,1,2,3]
-      #   [3,4,5,6,7,1,2]
-      #   [2,3,4,5,6,7,1]
-        
+      # [1,2,3,4,5,6,7]
+      # [7,6,5,4,3,2,1]
+      #        k
+      # [5,6,7,1,2,3,4]
