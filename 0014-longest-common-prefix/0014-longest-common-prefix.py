@@ -1,20 +1,17 @@
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        maxLen = len(max(strs, key=len))
-        prefixMap = [[] for _ in range(maxLen)]
-        
-        for s in strs:
-            for i,char in enumerate(s):
-                prefixMap[i].append(char)
-        prefix = []
-        for chars in prefixMap:
-            charsSet = set(chars)
-            if len(chars) == len(strs) and len(charsSet) == 1:
-                prefix.append("".join(charsSet))
+        minLen = min([len(s) for s in strs])
+        commonPrefix = []
+        for i in range(minLen):
+            charSet = set()
+            for s in strs:
+                charSet.add(s[i])
+            if len(charSet) == 1:
+                commonPrefix.append(strs[0][i])
             else:
                 break
-        return "".join(prefix)
-        
+        return "".join(commonPrefix)
+            
         
         
         
