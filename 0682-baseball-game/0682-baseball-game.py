@@ -11,8 +11,5 @@ class Solution:
                 prev = stack[-1]
                 stack.append(prev*2)
             elif op == "+":
-                prev1 = stack.pop()
-                prev2 = stack.pop()
-                add_ = prev1 + prev2
-                stack.extend([prev2,prev1,add_])
+                stack.append(stack[-1]+stack[-2])
         return sum(stack)
