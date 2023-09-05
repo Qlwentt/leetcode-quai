@@ -18,7 +18,6 @@ class Solution:
         
         while lo <= hi:
             mid = (lo + hi) // 2
-            # print(lo,hi,mid)
             if lo == hi:
                 return mid
             elif isBadVersion(mid) :
