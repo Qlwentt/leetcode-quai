@@ -18,12 +18,10 @@ class Solution:
 #             n += 1
 #         reversedNum = 0
 
-#         power = 0
 #         for i in range(n//2, 0, -1):
 #             digit = x  % 10
 #             reversedNum += digit * 10 ** (i-1)
 #             x = x // 10
-#             power += 1
 #         return x == reversedNum if n % 2 == 0 else x // 10 == reversedNum
         
 #         x = str(x)
