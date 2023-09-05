@@ -1,22 +1,30 @@
 class Solution:
     def isPalindrome(self, x: int) -> bool:
-        if x < 0:
+        if x < 0 or (x % 10 == 0 and x != 0):
             return False
-        
-        n = 0
-        num = x
-        while num != 0:
-            num = num // 10
-            n += 1
         reversedNum = 0
+        while x > reversedNum:
+            reversedNum = reversedNum * 10 + x % 10
+            x = x // 10        
+        return x == reversedNum or x == reversedNum // 10
+        
+#         if x < 0:
+#             return False
+        
+#         n = 0
+#         num = x
+#         while num != 0:
+#             num = num // 10
+#             n += 1
+#         reversedNum = 0
 
-        power = 0
-        for i in range(n//2, 0, -1):
-            digit = x  % 10
-            reversedNum += digit * 10 ** (i-1)
-            x = x // 10
-            power += 1
-        return x == reversedNum if n % 2 == 0 else x // 10 == reversedNum
+#         power = 0
+#         for i in range(n//2, 0, -1):
+#             digit = x  % 10
+#             reversedNum += digit * 10 ** (i-1)
+#             x = x // 10
+#             power += 1
+#         return x == reversedNum if n % 2 == 0 else x // 10 == reversedNum
         
 #         x = str(x)
 #         L = 0
