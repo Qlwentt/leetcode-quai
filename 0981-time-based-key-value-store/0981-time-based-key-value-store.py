@@ -7,7 +7,7 @@ class TimeMap:
         
 
     def set(self, key: str, value: str, timestamp: int) -> None:
-        bisect.insort(self.store[key], (timestamp, value))
+        self.store[key].append((timestamp, value))
 
     def get(self, key: str, timestamp: int) -> str:
         values = self.store[key]
