@@ -10,16 +10,16 @@ class Solution:
         dummy = ListNode(0)
         result = dummy
         while c1 or c2:
-            val = None
+            node = None
             val1 = c1.val if c1 else float('inf')
             val2 = c2.val if c2 else float('inf')
             
             if val1 < val2:
-                val = val1
+                node = c1
                 c1 = c1.next
             else:
-                val = val2
+                node = c2
                 c2 = c2.next
-            result.next = ListNode(val)
+            result.next = node
             result = result.next
         return dummy.next
