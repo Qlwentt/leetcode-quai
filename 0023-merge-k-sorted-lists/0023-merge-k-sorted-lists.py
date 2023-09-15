@@ -25,9 +25,12 @@ class Solution:
             return dummy.next
         
         while len(lists) > 1:
-            a = lists.pop()
-            b = lists.pop()
-            lists.append(mergeTwoLists(a,b))
+            mergedLists = []
+            while lists:
+                a = lists.pop()
+                b = lists.pop() if lists else None
+                mergedLists.append(mergeTwoLists(a,b)) 
+            lists = mergedLists
             
         return lists[-1] if lists else None
         
