@@ -10,13 +10,7 @@ class Solution:
             return None
         rootVal = preorder[0]
         iRoot = inorder.index(rootVal)
-        inorderLeft = inorder[:iRoot]
-        inorderRight = inorder[iRoot+1:]
-
-        preorderLeftLen = len(inorderLeft)
-        preorderRightLen = len(inorderRight)
-
-        left = self.buildTree(preorder[1:1+preorderLeftLen], inorderLeft)
-        right = self.buildTree(preorder[1+preorderLeftLen:1+preorderLeftLen+preorderRightLen], inorderRight)
+        left = self.buildTree(preorder[1:iRoot+1], inorder[:iRoot])
+        right = self.buildTree(preorder[iRoot+1:], inorder[iRoot+1:])
         root = TreeNode(rootVal, left, right)
         return root
