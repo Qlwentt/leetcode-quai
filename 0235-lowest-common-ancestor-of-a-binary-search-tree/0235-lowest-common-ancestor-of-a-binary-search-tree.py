@@ -8,32 +8,37 @@ from collections import defaultdict
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-
-        parents = defaultdict(dict)
-        def getParents(root, parent):
-            if not root:
-                return 
-            nonlocal parents
+#         parents = defaultdict(dict)
+#         def getParents(root, parent):
+#             if not root:
+#                 return 
+#             nonlocal parents
                         
-            parents[root.val][root] = None
+#             parents[root.val][root] = None
             
-            currParent = parents[root.val]
-            if parent:
-                currParent.update(parents[parent.val])
+#             currParent = parents[root.val]
+#             if parent:
+#                 currParent.update(parents[parent.val])
             
-            getParents(root.left, root)
-            getParents(root.right, root)
-            # print(parents)
+#             getParents(root.left, root)
+#             getParents(root.right, root)
         
-        getParents(root, None)
+#         getParents(root, None)
         
-        pParents = parents[p.val]
-        qParents = parents[q.val]
+#         pParents = parents[p.val]
+#         qParents = parents[q.val]
         
-        for parent in pParents.keys():
-            if parent in qParents:
-                return parent
-        return None
+#         for parent in pParents.keys():
+#             if parent in qParents:
+#                 return parent
+#         return None
+        while root:
+            if p.val > root.val and q.val > root.val:
+                root = root.right
+            elif p.val < root.val and q.val < root.val:
+                root = root.left
+            else:
+                return root
                 
             
         
