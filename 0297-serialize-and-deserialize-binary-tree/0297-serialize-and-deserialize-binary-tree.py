@@ -40,15 +40,13 @@ class Codec:
         if not data:
             return None
         preorder = data.split(",")
+        preorder.reverse()
 
-        i = 0                
         def buildTree():
-            nonlocal i
-            if preorder[i] == "N":
-                i += 1
+            if preorder[-1] == "N":
+                preorder.pop()
                 return None    
-            rootVal = int(preorder[i])
-            i += 1
+            rootVal = int(preorder.pop())
             left = buildTree()
             right = buildTree()
             return TreeNode(rootVal, left, right)
