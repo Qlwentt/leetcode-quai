@@ -9,12 +9,11 @@ class Solution:
         
         answer = []
         for i in range(len(freq) -1, 0, -1):
-            if freq[i]:
-                for num in freq[i]:
-                    answer.append(num)
-                    k -= 1
-                    if k == 0:
-                        return answer
+            for num in freq[i]:
+                answer.append(num)
+                k -= 1
+                if k == 0:
+                    return answer
         
         
         
