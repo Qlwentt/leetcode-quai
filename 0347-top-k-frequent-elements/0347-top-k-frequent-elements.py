@@ -1,7 +1,20 @@
 from collections import Counter
-import heapq
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         count = Counter(nums)
-        return heapq.nlargest(k, count, count.__getitem__)
+        freq = [[] for _ in range(len(nums) + 1)] # frequency, items
+        
+        for num, count in count.items():
+            freq[count].append(num)
+        
+        answer = []
+        for i in range(len(freq) -1, 0, -1):
+            if freq[i]:
+                for num in freq[i]:
+                    answer.append(num)
+                    k -= 1
+                    if k == 0:
+                        return answer
+        
+        
         
