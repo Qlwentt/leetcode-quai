@@ -21,11 +21,7 @@ class WordDictionary:
         def rec_search(word, cur):
             for i, char in enumerate(word):
                 if char == ".":
-                    if i == len(word) - 1:
-                        word_ = ""
-                    else:
-                        word_ = word[i+1:]
-                    options = [rec_search(word_, cur.children[child]) for child in cur.children.keys()]
+                    options = [rec_search(word[i+1:], cur.children[child]) for child in cur.children.keys()]
                     return any(options)
                 else:
                     if not char in cur.children:
