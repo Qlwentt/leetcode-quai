@@ -7,8 +7,10 @@ class Solution:
         q = deque([]) # count, time, letter
         time = 0
         while heap or q:
-            count, letter = heapq.heappop(heap) if heap else (-1, "")
             time += 1
+            if not heap:
+                time = q[0][2]
+            count, letter = heapq.heappop(heap) if heap else (-1, "")
             while q and q[0][2] <= time:
                 unIdle = q.popleft()
                 heapq.heappush(heap, (unIdle[0], unIdle[1]))
