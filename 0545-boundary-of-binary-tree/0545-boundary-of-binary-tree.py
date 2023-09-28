@@ -9,9 +9,9 @@ class Solution:
     def boundaryOfBinaryTree(self, root: Optional[TreeNode]) -> List[int]:
         
         
-        # 1. BFS from left to right, only one value per level until you get to last level
+        # 1. DFS special for left boundary
         # 2. DFS inorder to get leaves from left to right
-        # 3. BFS with stack only one node per level until you get to first level
+        # 3. DFS special for right boundary
 
         
         left = []
@@ -37,7 +37,6 @@ class Solution:
             getLeaves(root.left)
             if not root.left and not root.right:
                 leaves.append(root.val)
-                # visited.add(root)
             getLeaves(root.right)
 
         right = []
@@ -60,8 +59,5 @@ class Solution:
         getRight(root, None)
         right.reverse()
 
-        print(left)
-        print(leaves)
-        print(right)
         return left + leaves + right
         
