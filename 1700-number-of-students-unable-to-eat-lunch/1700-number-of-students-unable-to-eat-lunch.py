@@ -13,6 +13,4 @@ class Solution:
             else:
                 sandwiches[-1] = (sandwiches[-1][0], sandwiches[-1][1] + 1)
                 students.append(student)
-        print(students)
-        print(sandwiches)
         return len(students)
