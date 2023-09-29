@@ -14,7 +14,5 @@ class Solution:
             if not root.left and not root.right:
                 return curSum == targetSum
 
-            if pathSum(root.left, curSum):
-                return True
-            return pathSum(root.right, curSum)
+            return pathSum(root.left, curSum) or pathSum(root.right, curSum)
         return pathSum(root, 0)
