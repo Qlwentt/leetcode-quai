@@ -4,19 +4,19 @@ class Solution:
         perms = []
         nums.sort()
 
-        def backtrack(i, curPerm, curNums):
+        def backtrack(curPerm, curNums):
             if len(curPerm) == len(nums):
                 perms.append(curPerm.copy())
                 return
                         
-            for j in range(len(curNums)):
-                next_ = curNums[j+1] if j < len(curNums) - 1 else float('inf')
-                if curNums[j] != next_:
-                    curPerm.append(curNums[j])
-                    backtrack(j+1, curPerm, curNums[:j] + curNums[j+1:])
+            for i in range(len(curNums)):
+                next_ = curNums[i+1] if i < len(curNums) - 1 else float('inf')
+                if curNums[i] != next_:
+                    curPerm.append(curNums[i])
+                    backtrack(curPerm, curNums[:i] + curNums[i+1:])
                     curPerm.pop()
                     
-        backtrack(0, [], nums)
+        backtrack([], nums)
         return perms
             
                 
