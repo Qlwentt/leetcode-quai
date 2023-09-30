@@ -7,14 +7,14 @@ class Solution:
 
         def backtrack(i, curComb):
             if len(curComb) == len(digits):
-                if curComb:
-                    combs.append("".join(curComb))
+                combs.append("".join(curComb))
                 return
             
             for letter in phone[digits[i]]:
                 curComb.append(letter)
                 backtrack(i+1, curComb)
                 curComb.pop()
-        backtrack(0, [])
+        if digits:
+            backtrack(0, [])
         return combs
                 
