@@ -1,12 +1,10 @@
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        solution = set()
-        
+        solution = []
+        nums.sort()
         def backtrack(i, curSet):
             if i >= len(nums):
-                oneSet = curSet.copy()
-                oneSet.sort()
-                solution.add(tuple(oneSet))
+                solution.append(curSet.copy())
                 return
             
             # include num in set
@@ -15,6 +13,8 @@ class Solution:
 
             # don't include num in set
             curSet.pop()
+            while i + 1 < len(nums) and nums[i] == nums[i+1]:
+                i += 1
             backtrack(i+1, curSet)
         backtrack(0, [])
         return solution
