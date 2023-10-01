@@ -2,7 +2,7 @@ class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         
         perms = []
-        
+
         def backtrack(curPerm, curNums):
             if len(curPerm) == len(nums):
                 perms.append(curPerm.copy())
@@ -12,6 +12,6 @@ class Solution:
                 curPerm.append(curNums[i])
                 backtrack(curPerm, curNums[:i] + curNums[i+1:])
                 curPerm.pop()
-
+                
         backtrack([], nums)
         return perms
