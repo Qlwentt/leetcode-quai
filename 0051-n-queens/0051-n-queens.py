@@ -6,7 +6,7 @@ class Solution:
         xdiag = defaultdict(lambda: False)
         ydiag = defaultdict(lambda: False)
         answer = []
-        def backtrack(row, col, curBoard):
+        def backtrack(row, curBoard):
             if len(curBoard) == n:
                 answer.append(curBoard.copy())
                 return
@@ -22,7 +22,7 @@ class Solution:
                 line[c] = "Q"
                 
                 curBoard.append("".join(line))
-                backtrack(row+1, c, curBoard) 
+                backtrack(row+1, curBoard) 
                 curBoard.pop()
                 
                 line[c] = "."
@@ -30,7 +30,7 @@ class Solution:
                 xdiag[c-row] = False
                 ydiag[c+row] = False
                 rows[row] = False
-        backtrack(0,0,[])
+        backtrack(0,[])
         return answer
             
         
