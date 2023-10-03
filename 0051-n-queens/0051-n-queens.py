@@ -1,7 +1,6 @@
 from collections import defaultdict
 class Solution:
     def solveNQueens(self, n: int) -> List[List[str]]:
-        rows = defaultdict(lambda: False)
         cols = defaultdict(lambda: False)
         xdiag = defaultdict(lambda: False)
         ydiag = defaultdict(lambda: False)
@@ -13,9 +12,8 @@ class Solution:
 
             line = ["."] * n
             for c in range(n):
-                if rows[row] or cols[c] or xdiag[c-row] or ydiag[c+row]:
+                if cols[c] or xdiag[c-row] or ydiag[c+row]:
                     continue
-                rows[row] = True
                 cols[c] = True
                 xdiag[c-row] = True
                 ydiag[c+row] = True
@@ -29,7 +27,7 @@ class Solution:
                 cols[c] = False
                 xdiag[c-row] = False
                 ydiag[c+row] = False
-                rows[row] = False
+    
         backtrack(0,[])
         return answer
             
