@@ -32,7 +32,7 @@ class Solution:
         for r in range(ROWS):
             dfs(r,0)
             dfs(r, COLS-1)
-        print(dontFlip)
+
         for row in range(ROWS):
             for col in range(COLS):
                 if board[row][col] == "O" and (row,col) not in dontFlip:
