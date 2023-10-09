@@ -46,7 +46,7 @@ class Solution:
                 board[row][col] not in curNode.children or
                 curNode.children[board[row][col]].refs < 1
             ):
-                return False
+                return
             
             
             path.add((row,col))
@@ -59,14 +59,13 @@ class Solution:
                 answer.append(curWord)
                 t.removeWord(curWord)
 
-            up = backtrack(row-1,col, curWord, curNode)
-            down = backtrack(row+1, col, curWord, curNode)
-            left = backtrack(row, col-1, curWord, curNode)
-            right = backtrack(row, col+1, curWord, curNode)
-            
+            backtrack(row-1,col, curWord, curNode)
+            backtrack(row+1, col, curWord, curNode)
+            backtrack(row, col-1, curWord, curNode)
+            backtrack(row, col+1, curWord, curNode)
+    
             path.remove((row,col))
             
-            return up or down or left or right
         
         for row in range(ROWS):
             for col in range(COLS):
