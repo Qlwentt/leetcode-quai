@@ -27,27 +27,6 @@ class Trie:
                 cur.refs -= 1
         cur.word = False
         
-
-#     def isPrefix(self, pre):
-#         cur = self.root
-#         for char in pre:
-#             if char not in cur.children:
-#                 return False
-#             cur = cur.children[char]
-#             if cur.refs < 0:
-#                 return False
-#         return True
-            
-#     def isWord(self,word):
-#         cur = self.root
-#         for char in word:
-#             if char not in cur.children:
-#                 return False
-#             cur = cur.children[char]
-#             if cur.refs < 0:
-#                 return False
-#         return cur.word
-        
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         t = Trie()
