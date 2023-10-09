@@ -40,11 +40,6 @@ class Solution:
         
 
         def backtrack(row,col, curWord, curNode):
-            
-            if curNode.word:
-                answer.append(curWord)
-                t.removeWord(curWord)
-            
             if (row < 0 or col < 0 or
                 row >= ROWS or col >= COLS or
                 (row,col) in path or
@@ -59,6 +54,10 @@ class Solution:
             letter = board[row][col]
             curWord = curWord + letter
             curNode = curNode.children[letter]
+            
+            if curNode.word:
+                answer.append(curWord)
+                t.removeWord(curWord)
 
             up = backtrack(row-1,col, curWord, curNode)
             down = backtrack(row+1, col, curWord, curNode)
