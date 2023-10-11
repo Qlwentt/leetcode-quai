@@ -14,7 +14,7 @@ class Solution:
                 if fromChar != toChar:
                     adjList[fromChar].add(toChar)
                     break
-        print(adjList)       
+
         visited = set()
         visiting = set()
         answer = []
