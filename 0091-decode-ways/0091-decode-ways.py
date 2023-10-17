@@ -32,10 +32,8 @@ class Solution:
             
             i = n-2
             while i >= 0:
-                print(s[i:i+2])
                 dp[i] = (dp[i+1] if s[i] in numMap else 0) + (dp[i+2] if s[i:i+2] in numMap else 0)
                 i -= 1
-            print(dp)
             return dp[0]
         
         return decodingDP()
