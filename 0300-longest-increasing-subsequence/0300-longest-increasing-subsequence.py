@@ -23,29 +23,41 @@ class Solution:
 #         return backtrack(0, float('-inf'))
 
 # memoization
-        memo = {}
-        def backtrack(i):
-            if i >= len(nums):
-                return 0
+#         memo = {}
+#         def backtrack(i):
+#             if i >= len(nums):
+#                 return 0
             
-            if i in memo:
-                return memo[i]
+#             if i in memo:
+#                 return memo[i]
             
-            maxTake = 1
-            for j in range(i+1, len(nums)):
-                take = 1
-                if nums[i] < nums[j]:
-                    take += backtrack(j)
-                    maxTake = max(take,maxTake)
+#             maxTake = 1
+#             for j in range(i+1, len(nums)):
+#                 take = 1
+#                 if nums[i] < nums[j]:
+#                     take += backtrack(j)
+#                     maxTake = max(take,maxTake)
                                 
-            memo[i] = maxTake
-            return memo[i]
+#             memo[i] = maxTake
+#             return memo[i]
         
-        answer = 1
-        for i in range(len(nums)):
-            answer = max(answer, backtrack(i))
-        return answer
-                
+#         answer = 1
+#         for i in range(len(nums)):
+#             answer = max(answer, backtrack(i))
+#         return answer
+
+# dp
+        n = len(nums)
+        dp = [1] * (n)
+        
+        for i in range(n-1, -1,-1):
+            for j in range(n-1, i-1, -1):
+                a = nums[i]
+                b = nums[j]
+                if a < b:
+                    dp[i] = max(dp[i], 1 + dp[j])
+        
+        return max(dp)                
         
         
 
