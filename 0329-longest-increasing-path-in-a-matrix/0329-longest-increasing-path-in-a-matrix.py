@@ -9,16 +9,16 @@ class Solution:
                 row >= ROWS or col >= COLS or
                 matrix[row][col] <= prev):
                 return 0
-            if (row,col,prev) in memo:
-                return memo[(row,col,prev)]
+            if (row,col) in memo:
+                return memo[(row,col)]
             cur = matrix[row][col]
             up = 1 + dfs(row-1, col, cur)
             down = 1+ dfs(row+1, col, cur)
             left = 1 + dfs(row, col-1, cur)
             right = 1 + dfs(row, col+1, cur)
             
-            memo[(row,col,prev)] = max(up, down, left, right)
-            return memo[(row,col,prev)]
+            memo[(row,col)] = max(up, down, left, right)
+            return memo[(row,col)]
         
         for row in range(ROWS):
             for col in range(COLS):
