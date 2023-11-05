@@ -1,26 +1,21 @@
 class Solution:
     def checkValidString(self, s: str) -> bool:
-        memo = {}
-        def backtrack(i, left):
-            if i >= len(s):
-                return left == 0
-            if left < 0:
-                return False
-            if (i, left) in memo:
-                return memo[(i,left)]
-            
-            if s[i] == "(":
-                memo[(i,left)] = backtrack(i+1, left+1)
-            elif s[i] == ")":
-                memo[(i,left)] = backtrack(i+1, left-1)
+        leftMin = 0
+        leftMax = 0
+        
+        for char in s:
+            if char == "(":
+                leftMin += 1
+                leftMax += 1
+            elif char == ")":
+                leftMin -= 1
+                leftMax -= 1
             else:
-                # left
-                l = backtrack(i+1, left+1)
-                # empty
-                empty = backtrack(i+1, left)
-                # right
-                right = backtrack(i+1, left-1)
-                memo[(i,left)] = l or empty or right
-            return memo[(i,left)]
+                leftMax += 1
+                leftMin -= 1
             
-        return backtrack(0,0)
+            if leftMin < 0:
+                leftMin = 0
+            if leftMax < 0:
+                return False
+        return leftMin == 0
