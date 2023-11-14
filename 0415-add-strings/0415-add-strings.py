@@ -4,7 +4,6 @@ class Solution:
         num1 = list(num1)
         num2 = list(num2)
         answer = []
-        power = 0
         while num1 or num2 or carry:
             digit1 = int(num1.pop()) if num1 else 0
             digit2 = int(num2.pop()) if num2 else 0
