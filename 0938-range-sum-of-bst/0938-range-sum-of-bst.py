@@ -8,15 +8,18 @@ class Solution:
     def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
         sum_ = 0
         
-        def preorder(root):
+        def dfs(root):
             nonlocal sum_
             if not root:
                 return
             
-            if root.val in range(low,high+1):
+            if root.val in range(low, high+1):
                 sum_ += root.val
                 
-            preorder(root.left)
-            preorder(root.right)
-        preorder(root)
+            if low < root.val:
+                dfs(root.left)
+                
+            if high >= root.val:
+                dfs(root.right)
+        dfs(root)
         return sum_
