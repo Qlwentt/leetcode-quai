@@ -5,7 +5,7 @@ class Solution:
         stack = []
         exTime = [0] * n
         for log in logs:
-            i, command, time = re.match("(\d+):(start|end):(\d+)", log).groups()
+            i, command, time = log.split(":")
             i = int(i)
             time = int(time)
             
