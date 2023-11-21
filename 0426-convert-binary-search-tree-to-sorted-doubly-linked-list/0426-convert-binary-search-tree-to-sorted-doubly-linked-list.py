@@ -11,20 +11,24 @@ class Solution:
     def treeToDoublyList(self, root: 'Optional[Node]') -> 'Optional[Node]':
         if not root:
             return root
-        inorder = []
+        prev, first = None, None
         def dfs(root):
+            nonlocal prev, first
             if not root:
-                return
+                return 
             
             dfs(root.left)
-            inorder.append(root)
-            dfs(root.right)
-        dfs(root)
-        
-        for i,node in enumerate(inorder):
-            node.right = inorder[i+1] if i < len(inorder) -1 else inorder[0]
-            node.left = inorder[i-1] if i > 0 else inorder[-1]
-        
-        return inorder[0]
+            if not prev:
+                first = root
+            else:
+                root.left = prev
+                prev.right = root
+            prev = root
             
+            dfs(root.right)
+        
+        dfs(root)
+        first.left = prev
+        prev.right = first
+        return first
             
