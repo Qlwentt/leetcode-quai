@@ -9,7 +9,6 @@ class Solution:
         for i, weight in enumerate(w):
             runSum += weight
             self.choices[i] = runSum
-        print(self.choices)
         
             
 
