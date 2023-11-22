@@ -9,9 +9,8 @@
 class Solution:
     def leftMostColumnWithOne(self, binaryMatrix: 'BinaryMatrix') -> int:
         
-        def getFirstOne(row):
+        def getFirstOne(row, hi):
             lo = 0
-            hi = COLS - 1
 
             while lo <= hi:
                 mid = (lo+hi) // 2
@@ -24,7 +23,7 @@ class Solution:
         ROWS , COLS = binaryMatrix.dimensions()
         answer = COLS
         for i in range(ROWS):
-            answer = min(getFirstOne(i), answer)
+            answer = min(getFirstOne(i, min(answer, COLS-1)), answer)
         return answer if answer != COLS else -1
         
        
