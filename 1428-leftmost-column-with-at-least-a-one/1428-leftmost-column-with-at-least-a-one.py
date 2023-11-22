@@ -19,13 +19,13 @@ class Solution:
                     hi = mid - 1
                 else:
                     lo = mid + 1
-            return lo if lo in range(COLS) else float("inf") 
+            return lo
         
         ROWS , COLS = binaryMatrix.dimensions()
-        answer = float("inf")
+        answer = COLS
         for i in range(ROWS):
             answer = min(getFirstOne(i), answer)
-        return answer if answer != float("inf") else -1
+        return answer if answer != COLS else -1
         
        
         
