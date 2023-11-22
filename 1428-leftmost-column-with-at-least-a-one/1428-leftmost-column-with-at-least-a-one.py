@@ -8,23 +8,22 @@
 
 class Solution:
     def leftMostColumnWithOne(self, binaryMatrix: 'BinaryMatrix') -> int:
-        
-        def getFirstOne(row, hi):
-            lo = 0
-
-            while lo <= hi:
-                mid = (lo+hi) // 2
-                if binaryMatrix.get(row, mid):
-                    hi = mid - 1
-                else:
-                    lo = mid + 1
-            return lo
-        
-        ROWS , COLS = binaryMatrix.dimensions()
-        answer = COLS
-        for i in range(ROWS):
-            answer = min(getFirstOne(i, min(answer, COLS-1)), answer)
-        return answer if answer != COLS else -1
+        ROWS, COLS = binaryMatrix.dimensions()
+        result = COLS
+        def move(row, col):
+            nonlocal result
+            if row not in range(ROWS) or col not in range(COLS):
+                return
+            if binaryMatrix.get(row,col) == 1:
+                result = col
+                #left
+                move(row, col - 1)
+            else:
+                # up
+                move(row-1, col)
+        move(ROWS-1,COLS-1)
+        return result if result != COLS else -1
+            
         
        
         
