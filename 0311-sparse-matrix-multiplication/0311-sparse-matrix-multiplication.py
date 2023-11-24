@@ -1,22 +1,35 @@
 class Solution:
     def multiply(self, mat1: List[List[int]], mat2: List[List[int]]) -> List[List[int]]:
-        ROWS1, COLS1 = len(mat1), len(mat1[0])
-        ROWS2, COLS2 = len(mat2), len(mat2[0])
+        A = []
+        B = []
         
-        if COLS1 != ROWS2:
-            raise Exception("Invalid matrices")
-        # COL1 always equals ROWS2
+        ROWS1 = len(mat1)
+        COLS1 = len(mat1[0])
         
-        ansROWS = ROWS1
-        ansCOLS = COLS2
+        ROWS2 = len(mat2)
+        COLS2 = len(mat2[0])
         
-        answer = [[0]*ansCOLS for row in range(ansROWS)]
+        for row in range(ROWS1):
+            curRow = []
+            for col in range(COLS1):
+                if mat1[row][col] != 0:
+                    curRow.append((col, mat1[row][col]))
+            A.append(curRow)
+            
+        for row in range(ROWS2):
+            curRow = []
+            for col in range(COLS2):
+                if mat2[row][col] != 0:
+                    curRow.append((col, mat2[row][col]))
+            B.append(curRow)
         
-        for row in range(ansROWS):
-            for col in range(ansCOLS):
-                for i in range(COLS1):
-                    answer[row][col] += mat1[row][i] * mat2[i][col]
+        answer = [[0]*COLS2 for _ in range(ROWS1)]
         
-        return answer
+        for row in range(ROWS1):
+            for col1, ele1 in A[row]:
+                for col2, ele2 in B[col1]:
+                    answer[row][col2] += ele1 * ele2
+        return answer   
+        
         
         
