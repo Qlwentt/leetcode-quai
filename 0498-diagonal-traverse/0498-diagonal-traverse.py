@@ -1,4 +1,6 @@
 from collections import deque
+import numpy as np
+
 class Solution:
     def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
         ROWS = len(mat)
@@ -24,16 +26,15 @@ class Solution:
         forward = True
         for row in range(ROWS):
             line = dfs(row,col, forward, deque([]))
-            answer.extend(line)
+            answer.append(line)
             forward = not forward
         
         row = ROWS-1
         for col in range(1,COLS):
             line = dfs(row,col,forward,deque([]))
-            answer.extend(line)
+            answer.append(line)
             forward = not forward
-            
-        return answer
+        return [item for row in answer for item in row]
             
             
         
