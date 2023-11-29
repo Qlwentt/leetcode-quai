@@ -1,41 +1,41 @@
 from collections import deque
-import numpy as np
-
 class Solution:
     def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
+        
         ROWS = len(mat)
         COLS = len(mat[0])
+        
         answer = []
+        directions = {
+            True: lambda row, col, fn: fn(row-1,col+1, True),
+            False: lambda row, col, fn: fn(row+1,col-1, False),
+        }
         
-        
-        def dfs(row, col, forward, line):
+        def dfs(row, col, forward):
             if (row not in range(ROWS) or 
                 col not in range(COLS)):
-                return line
-            
-            if forward:
-                line.append(mat[row][col])
-            else:
-                line.appendleft(mat[row][col])
+                prevRow = row + 1 if forward else row -1
+                prevCol = col - 1 if forward else col + 1
+                return prevRow, prevCol
                 
-            a = dfs(row-1, col+1, forward, line)
-            
-            return a
+            answer.append(mat[row][col])
+            r, c = directions[forward](row, col, dfs)
+            return r,c
         
+        row = 0
         col = 0
-        forward = True
-        for row in range(ROWS):
-            line = dfs(row,col, forward, deque([]))
-            answer.append(line)
-            forward = not forward
         
-        row = ROWS-1
-        for col in range(1,COLS):
-            line = dfs(row,col,forward,deque([]))
-            answer.append(line)
-            forward = not forward
-        return [item for row in answer for item in row]
+        while row in range(ROWS) and col in range(COLS):
+            row, col = dfs(row,col, True)
+            if col + 1 in range(COLS):
+                col += 1
+            else:
+                row += 1
+            row, col = dfs(row,col,False)
+            if row +1 in range(ROWS):
+                row += 1
+            else:
+                col += 1
             
-            
-        
-        
+                
+        return answer
