@@ -26,6 +26,7 @@ class BSTIterator:
         return self.nxt in range(len(self.nums))
 
 
+
 # Your BSTIterator object will be instantiated and called as such:
 # obj = BSTIterator(root)
 # param_1 = obj.next()
