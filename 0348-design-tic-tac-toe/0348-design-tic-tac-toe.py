@@ -11,38 +11,23 @@ class TicTacToe:
         
 
     def move(self, row: int, col: int, player: int) -> int:
-        player = 1 if player == 1 else -1
+        p = 1 if player == 1 else -1
         
         # mark move
-        self.board["rows"][row] += player
-        self.board["cols"][col] += player
+        self.board["rows"][row] += p
+        self.board["cols"][col] += p
         if row == col:
-            self.board["posDiag"] += player
+            self.board["posDiag"] += p
         if row + col == self.n -1:
-            self.board["negDiag"] += player
+            self.board["negDiag"] += p
         
-        return self.getWinner()
-    
-    def getWinner(self):
-        def getWinRowCol(rowOrCol):
-            for tallys in self.board[rowOrCol]:
-                if abs(tallys) == self.n:
-                    return tallys
-            return None
-        
-        def getWinDiag(diag):
-            if abs(self.board[diag]) == self.n:
-                return self.board[diag]
-            else:
-                return None
-        results = [getWinRowCol("rows"), getWinRowCol("cols"), getWinDiag("posDiag"), getWinDiag("negDiag")]
-        winner = next((item for item in results if item is not None), None)
-        if winner == None:
-            return 0
-        elif winner > 0:
-            return 1
-        else:
-            return 2
+        if (abs(self.board["rows"][row]) == self.n or
+            abs(self.board["cols"][col]) == self.n or
+            abs(self.board["posDiag"]) == self.n or
+            abs(self.board["negDiag"]) == self.n
+           ):
+            return player
+        return 0
                 
 
 # Your TicTacToe object will be instantiated and called as such:
