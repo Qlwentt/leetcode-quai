@@ -20,23 +20,6 @@ class Solution:
                     
             answer += x - lo
             cache[ages[x]] = x - lo
-#             #[16,16]
-#         #      L
-              
-#             lo = 0
-#             hi = x - 1
-            
-#             while lo <= hi:
-#                 y = (lo + hi) // 2
-#                 if ages[y] > ages[x]: 
-#                     hi = y - 1
-#                 else:
-#                     lo = y + 1
-            
-#             upperBound = lo
-#             print(upperBound, lowerBound )
-#             count = upperBound - lowerBound
-#             answer += count if count >= 0 else 0
         return answer
             
             
