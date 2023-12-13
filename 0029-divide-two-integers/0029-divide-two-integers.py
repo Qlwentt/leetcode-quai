@@ -1,20 +1,29 @@
 class Solution:
     def divide(self, dividend: int, divisor: int) -> int:
+          # write a function for multiplying recursively using addition
+        # get number that you can multiply divisor by to get dividend without going over using binary search
+        # handle negatives
+        
+        
         a = dividend
         b = divisor
         
         def div(dividend, divisor):
-            result = 0
-            while dividend >= divisor:
-                numToSubtract = divisor
-                multiplier = 1
-                while dividend >= numToSubtract:
-                    dividend -= numToSubtract
-                    numToSubtract = numToSubtract << 1
-                    result += multiplier
-                    multiplier = multiplier << 1
-            return result
+            lo = 0
+            hi = dividend
+            
+            while lo <= hi:
                 
+                mid = (lo + hi) >> 1 # get midpoint without division
+                attempt = self.multiply(divisor, mid)
+                if attempt < dividend:
+                    lo = mid + 1
+                elif attempt > dividend:
+                    hi = mid - 1
+                else:
+                    return mid
+            
+            return hi
         
         if a < 0 and b < 0:
             answer = div(-a,-b)
@@ -30,3 +39,16 @@ class Solution:
             return -(2 ** 31)
         else:
             return answer
+            
+        
+        
+    def multiply(self, a, b):
+        def isOdd(n):
+            return (n & 1)
+        product = 0
+        while b > 0:
+            if isOdd(b):
+                product += a
+            a = a << 1
+            b = b >> 1
+        return product
