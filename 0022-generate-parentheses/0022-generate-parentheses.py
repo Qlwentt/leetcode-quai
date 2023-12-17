@@ -7,16 +7,14 @@ class Solution:
                 answer.append("".join(stack))
                 return
             
-            if open_ > closed:
-                stack.append(")")
-                backtrack(stack,open_, closed+1)
-                stack.pop()
             if open_ < n:
                 stack.append("(")
                 backtrack(stack, open_+1, closed)
                 stack.pop()
-                
-                
-        backtrack([], 0, 0)
-        return answer
+            if closed < open_:
+                stack.append(")")
+                backtrack(stack, open_, closed+1)
+                stack.pop()
         
+        backtrack([], 0,0)
+        return answer
