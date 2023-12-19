@@ -1,18 +1,18 @@
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
-        ["2","1","+","3","*"]
         operations = {
-            "+" : lambda a,b: a + b,
-            "-" : lambda a,b: a - b,
-            "*" : lambda a,b: a * b,
-            "/" : lambda a,b: int(a/b)
+            "+" : lambda a, b : a + b,
+            "-": lambda a,b: a - b,
+            "*": lambda a, b: a *b,
+            "/": lambda a, b: int(a/b)
         }
         stack = []
-        for t in tokens:
-            if t in operations:
+        for char in tokens:
+            if char in operations:
                 b = stack.pop()
                 a = stack.pop()
-                stack.append(operations[t](a,b))
+                stack.append(operations[char](a,b))
             else:
-                stack.append(int(t))
+                stack.append(int(char))
+                
         return stack[-1]
