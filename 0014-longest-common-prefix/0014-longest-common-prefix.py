@@ -1,17 +1,19 @@
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        minLen = min([len(s) for s in strs])
-        commonPrefix = []
+        lcp = []
+        
+        minLen = len(min(strs, key=len))
+        
         for i in range(minLen):
-            charSet = set()
-            for s in strs:
-                charSet.add(s[i])
-            if len(charSet) == 1:
-                commonPrefix.append(strs[0][i])
+            target = strs[0][i]
+            common = True
+            for s in strs[1:]:
+                if s[i] != target:
+                    common = False
+            if common:
+                lcp.append(target)
             else:
                 break
-        return "".join(commonPrefix)
-            
+                    
         
-        
-        
+        return "".join(lcp)
