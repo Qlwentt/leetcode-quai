@@ -11,15 +11,17 @@ class Solution:
         
         while maxHeap:
             curWeight, node = heapq.heappop(maxHeap)
-            if node == end_node:
-                return curWeight * -1
             if node in maxPaths:
                 continue
+            if node == end_node:
+                return curWeight * -1
             maxPaths[node] = curWeight
             
             for neigh, weight in adjList[node]:
                 if neigh not in maxPaths:
                     heapq.heappush(maxHeap, (weight*curWeight, neigh))
+                    
+            
                     
         return 0
                     
