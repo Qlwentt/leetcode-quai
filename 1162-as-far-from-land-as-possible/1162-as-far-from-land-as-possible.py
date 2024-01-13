@@ -17,9 +17,7 @@ class Solution:
         directions = [[0,1],[1,0], [0,-1], [-1,0]]
         while q:
             x0,y0,x1,y1 = q.popleft()
-            # print(x0,y0, x1,y1)
             distance = abs(x0 - x1) + abs(y0 - y1) if grid[x0][y0] == 0 else -1
-            # print(distance)
             maxDist = max(maxDist, distance)
             
             for dr, dc in directions:
