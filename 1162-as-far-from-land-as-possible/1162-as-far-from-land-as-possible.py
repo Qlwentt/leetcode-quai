@@ -5,9 +5,6 @@ class Solution:
         visited = set()
         q = deque([])
         
-        (0,0), (1,1)
-        1
-        
         for r in range(N):
             for c in range(N):
                 if grid[r][c] == 1:
