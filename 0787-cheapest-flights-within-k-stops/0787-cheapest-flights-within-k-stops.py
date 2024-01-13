@@ -11,11 +11,13 @@ class Solution:
             
             if node == dst and stops-1 <= k:
                 return curPrice
-  
-            if node not in visited or visited[node] > stops:
-                visited[node] = stops   
-                for neigh, price in adjList[node]:
-                    heapq.heappush(minHeap, (price+curPrice, neigh, stops+1))
+            
+            if node in visited and visited[node] <= stops:
+                continue
+            visited[node] = stops
+                   
+            for neigh, price in adjList[node]:
+                heapq.heappush(minHeap, (price+curPrice, neigh, stops+1))
         
         return -1
         
