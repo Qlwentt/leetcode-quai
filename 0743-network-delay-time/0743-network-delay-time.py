@@ -12,7 +12,7 @@ class Solution:
         while minHeap:
             time, node = heapq.heappop(minHeap)
             
-            if times[node] <= time:
+            if time >= times[node]:
                 continue
             times[node] = time
             minTime = max(time, minTime)
