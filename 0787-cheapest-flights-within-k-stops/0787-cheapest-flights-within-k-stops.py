@@ -9,13 +9,15 @@ class Solution:
         while minHeap:
             curPrice, node, stops = heapq.heappop(minHeap)
             
-            if node == dst and stops-1 <= k:
-                return curPrice
+            
             
             if node in visited and visited[node] <= stops:
                 continue
             visited[node] = stops
-                   
+            
+            if node == dst and stops-1 <= k:
+                return curPrice
+                          
             for neigh, price in adjList[node]:
                 heapq.heappush(minHeap, (price+curPrice, neigh, stops+1))
         
