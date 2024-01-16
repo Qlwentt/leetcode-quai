@@ -6,6 +6,6 @@ class Solution:
             comp = target - num
             if comp in comps:
                 return [i, comps[comp]]
-            else:
-                comps[num] = i
+            comps[num] = i
+            
         return -1
