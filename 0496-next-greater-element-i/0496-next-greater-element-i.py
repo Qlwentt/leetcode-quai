@@ -1,23 +1,24 @@
 class Solution:
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
 #     [1,4,3,5,6] [4 ,5 ,6 ]
-#                 [5, 6,-1]
-#  top|
-#     |
-#     |
-#     |
-# bot |6
-# monotonically increasing
-        stack = []
-        numToIndex = {num: i for i,num in enumerate(nums1)}
+#     [6,5,4]
+#     [4,3,5,6,0]
+     # monotonically decreasing - go in reverse
+        indices = {num:i for i,num in enumerate(nums1)}
         answer = [-1] * len(nums1)
-        for num in nums2:
-            while stack and num > stack[-1]:
-                top = stack.pop()
-                if top in numToIndex:
-                    answer[numToIndex[top]] = num
+        stack = []
+        #[1,3,4,2]
+        for i in range(len(nums2)-1,-1,-1):
+            num = nums2[i]
+            while stack and num >= stack[-1]:
+                stack.pop()
+            if stack and num in indices:
+                answer[indices[num]] = stack[-1]
             stack.append(num)
+        
         return answer
+
+
 
         
     
