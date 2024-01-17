@@ -35,6 +35,7 @@ class MyHashSet:
             if cur.next.value == key:
                 cur.next = cur.next.next
                 self.size -= 1
+                return
             cur = cur.next
         
 
