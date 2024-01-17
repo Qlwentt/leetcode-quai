@@ -1,12 +1,12 @@
-from collections import Counter
 class Solution:
     def maxNumberOfBalloons(self, text: str) -> int:
-        balloonCharCount = {char:0 for char in "balloon"}
-        balloonCounter = Counter("balloon")
-        for char in text:
-            if char in balloonCounter:
-                balloonCharCount[char] += 1
+        balloonMap = {char: 0 for char in "balloon"}
         
-              
-        adjustedCounts = [count//balloonCounter[char] for char, count in balloonCharCount.items()]
-        return min(adjustedCounts)
+        for char in text:
+            if char in balloonMap:
+                balloonMap[char] += 1
+        
+        balloonMap["o"] =  balloonMap["o"] // 2
+        balloonMap["l"] =  balloonMap["l"] // 2
+        
+        return min(balloonMap.values())
