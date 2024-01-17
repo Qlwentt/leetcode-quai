@@ -1,17 +1,30 @@
 class Solution:
     def wordPattern(self, pattern: str, s: str) -> bool:
-        strs = s.split(" ")
-        pattern = list(pattern)
+        words = s.split(" ")
         
-        if len(pattern) != len(strs):
+        if len(pattern) != len(words):
             return False
         
-        patternMap = {}
-        for char, word in zip(pattern, strs):
-            mappedWord = patternMap.get(char, word)
-            if mappedWord != word:
-                return False
-            patternMap[char] = word
+        patternToWord = {}
+        wordToPattern = {}
         
-        return len(set(patternMap.values())) == len(patternMap.values())
+        for i in range(len(pattern)):
+            letter = pattern[i]
+            if letter in patternToWord:
+                if words[i] != patternToWord[letter]:
+                    return False
+            patternToWord[letter] = words[i]
             
+        for i in range(len(pattern)):
+            word = words[i]
+            if word in wordToPattern:
+                if pattern[i] != wordToPattern[word]:
+                    return False
+            wordToPattern[word] = pattern[i]
+        
+        return True
+            
+        
+            
+        
+        
