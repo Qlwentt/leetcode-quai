@@ -6,7 +6,6 @@ class Solution:
             return False
         
         patternToWord = {}
-        wordToPattern = {}
         
         for i in range(len(pattern)):
             letter = pattern[i]
@@ -14,15 +13,8 @@ class Solution:
                 if words[i] != patternToWord[letter]:
                     return False
             patternToWord[letter] = words[i]
-            
-        for i in range(len(pattern)):
-            word = words[i]
-            if word in wordToPattern:
-                if pattern[i] != wordToPattern[word]:
-                    return False
-            wordToPattern[word] = pattern[i]
         
-        return True
+        return len(set(patternToWord.values())) == len(patternToWord.values())
             
         
             
