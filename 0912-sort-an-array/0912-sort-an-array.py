@@ -1,34 +1,37 @@
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
-        def merge(left,right):
-            answer = []
-            L = 0
-            R = 0
+        def merge(nums1, nums2):
+            p1 = 0
+            p2 = 0
+            p3 = 0
             
-            while L < len(left) or R < len(right):
-                Litem = left[L] if L < len(left) else float('inf')
-                Ritem = right[R] if R < len(right) else float('inf')
+            answer = [None] * (len(nums1) + len(nums2))
+            
+            while p1 in range(len(nums1)) or p2 in range(len(nums2)):
+                item1 = nums1[p1] if p1 in range(len(nums1)) else float('inf')
+                item2 = nums2[p2] if p2 in range(len(nums2)) else float('inf')
                 
-                if Litem <= Ritem:
-                    answer.append(Litem)
-                    L += 1
+                if item1 <= item2:
+                    answer[p3] = item1
+                    p1 += 1
                 else:
-                    answer.append(Ritem)
-                    R += 1
+                    answer[p3] = item2
+                    p2 += 1
+                p3 += 1
             return answer
         
+        def mergeSort(nums):
+            if len(nums) == 1:
+                return nums
+            
+            M = len(nums) // 2
+            left = mergeSort(nums[:M])
+            right = mergeSort(nums[M:])
+            
+            return merge(left,right)
+            
+            
         
-        def mergeSort(array):
-            if len(array) == 1:
-                return array
-            
-            M = len(array) // 2
-            L = array[:M]
-            R = array[M:]
-            
-            L = mergeSort(L)
-            R = mergeSort(R)
-            
-            return merge(L,R)
         return mergeSort(nums)
             
+        
