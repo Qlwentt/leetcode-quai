@@ -13,3 +13,5 @@ class Solution:
                 answer += comb(n,2)
             
         return answer
+    
+    # Completion Time: 09:16 min
