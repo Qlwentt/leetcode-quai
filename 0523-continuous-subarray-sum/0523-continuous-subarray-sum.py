@@ -1,19 +1,15 @@
 class Solution:
     def checkSubarraySum(self, nums: List[int], k: int) -> bool:
-        numsDict = {0: -1}
-        
-        curSum = 0
-        for i, num in enumerate(nums):
-            curSum += num
-            rem = curSum % k
-            if rem in numsDict and i - numsDict[rem] >= 2:
-                return True
-            elif rem not in numsDict:
-                numsDict[rem] = i
+        remMap = {0:-1} 
+        prefix = 0
+        for R, num in enumerate(nums):
+            prefix += num
+            rem = prefix % k
+            if rem in remMap:
+                if R - remMap[rem] >= 2:
+                    return True
+                else:
+                    continue
+            remMap[rem] = R
+            
         return False
-            
-    
-            
-        
-        
-            
