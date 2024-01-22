@@ -23,6 +23,9 @@ class SparseVector:
             else:
                 p2 += 1
         return answer
+    
+# Time: O(N+M)
+# Space: O(N+M)
 
 # Your SparseVector object will be instantiated and called as such:
 # v1 = SparseVector(nums1)
