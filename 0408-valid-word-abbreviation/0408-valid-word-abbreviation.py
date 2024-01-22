@@ -17,3 +17,6 @@ class Solution:
                 i += len(item)
         
         return i == len(word)
+    
+   # Time: O(N+M)
+   # Space: O(M)
