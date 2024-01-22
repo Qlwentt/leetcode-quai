@@ -4,27 +4,36 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-from collections import defaultdict
-import bisect
+
 class Solution:
     def verticalTraversal(self, root: Optional[TreeNode]) -> List[List[int]]:
         
-        coordinates = defaultdict(list)
+        # left and down = (row+1, col-1)
+        # right and down = (row+1, col+1)
+        if not root:
+            return root
+        minCol = float('inf')
+        maxCol = float('-inf')
+        colMap = defaultdict(list)
+        q = deque([(0,0, root)])
         
-        def dfs(root, row,col):
-            if not root:
-                return
+        while q:
+            row, col, node = q.popleft()
             
-            bisect.insort(coordinates[col], (row, root.val))
+            minCol = min(col, minCol)
+            maxCol = max(col, maxCol)
             
-            dfs(root.left, row+1, col-1)
-            dfs(root.right,row+1,col+1)
-        dfs(root, 0,0)
-        cols = list(coordinates.keys())
-        cols.sort()
-        answer = []
-        for col in range(cols[0], cols[-1]+1):
-            answer.append([val for row, val in coordinates[col]])
+            colMap[col].append((row, node.val))
+            
+            if node.left:
+                q.append((row+1, col-1, node.left))
+            if node.right:
+                q.append((row+1,col+1, node.right))
+        answer = [] 
+        for i in range(minCol, maxCol+1):
+            colMap[i].sort()
+            answer.append([val for row, val in colMap[i]])
+            
         return answer
         
             
