@@ -1,6 +1,9 @@
 class Solution:
     def validPalindrome(self, s: str) -> bool:
-        def isPal(L,R):
+        def isPal(s):
+            L = 0
+            R = len(s) -1
+            
             while L < R:
                 if s[L] != s[R]:
                     return False
@@ -11,9 +14,10 @@ class Solution:
         L = 0
         R = len(s) - 1
         
-        while L < R:
+        while L < R:            
             if s[L] != s[R]:
-                return isPal(L+1,R) or isPal(L,R-1)
+                return isPal(s[:L]+s[L+1:]) or isPal(s[:R]+s[R+1:])
+            
             L += 1
             R -= 1
         return True
