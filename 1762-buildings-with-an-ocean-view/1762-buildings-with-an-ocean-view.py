@@ -10,3 +10,6 @@ class Solution:
             maxHeight = max(cur, maxHeight)
             
         return answer
+    
+    # Time: O(N)
+    # Space: O(N) if you count answer, O(1) if you don't count answer
