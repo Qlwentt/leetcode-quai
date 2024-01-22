@@ -31,12 +31,12 @@ class Solution:
                 q.append((row+1,col+1, node.right))
         answer = [] 
         for i in range(minCol, maxCol+1):
-            colMap[i].sort()
-            answer.append([val for row, val in colMap[i]])
+            answer.append([val for row, val in sorted(colMap[i])])
             
         return answer
         
-            
+    # Time: N log N
+    # Space: N
             
         
         
