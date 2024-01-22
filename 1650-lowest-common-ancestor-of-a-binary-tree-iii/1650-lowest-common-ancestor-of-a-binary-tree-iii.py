@@ -41,10 +41,6 @@ class Solution:
 # space: O(1)
             
             
-            
-        
-        traverseUp(p)
-        return traverseUp(q)
         
         
         
