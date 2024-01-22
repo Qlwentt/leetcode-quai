@@ -10,22 +10,25 @@ class Node:
 from collections import defaultdict
 class Solution:
     def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
-        parents = defaultdict(set)
+        parents = set()
         
-        def getParents(node, start, target):
+        def traverseUp(node):
             if not node:
                 return node
             
-            if target and node.val in parents[target]:
+            if node in parents:
                 return node
+            parents.add(node)
+            return traverseUp(node.parent)
             
-            parents[start].add(node.val)
-            return getParents(node.parent, start, target)
+            
+            
+            
             
             
         
-        getParents(p,p, None)
-        return getParents(q,q,p)
+        traverseUp(p)
+        return traverseUp(q)
         
         
         
