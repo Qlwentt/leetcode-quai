@@ -4,39 +4,39 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-from collections import defaultdict
+from collections import defaultdict, deque
 class Solution:
     def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        # left and down = (row+1, col-1)
+        # right and down = (row+1, col+1)
         if not root:
             return root
-        coordinates = defaultdict(list)
-        def dfs(root, row,col):
-            if not root:
-                return
-            
-            coordinates[(row,col)].append(root.val)
-            # left
-            dfs(root.left, row-1, col+1)
-            # right
-            dfs(root.right, row+1, col+1)
-        dfs(root, 0,0)
-        sortedCoordinates = list(coordinates.keys())
-        sortedCoordinates.sort()
-        answer = []
+        minCol = float('inf')
+        maxCol = float('-inf')
+        colMap = defaultdict(list)
+        q = deque([(0,0, root)])
         
-        prev = None 
-        row = []
-        i = 0
-        while i < len(sortedCoordinates):
-            if prev != None and prev != sortedCoordinates[i][0]:
-                answer.append(row)
-                row = []
-            coord = sortedCoordinates[i]
-            row.extend(coordinates[coord])
-            prev = coord[0]
-            i += 1
+        while q:
+            row, col, node = q.popleft()
             
-        answer.append(row)
+            minCol = min(col, minCol)
+            maxCol = max(col, maxCol)
+            
+            colMap[col].append(node.val)
+            
+            if node.left:
+                q.append((row+1, col-1, node.left))
+            if node.right:
+                q.append((row+1,col+1, node.right))
+        answer = [] 
+        for i in range(minCol, maxCol+1):
+            answer.append(colMap[i])
+            
         return answer
-                
+    
+    # Time: O(N)
+    # Space: O(N)
         
+        
+                
+    
