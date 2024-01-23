@@ -40,3 +40,6 @@ class Solution:
                 stack.append(int(char))
                 i += 1
         return answer + stack[-1] if stack else answer
+    
+    # Time O(N)
+    # Space O(1) because there is only ever up to one thing in the stack
