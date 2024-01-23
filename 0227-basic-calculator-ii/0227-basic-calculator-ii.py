@@ -9,6 +9,13 @@ class Solution:
             "*" : lambda a,b: a * b,
             "/" : lambda a,b: int(a/b),
         }
+        "3-2/2"
+        
+        
+        # stack = [-1]
+        # answer = 0
+        
+        answer = 0
     
         i = 0
         while i < len(s):
@@ -24,13 +31,18 @@ class Solution:
                 stack.append(operations[char](a,b))
                 i += 2            
             elif char == "-":
-                a = int(s[i+1])
-                stack.append(operations[char](a))
+                a = stack.pop()
+                b = int(s[i+1])
+                stack.append(operations[char](b))
+                answer += a
                 i += 2
             elif char == "+":
-                i += 1
+                a = stack.pop()
+                b = int(s[i+1])
+                stack.append(b)
+                answer += a
+                i += 2
             else:
                 stack.append(int(char))
                 i += 1
-            
-        return sum(stack)
+        return answer + stack[-1] if stack else answer
