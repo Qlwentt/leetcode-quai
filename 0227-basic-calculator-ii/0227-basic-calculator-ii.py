@@ -9,14 +9,8 @@ class Solution:
             "*" : lambda a,b: a * b,
             "/" : lambda a,b: int(a/b),
         }
-        "3-2/2"
-        
-        
-        # stack = [-1]
-        # answer = 0
         
         answer = 0
-    
         i = 0
         while i < len(s):
             char = s[i]
