@@ -9,30 +9,34 @@ class Solution:
             "/" : lambda a,b: int(a/b),
         }
         
+        stack = []
         answer = 0
-        a = 0
         i = 0
         while i < len(s):
             char = s[i]
             if char == "*":
+                a = stack.pop()
                 b = int(s[i+1])
-                a = operations[char](a,b)
+                stack.append(operations[char](a,b))
                 i += 2
             elif char == "/":
+                a = stack.pop()
                 b = int(s[i+1])
-                a = operations[char](a,b)
+                stack.append(operations[char](a,b))
                 i += 2            
             elif char == "-":
+                a = stack.pop()
                 b = int(s[i+1])
+                stack.append(operations[char](b))
                 answer += a
-                a = operations[char](b)
                 i += 2
             elif char == "+":
+                a = stack.pop()
                 b = int(s[i+1])
+                stack.append(b)
                 answer += a
-                a = b
                 i += 2
             else:
-                a = int(char)
+                stack.append(int(char))
                 i += 1
-        return answer + a
+        return answer + stack[-1] if stack else answer
