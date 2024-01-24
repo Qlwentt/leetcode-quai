@@ -15,18 +15,19 @@ class Solution:
     def pickIndex(self) -> int:
         
         target = randint(1, self.sumWeights)
+        return bisect_left(self.choices, target)
         
-        lo = 0
-        hi = len(self.choices) - 1
+#         lo = 0
+#         hi = len(self.choices) - 1
         
-        while lo <= hi:
-            mid = (lo+hi) // 2
+#         while lo <= hi:
+#             mid = (lo+hi) // 2
             
-            if target > self.choices[mid]:
-                lo = mid + 1
-            else:
-                hi = mid -1
-        return lo
+#             if target > self.choices[mid]:
+#                 lo = mid + 1
+#             else:
+#                 hi = mid -1
+#         return lo
     
 
 
