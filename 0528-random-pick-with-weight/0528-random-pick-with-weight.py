@@ -15,6 +15,8 @@ class Solution:
         target = randint(1,self.sum)
         return bisect_left(self.choices, target)
 
+# Time __init__: O(N), pickIndex: O(log(N))
+# Space __init__: O(N), pickIndex: O(1)
 
 # Your Solution object will be instantiated and called as such:
 # obj = Solution(w)
