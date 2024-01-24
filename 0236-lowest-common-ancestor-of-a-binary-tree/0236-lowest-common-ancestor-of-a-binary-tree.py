@@ -4,15 +4,14 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-from collections import defaultdict
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         
         def dfs(root):
-            if not root:
-                return None
-            
             if root == p or root == q:
+                return root
+            
+            if not root:
                 return root
             
             left = dfs(root.left)
@@ -20,12 +19,12 @@ class Solution:
             
             if left and right:
                 return root
-            elif left:
-                return left
-            elif right:
+            
+            if not left:
                 return right
-            else:
-                return None
+            
+            if not right:
+                return left
         return dfs(root)
         
         
