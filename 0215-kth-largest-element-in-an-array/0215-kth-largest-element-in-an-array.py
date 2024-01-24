@@ -9,4 +9,7 @@ class Solution:
             top = heapq.heappop(maxHeap) * -1
             
         return top
+    
+    # Time: O(K log(n))
+    # Space: O(N)
         
