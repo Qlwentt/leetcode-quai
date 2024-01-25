@@ -3,13 +3,15 @@ class Solution:
     def groupStrings(self, strings: List[str]) -> List[List[str]]:
         sDict = defaultdict(list)
         charToNum = {char: i for i, char in enumerate("abcdefghijklmnopqrstuvwxyz")}
+        
         def encode(s):
-            code = []
-            
+            answer = []
             for i in range(len(s)-1):
-                code.append((charToNum[s[i]]-charToNum[s[i+1]])%26)
-            return tuple(code)
+                distance = (charToNum[s[i+1]] - charToNum[s[i]]) % 26
+                answer.append(distance)
+            return tuple(answer)
+        
         for s in strings:
             sDict[encode(s)].append(s)
-            
-        return list(sDict.values())
+        
+        return sDict.values()
