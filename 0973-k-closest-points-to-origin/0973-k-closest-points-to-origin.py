@@ -1,11 +1,14 @@
+import heapq
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
-        distances = [(math.sqrt((points[i][0]-0)**2 +(points[i][1]-0)**2), i) for i in range(len(points))]
-        heapq.heapify(distances)
+        minHeap = [(math.sqrt((x1-0) ** 2 + (y1-0)**2), x1,y1) for x1,y1 in points]
+        heapify(minHeap)
         
         answer = []
+        
         while k:
-            answer.append(points[heapq.heappop(distances)[1]])
+            distance, x, y = heappop(minHeap)
+            answer.append([x,y])
             k -= 1
             
         return answer
