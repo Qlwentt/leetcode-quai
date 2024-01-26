@@ -37,4 +37,7 @@ class Solution:
         # all numbers are the same
         current.next = Node(insertVal, current.next)
         return head
+    
+# Time: O(N)
+# Space: O(1)
             
