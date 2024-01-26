@@ -23,16 +23,14 @@ class Solution:
             return current
         
         current = head
-        #[3,3,5] 5
-        #  H
         # stop when you get to the end of the list (next node is head)
         while current.next != head:
             if insertVal >= current.val and insertVal <= current.next.val:
                 break
-            # if current is the end of the list
+            # if current is the end of the list (next is less than current)
             elif current.next.val < current.val:
                 # and insert val is greater than number at end or insert val is less than number at the beg
-                if insertVal > current.val or insertVal < current.next.val:
+                if insertVal >= current.val or insertVal < current.next.val:
                     break
             current = current.next
             
