@@ -2,17 +2,18 @@ class Solution:
     def maximumSwap(self, num: int) -> int:
         s = list(str(num))
         
-        last = {digit: i for i, digit in enumerate(s)}
+        last = {num: i for i, num in enumerate(s)}
         
         for i, digit in enumerate(s):
-            for larger in range(9, int(digit), -1):
-                larger = str(larger)
-                if larger in last and last[larger] > i:
-                    s[i], s[last[larger]] = s[last[larger]] , s[i]
+            for laterDigit in range(9, int(digit), -1):
+                laterDigit = str(laterDigit)
+                if laterDigit in last and last[laterDigit] > i:
+                    j = last[laterDigit]
+                    s[i], s[j] = s[j], s[i]
                     return int("".join(s))
+                
         return num
-                    
-            
-        
-        
+    
+# Time: O(N) because inner loop only goes from at worst case 9 to 0
+# Space: O(N) for hashmap and s
         
