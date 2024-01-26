@@ -49,7 +49,8 @@ class Solution:
                     
         return max(maxArea, max(idsToArea.values()))
                     
-                    
+# Time: O(N^2) hit each element in N*N grid once
+# O(N^2) space for recursive DFS 
                     
         
             
