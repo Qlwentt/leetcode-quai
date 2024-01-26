@@ -7,8 +7,6 @@
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         answer = 0
-        # preorder 
-        # Root L R
         def dfs(root, path):
             nonlocal answer
             if not root:
@@ -23,4 +21,6 @@ class Solution:
             
         dfs(root, 0)
         return answer
-        
+
+# Time O(N)
+# Space O(H) H is height of the tree (N in a skewed tree)
