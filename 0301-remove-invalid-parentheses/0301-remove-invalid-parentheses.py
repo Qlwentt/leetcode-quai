@@ -27,3 +27,6 @@ class Solution:
         backtrack(0, [], 0) 
         maxLen = max(answers)
         return answers[maxLen]
+    
+# Time: O(2^N)
+# Space: O(2^N)
