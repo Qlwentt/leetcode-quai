@@ -14,3 +14,6 @@ class Solution:
         
         answer.reverse()
         return "".join(answer)
+    
+# O(max(N,M)) # worst case, iterate the longer of num1 and num2
+# O(max(N,M)) # length of new string is max length of max string + 1
