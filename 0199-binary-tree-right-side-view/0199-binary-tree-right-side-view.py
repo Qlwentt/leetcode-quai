@@ -8,20 +8,24 @@ from collections import deque
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
-            return []
-        q = deque([(root, 1)])
-        i = 1
-        result = []
+            return root
+        q = deque([(root, 0)])
+        answer = []
+        i = 0
+        
         while q:
-            node, j = q.popleft()
-
+            node, level = q.popleft()
+            
             if node.right:
-                q.append((node.right, j+1))
+                q.append((node.right, level + 1))
+                
             if node.left:
-                q.append((node.left, j+1))
-            if i == j:
-                result.append(node.val)
+                q.append((node.left, level + 1))
+                
+            if i == level:
+                answer.append(node.val)
                 i += 1
-        return result
-        
-        
+        return answer
+    
+# Time: O(N) touch every node
+# Space: O(N) put every node on q
