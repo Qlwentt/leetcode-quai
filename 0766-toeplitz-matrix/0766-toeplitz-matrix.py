@@ -3,13 +3,15 @@ class Solution:
         ROWS = len(matrix)
         COLS = len(matrix[0])
         
-        for row in range(ROWS):
-            for col in range(COLS):
-                item = matrix[row][col]
-                top = row - 1
-                left = col - 1
+        for r in range(ROWS):
+            for c in range(COLS):
+                top = r - 1
+                left = c - 1
                 if top in range(ROWS) and left in range(COLS):
-                    if matrix[top][left] != item:
+                    if matrix[r][c] != matrix[top][left]:
                         return False
-                
+                    
         return True
+    
+# Time: O(N * M)
+# Space: O(1)
