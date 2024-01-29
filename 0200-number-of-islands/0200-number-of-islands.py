@@ -26,3 +26,6 @@ class Solution:
                     islands += dfs(r,c)
         
         return islands
+    
+# Time: O(N*M)
+# Space: O(N*M)
