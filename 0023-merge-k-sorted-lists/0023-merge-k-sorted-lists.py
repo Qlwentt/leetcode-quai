@@ -5,9 +5,9 @@
 #         self.next = next
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-            
-        def mergeTwoLists(l1, l2):
-            dummy = ListNode(0)
+        
+        def mergeTwoLists(l1,l2):
+            dummy = ListNode()
             tail = dummy
             
             while l1 or l2:
@@ -20,7 +20,7 @@ class Solution:
                 else:
                     tail.next = l2
                     l2 = l2.next
-                    
+                
                 tail = tail.next
             return dummy.next
         
@@ -29,8 +29,9 @@ class Solution:
             while lists:
                 a = lists.pop()
                 b = lists.pop() if lists else None
-                mergedLists.append(mergeTwoLists(a,b)) 
+                mergedLists.append(mergeTwoLists(a,b))
             lists = mergedLists
-            
-        return lists[-1] if lists else None
         
+        return lists[-1] if lists else None
+# Time: O(N log(K))
+# Space: O(N) - for length of resulting list
