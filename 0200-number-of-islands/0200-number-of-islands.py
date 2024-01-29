@@ -3,24 +3,26 @@ class Solution:
         ROWS = len(grid)
         COLS = len(grid[0])
         visited = set()
-        def dfs(row,col):
-            if (row not in range(ROWS) or
-                col not in range(COLS) or
-                (row,col) in visited or
-                grid[row][col] == "0"):
+        def dfs(r,c):
+            if (r not in range(ROWS) or
+                c not in range(COLS) or
+                (r,c) in visited or
+                grid[r][c] == "0"
+               ):
                 return 0
             
-            visited.add((row,col))
-            dfs(row-1, col)
-            dfs(row+1, col)
-            dfs(row, col-1)
-            dfs(row, col+1)
+            visited.add((r,c))
+            
+            dfs(r-1, c)
+            dfs(r+1, c)
+            dfs(r, c-1)
+            dfs(r, c+1)
             
             return 1
-        answer = 0
-        for row in range(ROWS):
-            for col in range(COLS):
-                if grid[row][col] == "1":
-                    answer += dfs(row,col)
-        return answer
-            
+        islands = 0
+        for r in range(ROWS):
+            for c in range(COLS):
+                if grid[r][c] == "1":
+                    islands += dfs(r,c)
+        
+        return islands
