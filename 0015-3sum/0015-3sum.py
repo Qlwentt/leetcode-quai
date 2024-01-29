@@ -20,3 +20,6 @@ class Solution:
                     lo += 1
                     hi -= 1
         return answer
+    
+# Time: O(N^2)
+# Space: O(N)
