@@ -3,12 +3,13 @@ from random import choice
 class Solution:
 
     def __init__(self, nums: List[int]):
-        self.numMap = defaultdict(list)
+        self.numsDict = defaultdict(list)
         for i, num in enumerate(nums):
-            self.numMap[num].append(i)
+            self.numsDict[num].append(i)
+        
 
     def pick(self, target: int) -> int:
-        return choice(self.numMap[target])
+        return choice(self.numsDict[target])
 
 
 # Your Solution object will be instantiated and called as such:
