@@ -35,3 +35,6 @@ class Solution:
                 answer.append([maxStart, minEnd])
                 
         return answer
+    
+# Time: O(M+N)
+# Space: O(1) if you don't count the return O(M+N) if you count the return
