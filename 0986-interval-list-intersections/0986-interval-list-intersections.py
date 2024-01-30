@@ -4,26 +4,34 @@ class Solution:
         # find the overlap points
         # two pointers
         
+        # to get overlap point
+        # max start times
+        # min of end times
+        
         p1 = 0
         p2 = 0
         answer = []
         while p1 < len(firstList) and p2 < len(secondList):
-            if firstList[p1][0] < secondList[p2][0]:
-                minStart = firstList[p1][0]
-                maxStart = secondList[p2][0]
-                
+            start1, end1 = firstList[p1]
+            start2, end2 = secondList[p2]
+            
+            if start1 < start2:
+                minStart = start1
+                maxStart = start2
             else:
-                minStart = secondList[p2][0]
-                maxStart = firstList[p1][0]
+                minStart = start2
+                maxStart = start1
                 
-            if firstList[p1][1] < secondList[p2][1]:
-                minEnd = firstList[p1][1]
-                maxEnd = secondList[p2][1]
+            if end1 < end2:
+                minEnd = end1
+                maxEnd = end2
                 p1 += 1
             else:
-                minEnd = secondList[p2][1]
-                maxEnd = firstList[p1][1]
+                minEnd = end2
+                maxEnd = end1
                 p2 += 1
+            
             if maxStart <= minEnd:
-                answer.append([maxStart,minEnd])
+                answer.append([maxStart, minEnd])
+                
         return answer
