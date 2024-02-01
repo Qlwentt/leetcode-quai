@@ -10,18 +10,20 @@ class Solution:
             '8': 'tuv',
             '9': 'wxyz',
         }
-
-        combs = []
+        
+        answer = []
         
         def backtrack(i, curComb):
-            if len(curComb) == len(digits):
-                combs.append("".join(curComb))
+            if i == len(digits):
+                answer.append("".join(curComb))
                 return
             
             for char in phone[digits[i]]:
                 curComb.append(char)
-                backtrack(i+1, curComb)
+                backtrack(i+1,curComb)
                 curComb.pop()
-        if digits:        
-            backtrack(0, [])
-        return combs
+                
+        if digits:
+            backtrack(0,[])
+            
+        return answer
