@@ -27,3 +27,6 @@ class Solution:
             backtrack(0,[])
             
         return answer
+    
+# Time: O(4^N * N)
+# Space: O(N)
