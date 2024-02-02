@@ -1,10 +1,10 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-       # is there a cycle in the graph
-        adjList = {course: [] for course in range(numCourses)}
+        adjList = {i:[] for i in range(numCourses)}
+        
         for course, prereq in prerequisites:
             adjList[course].append(prereq)
-        
+            
         visited = set()
         visiting = set()
         def dfs(course):
@@ -13,19 +13,20 @@ class Solution:
             if course in visited:
                 return True
             
+            visited.add(course)
             visiting.add(course)
+            
             for neigh in adjList[course]:
                 if not dfs(neigh):
                     return False
             visiting.remove(course)
-            visited.add(course)
             return True
         
-        for course in range(numCourses):
-            if not dfs(course):
+        for i in range(numCourses):
+            if not dfs(i):
                 return False
-    
-        return True
             
-                
-        
+        return True
+    
+# Time: O(V+E)
+# Space: O(V+E)
