@@ -1,6 +1,5 @@
 class Solution:
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
-      # max number of meetings happening at the same time
         times = []
         
         for start, end in intervals:
@@ -8,14 +7,10 @@ class Solution:
             times.append((end, -1))
             
         times.sort()
-        
-        rooms = 0
-        maxRooms = 0
-        
-        for time in times:
-            rooms += time[1]
-            maxRooms = max(rooms, maxRooms)
+        count = 0
+        maxMeetings = float("-inf")
+        for time, incrementer in times:
+            count += incrementer
+            maxMeetings = max(maxMeetings, count)
             
-        return maxRooms
-        
-        
+        return maxMeetings
