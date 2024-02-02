@@ -28,3 +28,6 @@ class Solution:
                 answer.append([valAnswer, freqAnswer])
                 
         return answer
+    
+# Time: O(M+N)
+# Space: O(M+N)
