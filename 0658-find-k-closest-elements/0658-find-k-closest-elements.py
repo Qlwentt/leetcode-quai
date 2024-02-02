@@ -23,9 +23,9 @@ class Solution:
             left = arr[L] if L in range(len(arr)) else float('inf')
             right = arr[R] if R in range(len(arr)) else float('inf')
             
-            if L == -1:
-                R += 1
-                continue
+            # if L == -1:
+            #     R += 1
+            #     continue
          
             if abs(left-x) <= abs(right-x):
                 L -= 1
