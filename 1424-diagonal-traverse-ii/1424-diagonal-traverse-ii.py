@@ -15,4 +15,5 @@ class Solution:
         
         return answer
             
-            
+# Time: O(N) N is number of numbers in nums
+# Space: O(N)
