@@ -14,3 +14,6 @@ class Solution:
                 answer[index] = rank
             rank += 1
         return answer
+    
+# Time: O(NlogN)
+# Space: O(N)
