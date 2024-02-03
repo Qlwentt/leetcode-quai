@@ -2,26 +2,30 @@ class Solution:
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
         ROWS = len(matrix)
         COLS = len(matrix[0])
-        answer = 1
         memo = {}
-        def dfs(row, col, prev):
-            if (row < 0 or col < 0 or
-                row >= ROWS or col >= COLS or
-                matrix[row][col] <= prev):
-                return 0
-            if (row,col) in memo:
-                return memo[(row,col)]
-            cur = matrix[row][col]
-            up = 1 + dfs(row-1, col, cur)
-            down = 1+ dfs(row+1, col, cur)
-            left = 1 + dfs(row, col-1, cur)
-            right = 1 + dfs(row, col+1, cur)
-            
-            memo[(row,col)] = max(up, down, left, right)
-            return memo[(row,col)]
         
-        for row in range(ROWS):
-            for col in range(COLS):
-                answer = max(dfs(row,col, float('-inf')), answer)
-                
-        return answer
+        def dfs(r,c, prev):
+            if (r not in range(ROWS) or
+                c not in range(COLS) or
+                matrix[r][c] <= prev
+               ):
+                return 0
+            
+            if (r,c) in memo:
+                return memo[(r,c)]
+            cur = matrix[r][c]
+            up = 1 + dfs(r-1, c, cur)
+            down = 1 + dfs(r+1, c, cur)
+            left = 1 + dfs(r, c-1, cur)
+            right = 1 + dfs(r, c+1, cur)
+            
+            answer = max(up, down, left, right)
+            memo[(r,c)] = answer
+            return answer
+        maxLen = 1
+        for r in range(ROWS):
+            for c in range(COLS):
+                maxLen = max(maxLen, dfs(r,c, float('-inf')))
+        return maxLen
+# Time: O(M*N)
+# Space: O(M*N)
