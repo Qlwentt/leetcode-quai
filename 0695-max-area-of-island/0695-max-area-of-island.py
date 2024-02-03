@@ -3,24 +3,28 @@ class Solution:
         ROWS = len(grid)
         COLS = len(grid[0])
         visited = set()
-        maxArea = float('-inf')
-        def dfs(row,col):
-            if (row < 0 or row >= ROWS or
-                col < 0 or col >= COLS or
-                grid[row][col] == 0 or
-                (row,col) in visited):
+        def dfs(r,c):
+            if (r not in range(ROWS) or
+                c not in range(COLS) or
+                (r,c) in visited or
+                grid[r][c] == 0):
                 return 0
-            visited.add((row,col))
             
-            up = dfs(row-1,col)
-            down = dfs(row+1,col)
-            left = dfs(row, col-1)
-            right = dfs(row, col+1)
-            return up + down+ left+ right + 1
-        
+            visited.add((r,c))
+            
+            up = dfs(r-1, c)
+            down = dfs(r+1, c)
+            left = dfs(r, c-1)
+            right = dfs(r, c+1)
+            
+            return up + down + left + right + 1
+        maxArea = float('-inf')
         for r in range(ROWS):
             for c in range(COLS):
-                area = dfs(r,c)
+                area = dfs(r,c)    
                 maxArea = max(area, maxArea)
+                    
         return maxArea
-            
+    
+# Time: O (M*N)
+# Space: O(M*N)
