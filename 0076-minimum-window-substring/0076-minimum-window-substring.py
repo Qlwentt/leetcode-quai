@@ -25,6 +25,5 @@ class Solution:
                 removingChar = s[L]
                 counterS[removingChar] -= 1
                 L += 1
-        print (answerL)
         return s[answerL:answerR+1] if answerL is not None else ""
         
