@@ -19,4 +19,6 @@ class Solution:
                 answer.append(median)
         
         return answer
-        
+
+    # O( N log(k))
+    # O(k)
