@@ -2,7 +2,7 @@ class Solution:
     def numberOfSubstrings(self, s: str) -> int:
         count = {"a": 0, "b": 0, "c": 0}
         # 012345
-        #"aaacb" 4+3+2+1
+        #"abcabc" 4+3+2+1
         # L 
         #     R
         
@@ -15,3 +15,6 @@ class Solution:
                 count[s[L]] -= 1
                 L += 1
         return answer
+    
+# Time: O(N)
+# Space: O(1)
