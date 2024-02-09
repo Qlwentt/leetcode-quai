@@ -1,9 +1,9 @@
 class SparseVector:
     def __init__(self, nums: List[int]):
         self.vector = []
-        
         for i, num in enumerate(nums):
-            self.vector.append((i, num))
+            if num:
+                self.vector.append((i, num))
         
 
     # Return the dotProduct of two sparse vectors
@@ -12,20 +12,16 @@ class SparseVector:
         p2 = 0
         answer = 0
         while p1 < len(self.vector) and p2 < len(vec.vector):
-            i1 , num1 = self.vector[p1]
-            i2 , num2 = vec.vector[p2]
-            if i1 == i2:
-                answer += num1 * num2
+            if self.vector[p1][0] == vec.vector[p2][0]:
+                answer += self.vector[p1][1] * vec.vector[p2][1]
                 p1 += 1
                 p2 += 1
-            elif i1 < i2:
+            elif self.vector[p1][0] < vec.vector[p2][0]:
                 p1 += 1
             else:
                 p2 += 1
         return answer
-    
-# Time: O(N+M)
-# Space: O(N+M)
+        
 
 # Your SparseVector object will be instantiated and called as such:
 # v1 = SparseVector(nums1)
