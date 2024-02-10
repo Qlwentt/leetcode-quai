@@ -1,12 +1,13 @@
 from collections import deque
 class Solution:
     def findBuildings(self, heights: List[int]) -> List[int]:
+        maxSeen = float("-inf") # 3
         answer = deque([])
-        maxHeight = float('-inf')
-        
+     #
         for i, height in reversed(list(enumerate(heights))):
-            if height > maxHeight:
+            if height > maxSeen:
                 answer.appendleft(i)
-            maxHeight = max(maxHeight, height)
+            maxSeen = max(height, maxSeen)
         
         return answer
+        
