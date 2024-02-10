@@ -29,8 +29,7 @@ class Solution:
                 b = int(s[i+1])
                 stack.append(int(a/b))
                 i += 2
-            else:
-                i += 1
+            
         if stack:
             answer += stack.pop()
             
