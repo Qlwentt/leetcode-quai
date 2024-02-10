@@ -1,18 +1,14 @@
 from collections import Counter
 class Solution:
     def customSortString(self, order: str, s: str) -> str:
-        counter = Counter(s)
-        
+        count = Counter(s)
         answer = []
+        
         for char in order:
-            if char in counter:
-                answer.extend([char]*counter[char])
-                counter.pop(char)
-                
-        for char in counter:
-            answer.extend([char]*counter[char])
+            answer.extend([char]* count[char])
+            del count[char]
+        
+        for char in count:
+            answer.extend([char] * count[char])
             
         return "".join(answer)
-    
-# Time: O(N)
-# Space: O(N)
