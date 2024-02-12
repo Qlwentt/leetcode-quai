@@ -10,7 +10,6 @@ class Solution:
                 
             else:
                 answer.append([start, end])
-                prevEnd = end
         
         return answer
                 
