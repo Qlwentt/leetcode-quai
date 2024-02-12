@@ -9,30 +9,26 @@ class Node:
 
 class Solution:
     def treeToDoublyList(self, root: 'Optional[Node]') -> 'Optional[Node]':
+        # L V R
+        prev = None
+        first = None
         if not root:
             return root
-        first = None
-        prev = None
-        
-        # left = prev
-        # right = next
-        
-        def dfs(root):
+        def inorder(root):
             nonlocal first, prev
             if not root:
                 return
-            
-            dfs(root.left)
+            inorder(root.left)
             if not prev:
                 first = root
             else:
-                prev.right = root
                 root.left = prev
+                prev.right = root
             prev = root
-            dfs(root.right)
-        dfs(root)    
+            inorder(root.right)
+        inorder(root)    
         first.left = prev
         prev.right = first
         
         return first
-        
+            
