@@ -1,17 +1,14 @@
 from collections import defaultdict
 class Solution:
     def groupStrings(self, strings: List[str]) -> List[List[str]]:
-        sDict = defaultdict(list)
-        charToNum = {char: i for i, char in enumerate("abcdefghijklmnopqrstuvwxyz")}
-        
-        def encode(s):
-            answer = []
-            for i in range(len(s)-1):
-                distance = (charToNum[s[i+1]] - charToNum[s[i]]) % 26
-                answer.append(distance)
-            return tuple(answer)
+        groups = defaultdict(list)
         
         for s in strings:
-            sDict[encode(s)].append(s)
-        
-        return sDict.values()
+            charToNum = {char: i for i, char in enumerate("abcdefghijklmnopqrstuvwxyz")}
+            encode = []
+            for i in range(len(s)-1):
+                diff = (charToNum[s[i]] - charToNum[s[i+1]]) % 26
+                encode.append(diff)
+            groups[tuple(encode)].append(s)
+            
+        return groups.values()
