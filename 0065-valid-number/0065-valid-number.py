@@ -1,11 +1,11 @@
 class Solution:
     def isNumber(self, s: str) -> bool:
-        
-        noSign = re.sub(r"(\+|\-)", "", s)
+        noSign = re.sub(r'(\+|\-)', "", s)
         if noSign.isalpha():
             return False
+        
         try:
-            floatS = float(s)
+            float(s)
         except ValueError:
             return False
         
