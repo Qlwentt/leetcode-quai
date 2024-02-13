@@ -29,7 +29,7 @@ class Solution:
             else:
                 stack.append(int(s[i]))
                 i += 1
-                
+            
         if stack:
             answer += stack.pop()
             
