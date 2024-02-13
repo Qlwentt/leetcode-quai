@@ -1,32 +1,33 @@
+from collections import defaultdict
 class Solution:
     def removeInvalidParentheses(self, s: str) -> List[str]:
-        s = list(s)
-        answers = defaultdict(set)
-        def backtrack(i, curParens, balance):
-            if i >= len(s):
-                if balance == 0:
-                    answers[len(curParens)].add("".join(curParens))
+        answer = defaultdict(set)
+        
+        def backtrack(i, curParens, curBalance):
+            if i == len(s):
+                if curBalance == 0:
+                    answer[len(curParens)].add("".join(curParens))
                 return
-                    
-            # include
-            curParens.append(s[i])
+            
+            char = s[i]
             add = 0
-            if s[i] == "(":
+            if char == "(":
                 add = 1
-            elif s[i] == ")":
+            elif char == ")":
                 add = -1
-            balance += add
-            if balance >= 0:
-                backtrack(i+1, curParens, balance)
-                        
-            # skip
+            
+            # take current char
+            curParens.append(char)
+            curBalance += add
+            if curBalance >= 0:
+                backtrack(i+1,curParens, curBalance)
+            
+                # skip current char
             curParens.pop()
-            balance -= add
-            if balance >= 0:
-                backtrack(i+1, curParens, balance)
-        backtrack(0, [], 0) 
-        maxLen = max(answers)
-        return answers[maxLen]
-    
-# Time: O(2^N)
-# Space: O(2^N)
+            curBalance -= add
+            if curBalance >= 0:
+                backtrack(i+1, curParens, curBalance)
+        backtrack(0, [], 0)
+        maxKey = max(answer)
+        return answer[maxKey]
+        
