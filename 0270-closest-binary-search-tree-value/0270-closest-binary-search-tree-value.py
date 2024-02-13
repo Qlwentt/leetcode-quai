@@ -6,14 +6,18 @@
 #         self.right = right
 class Solution:
     def closestValue(self, root: Optional[TreeNode], target: float) -> int:
-        closest = root.val
+        answer = root.val
         
-        while root:
-            closest = min(root.val, closest, key=lambda x: (abs(x-target), x))
-            if root == target:
-                return closest
-            if root.val > target: # right will have numbers even higher so distance will only get further away, go left
-                root = root.left
-            else:
-                root = root.right
-        return closest
+        def dfs(root):
+            nonlocal answer
+            if not root:
+                return
+            answer = min(answer, root.val, key=lambda x: (abs(x-target), x))
+            
+            if root.val < target:
+                dfs(root.right)
+            elif root.val > target:
+                dfs(root.left)
+                
+        dfs(root)
+        return answer
