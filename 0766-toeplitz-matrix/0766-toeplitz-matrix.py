@@ -5,13 +5,8 @@ class Solution:
         
         for r in range(ROWS):
             for c in range(COLS):
-                top = r - 1
-                left = c - 1
-                if top in range(ROWS) and left in range(COLS):
-                    if matrix[r][c] != matrix[top][left]:
+                if r + 1 in range(ROWS) and c + 1 in range(COLS):
+                    if matrix[r][c] != matrix[r+1][c+1]:
                         return False
                     
         return True
-    
-# Time: O(N * M)
-# Space: O(1)
