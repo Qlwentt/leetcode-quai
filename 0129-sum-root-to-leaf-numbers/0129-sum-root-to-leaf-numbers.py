@@ -10,17 +10,17 @@ class Solution:
         def dfs(root, path):
             nonlocal answer
             if not root:
-                return 0
+                return
             
-            path = path *10 +  root.val
+            path = path * 10 + root.val
+            
             if not root.left and not root.right:
                 answer += path
-            
+        
             dfs(root.left, path)
             dfs(root.right, path)
             
         dfs(root, 0)
         return answer
-
-# Time O(N)
-# Space O(H) H is height of the tree (N in a skewed tree)
+        
+            
