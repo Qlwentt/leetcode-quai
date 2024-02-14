@@ -16,14 +16,9 @@ class Solution:
             leftL, leftR = dfs(root.left)
             rightL, rightR = dfs(root.right)
             
-            leftL += 1
-            leftR += 1
             
-            rightL += 1
-            rightR += 1
-            
-            left = max(leftL, leftR)
-            right = max(rightL, rightR)
+            left = max(leftL, leftR) + 1
+            right = max(rightL, rightR) + 1
             
             longestPath = max(longestPath, left+right)
             
@@ -31,7 +26,6 @@ class Solution:
         
         dfs(root)
         return longestPath
-            
             
             
             
