@@ -25,6 +25,5 @@ class Solution:
                     break
             reverse(pivot+1, len(nums)-1)
             
-        
         else:
             nums.reverse()
