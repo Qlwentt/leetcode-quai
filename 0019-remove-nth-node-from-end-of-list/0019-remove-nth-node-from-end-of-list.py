@@ -14,16 +14,13 @@ class Solution:
             numNodes += 1
             current = current.next
             
-        numNodes = numNodes - (n+1)
+        target = numNodes - n
+        dummy = ListNode(0, head)
+        current = dummy
         
-        if numNodes < 0:
-            head = head.next
-            return head
-            
-        current = head
-        while numNodes:
-            numNodes -= 1
+        while target:
+            target -= 1
             current = current.next
             
         current.next = current.next.next
-        return head
+        return dummy.next
