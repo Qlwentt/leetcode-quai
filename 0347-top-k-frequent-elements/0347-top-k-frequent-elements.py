@@ -15,4 +15,6 @@ class Solution:
                 if k:
                     answer.append(item)
                     k -= 1
+                else:
+                    break
         return answer
