@@ -11,19 +11,18 @@ class BSTIterator:
         while root:
             self.stack.append(root)
             root = root.left
-        
 
     def next(self) -> int:
         answer = self.stack.pop()
-        
-        cur = answer.right
-        while cur:
-            self.stack.append(cur)
-            cur = cur.left
+        curr = answer.right
+        while curr:
+            self.stack.append(curr)
+            curr = curr.left
         return answer.val
+        
 
     def hasNext(self) -> bool:
-        return self.stack != []
+        return len(self.stack) > 0
 
 
 # Your BSTIterator object will be instantiated and called as such:
