@@ -3,20 +3,20 @@ class Solution:
         if n == 1:
             return "1"
         
-        prev = self.countAndSay(n-1)
+        nMinusOne = self.countAndSay(n-1)
         answer = []
-        count = 0
-        prevNum = None
-        for num in prev:
-            if prevNum != None and num != prevNum:
-                answer.append(str(count)+prevNum)
-                count = 1
-            else:
-                count += 1
-            prevNum = num
-        answer.append(str(count)+prevNum)
+        prev = None
+        count = 1
+        for item in nMinusOne:
+            if prev != None:
+                if prev == item:
+                    count += 1
+                else:
+                    answer.append(str(count) + prev)
+                    count = 1
+            prev = item
+        answer.append(str(count) + prev)
         return "".join(answer)
-                
-                
-        
+    
+                    
         
