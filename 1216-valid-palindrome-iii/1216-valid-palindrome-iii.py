@@ -5,6 +5,7 @@ class Solution:
         def kPal(L,R,k):
             if (L,R,k) in memo:
                 return memo[(L,R,k)]
+            
             while L < R:
                 if s[L] != s[R]:
                     if k:
@@ -14,10 +15,7 @@ class Solution:
                     else:
                         memo[(L,R,k)] = False
                         return False
-                    
                 L += 1
                 R -= 1
-                    
             return True
-        
-        return kPal(0,len(s)-1,k)
+        return kPal(0, len(s)-1,k)
