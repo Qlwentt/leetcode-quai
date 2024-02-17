@@ -15,7 +15,9 @@ class Solution:
                     L = R
                     curSum = weights[R]
                     daysTaken += 1
-            return daysTaken <= days
+                if daysTaken > days:
+                    return False
+            return True
                 
         lo = max(weights)
         hi = sum(weights)
