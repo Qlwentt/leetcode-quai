@@ -3,14 +3,15 @@ class Solution:
         times = []
         
         for start, end in intervals:
-            times.append((start, 1))
-            times.append((end, -1))
+            times.append([start, 1])
+            times.append([end, -1])
             
         times.sort()
-        count = 0
-        maxMeetings = float("-inf")
-        for time, incrementer in times:
-            count += incrementer
-            maxMeetings = max(maxMeetings, count)
+        rooms = 0
+        minRooms = 0 
+        for time, incr in times:
+            rooms += incr
+            minRooms = max(minRooms, rooms)
             
-        return maxMeetings
+        return minRooms
+            
