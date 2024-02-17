@@ -12,27 +12,23 @@ class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         if not node:
             return node
-        
         originalToCopy = {}
-        visited = set([node])
         q = deque([node])
-        
+        visited = set([node])
         while q:
-            cur = q.popleft()
-            curCopy = originalToCopy[cur] if cur in originalToCopy else Node(cur.val)
-            originalToCopy[cur] = curCopy
+            curNode = q.popleft()
+            copyNode = originalToCopy[curNode] if curNode in originalToCopy else Node(curNode.val)
+            originalToCopy[curNode] = copyNode
             
-            for neigh in cur.neighbors:
-                neighCopy = originalToCopy[neigh] if neigh in originalToCopy else Node(neigh.val)
-                originalToCopy[neigh] = neighCopy
-                curCopy.neighbors.append(neighCopy)
+            for neigh in curNode.neighbors:
+                copyNeigh = originalToCopy[neigh] if neigh in originalToCopy else Node(neigh.val)
+                originalToCopy[neigh] = copyNeigh
+                copyNode.neighbors.append(copyNeigh)
                 if neigh not in visited:
                     q.append(neigh)
                     visited.add(neigh)
-                
-            
-        
+                    
         return originalToCopy[node]
-        
+                
         
         
