@@ -4,7 +4,7 @@ class Solution:
         #                    L
         #                    R        
         def canShip(capacity):
-            daysAvail = days
+            daysTaken = 1
             L = 0
             curSum = 0
             for R in range(len(weights)):
@@ -14,8 +14,8 @@ class Solution:
                 if curSum > capacity:
                     L = R
                     curSum = weights[R]
-                    daysAvail -= 1
-            return daysAvail > 0
+                    daysTaken += 1
+            return daysTaken <= days
                 
         lo = max(weights)
         hi = sum(weights)
