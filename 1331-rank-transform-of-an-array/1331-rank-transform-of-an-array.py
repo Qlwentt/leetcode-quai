@@ -1,19 +1,18 @@
 from collections import defaultdict
 class Solution:
     def arrayRankTransform(self, arr: List[int]) -> List[int]:
-        numToIndices = defaultdict(list)
+        answer = [0]* len(arr)
+        numToIndexes = defaultdict(list)
         
         for i, num in enumerate(arr):
-            numToIndices[num].append(i)
-            
-        numKeys = sorted(numToIndices.keys())
-        answer = [0]* len(arr)
+            numToIndexes[num].append(i)
+        
         rank = 1
-        for num in numKeys:
-            for index in numToIndices[num]:
-                answer[index] = rank
+        for num in sorted(numToIndexes):
+            for i in numToIndexes[num]:
+                answer[i] = rank
             rank += 1
+            
         return answer
-    
-# Time: O(NlogN)
-# Space: O(N)
+        
+        
