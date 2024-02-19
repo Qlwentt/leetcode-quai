@@ -13,12 +13,12 @@ class Solution:
                 return memo[(r,c, prev)]
             cur = matrix[r][c]
             
-            up = 1 + dfs(r-1, c, cur)
-            down = 1 + dfs(r+1, c, cur)
-            left = 1 + dfs(r, c-1, cur)
-            right = 1 + dfs(r, c+1, cur)
+            up = dfs(r-1, c, cur)
+            down =  dfs(r+1, c, cur)
+            left =  dfs(r, c-1, cur)
+            right =  dfs(r, c+1, cur)
             
-            answer = max(up,down,left,right)
+            answer = max(up,down,left,right) + 1
             memo[(r,c,prev)] = answer
             
             return answer
