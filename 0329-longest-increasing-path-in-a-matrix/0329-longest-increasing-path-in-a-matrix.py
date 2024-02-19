@@ -9,8 +9,8 @@ class Solution:
                 prev >= matrix[r][c]
                ):
                 return 0
-            if (r,c, prev) in memo:
-                return memo[(r,c, prev)]
+            if (r,c) in memo:
+                return memo[(r,c)]
             cur = matrix[r][c]
             
             up = dfs(r-1, c, cur)
@@ -19,7 +19,7 @@ class Solution:
             right =  dfs(r, c+1, cur)
             
             answer = max(up,down,left,right) + 1
-            memo[(r,c,prev)] = answer
+            memo[(r,c)] = answer
             
             return answer
         longest = float('-inf')
