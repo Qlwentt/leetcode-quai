@@ -7,25 +7,25 @@
 from collections import deque
 class Solution:
     def maxLevelSum(self, root: Optional[TreeNode]) -> int:
-        maxSum = float('-inf')
+        if not root:
+            return -1
         q = deque([root])
-        smallestMaxLevel = None
+        maxSum = float('-inf')
         level = 0
+        answer = 0
         while q:
-            levelSum = 0
+            runSum = 0
             level += 1
             for _ in range(len(q)):
                 node = q.popleft()
-                levelSum += node.val
+                runSum += node.val
                 
                 if node.left:
                     q.append(node.left)
-                    
                 if node.right:
                     q.append(node.right)
-                    
-            if levelSum > maxSum:
-                smallestMaxLevel = level
-                maxSum = levelSum
+            if runSum > maxSum:
+                maxSum = runSum
+                answer = level
+        return answer
             
-        return smallestMaxLevel
