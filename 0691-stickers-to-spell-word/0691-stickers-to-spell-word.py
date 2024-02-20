@@ -1,17 +1,15 @@
 from collections import Counter
 class Solution:
     def minStickers(self, stickers: List[str], target: str) -> int:
-        
         availStickers = []
         for s in stickers:
             availStickers.append(Counter(s))
-        memo = {}
+        memo = {}    
         def dfs(curSticker, target):
             if target in memo:
                 return memo[target]
             
             answer = 1 if curSticker else 0
-            
             remainder = ""
             for char in target:
                 if char in curSticker and curSticker[char] > 0:
@@ -25,9 +23,9 @@ class Solution:
                     if remainder[0] in newSticker:
                         used = min(dfs(newSticker.copy(), remainder), used)
                 memo[remainder] = used
+                answer += used
                 
-                answer += used 
             return answer
-        a = dfs({}, target)
-        return a if a != float('inf') else -1
         
+        minStickers = dfs({}, target)
+        return minStickers if minStickers != float('inf') else -1
