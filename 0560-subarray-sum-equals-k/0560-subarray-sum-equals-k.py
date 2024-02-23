@@ -9,7 +9,10 @@ class Solution:
         for num in nums:
             curSum += num
             if curSum - k in prefixDict:
-                answer += prefixDict[curSum-k]
-            prefixDict[curSum] += 1
+                answer += prefixDict[curSum - k]
             
+            prefixDict[curSum] += 1
+        
         return answer
+        
+        
