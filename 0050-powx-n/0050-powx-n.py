@@ -6,16 +6,13 @@ class Solution:
                 return 1
             if n == 1:
                 return x
+            
             halfpower = power(x, n//2)
-            
-            if n % 2: # odd
+            if n % 2:
                 return halfpower * halfpower * x
-            else:
-                return halfpower * halfpower
-            
-        
-        
+            return halfpower * halfpower
         if n < 0:
             return 1/power(x,-n)
         else:
             return power(x,n)
+        
