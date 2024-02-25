@@ -43,15 +43,15 @@
 
 class Solution:
     def depthSum(self, nestedList: List[NestedInteger]) -> int:
-        answer = 0
-        
-        def calcDepthSum(nestedList, depth):
+        answer = 0# 10
+
+        def recursiveDepthSum(nList, depth):
             nonlocal answer
-            for item in nestedList:
+            for item in nList:
                 if item.isInteger():
                     answer += item.getInteger() * depth
                 else:
-                    calcDepthSum(item.getList(), depth + 1)
-        calcDepthSum(nestedList, 1)
+                    recursiveDepthSum(item.getList(), depth+1)
+        recursiveDepthSum(nestedList, 1)
         return answer
         
