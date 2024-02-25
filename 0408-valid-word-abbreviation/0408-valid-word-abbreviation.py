@@ -2,18 +2,24 @@ class Solution:
     def validWordAbbreviation(self, word: str, abbr: str) -> bool:
         abbr = re.split(r'(\d+)', abbr)
         abbr = [item for item in abbr if item != ""]
-        
         p1 = 0
-        for p2 in range(len(abbr)):
+        p2 = 0
+        
+        while p2 < len(abbr):
             if abbr[p2].isnumeric():
-                charLen = int(abbr[p2])
-                if p1 + charLen -1 not in range(len(word)) or abbr[p2][0] == "0":
+                length = int(abbr[p2])
+                if abbr[p2][0] == '0' or p1 + length -1 not in range(len(word)):
                     return False
             else:
-                charLen = len(abbr[p2])
-                if p1 + charLen - 1 not in range(len(word)) or word[p1:p1+charLen] != abbr[p2]:
+                length = len(abbr[p2])
+                
+                if p1 + length -1 not in range(len(word)) or word[p1:p1+length] != abbr[p2]:
+                    
                     return False
-            
-            p1 += charLen
+            p1 += length
+            p2 += 1
             
         return p1 == len(word)
+            
+                
+        
