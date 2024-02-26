@@ -9,8 +9,8 @@ class Solution:
             digit2 = int(num2.pop()) if num2 else 0
             
             sum_ = digit1 + digit2 + remainder
-            answer.append(str(sum_% 10))
+            answer.append(str(sum_ % 10))
             remainder = sum_ // 10
-            
         answer.reverse()
         return "".join(answer)
+        
