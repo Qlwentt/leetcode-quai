@@ -12,12 +12,11 @@ class Solution:
             nonlocal answer
             if not root:
                 return
-            answer = min(answer, root.val, key=lambda x: (abs(x-target), x))
             
-            if root.val < target:
-                dfs(root.right)
-            elif root.val > target:
+            answer = min(root.val, answer, key=lambda x: (abs(target-x),x))
+            if root.val > target:
                 dfs(root.left)
-                
+            elif root.val < target:
+                dfs(root.right)
         dfs(root)
         return answer
