@@ -7,26 +7,27 @@
 from collections import deque, defaultdict
 class Solution:
     def verticalTraversal(self, root: Optional[TreeNode]) -> List[List[int]]:
-        if not root:
-            return []
-        
-        q = deque([(root, 0,0)])
         colGroups = defaultdict(list)
+        q = deque([(root, 0, 0)])
         minCol = 0
         maxCol = 0
+        
         while q:
-            node, r, c = q.popleft()
-            colGroups[c].append((r, node.val))
-            minCol = min(minCol, c)
-            maxCol = max(maxCol, c)
+            node, row, col = q.popleft()
+            minCol = min(col, minCol)
+            maxCol = max(col, maxCol)
+            
+            colGroups[col].append((row, node.val))
+            
             if node.left:
-                q.append((node.left, r+1, c-1))
+                q.append((node.left, row+1, col -1))
             
             if node.right:
-                q.append((node.right, r+1, c+1))
+                q.append((node.right, row+1, col+1))
+        
         answer = []
         for i in range(minCol, maxCol+1):
             answer.append([val for row, val in sorted(colGroups[i])])
-            
+        
         return answer
         
