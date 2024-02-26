@@ -11,17 +11,19 @@ class Solution:
             return []
         
         q = deque([root])
+        
         answer = []
+        
         while q:
-            seen = False
+            haveAppended = False
             for _ in range(len(q)):
                 node = q.popleft()
-                if not seen:
+                if not haveAppended:
                     answer.append(node.val)
-                    seen = True
-                
+                    haveAppended = True
                 if node.right:
                     q.append(node.right)
                 if node.left:
                     q.append(node.left)
+        
         return answer
