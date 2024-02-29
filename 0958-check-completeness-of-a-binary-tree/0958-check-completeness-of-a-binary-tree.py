@@ -12,7 +12,7 @@ class Solution:
         while q:
             node = q.popleft()
             
-            if node:
+            if node != None:
                 if seenEmpty:
                     return False
                 q.append(node.left)
