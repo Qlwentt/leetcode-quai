@@ -1,10 +1,12 @@
 class Solution:
     def isNumber(self, s: str) -> bool:
-        def isDecimal(s):
+        def isDecimal(s, canHaveSign=True):
             if s == "":
                 return False
             if s[0] == "-" or s[0]== "+":
-                return isDecimal(s[1:])
+                if not canHaveSign:
+                    return False
+                return isDecimal(s[1:], False)
             s = s.split(".")
             if len(s) != 2:
                 return False
@@ -36,8 +38,7 @@ class Solution:
         if len(splitByE) == 1:
             return isDecimal(splitByE[0]) or isInteger(splitByE[0], True)
         # len is 2
-        if splitByE[0] == "" or splitByE[1] == "":
-            return False
+        
         return (isDecimal(splitByE[0]) or isInteger(splitByE[0], True)) and isInteger(splitByE[1], True)
             
         
