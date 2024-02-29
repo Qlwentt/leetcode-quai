@@ -10,7 +10,8 @@ class Solution:
             halfpower = power(x, n//2)
             if n % 2:
                 return halfpower * halfpower * x
-            return halfpower * halfpower
+            else:
+                return halfpower * halfpower
         if n < 0:
             return 1/power(x,-n)
         else:
