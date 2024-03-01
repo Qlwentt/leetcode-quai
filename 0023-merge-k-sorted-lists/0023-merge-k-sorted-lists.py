@@ -8,28 +8,31 @@ class Solution:
         if not lists:
             return None
         
-        def mergeTwoLists(l1,l2):
+        def merge2Lists(l1, l2):
             dummy = ListNode()
-            end = dummy
+            tail = dummy
+            
             while l1 or l2:
                 val1 = l1.val if l1 else float('inf')
                 val2 = l2.val if l2 else float('inf')
                 
                 if val1 < val2:
-                    end.next = l1
+                    tail.next = l1
                     l1 = l1.next
                 else:
-                    end.next = l2
+                    tail.next = l2
                     l2 = l2.next
-                end = end.next
+                tail = tail.next
+                
             return dummy.next
         
         while len(lists) > 1:
             mergedLists = []
             while lists:
-                a = lists.pop()
-                b = lists.pop() if lists else None
-                mergedLists.append(mergeTwoLists(a,b))
+                l1 = lists.pop()
+                l2 = lists.pop() if lists else None
+                mergedLists.append(merge2Lists(l1,l2))
             lists = mergedLists
-            
+        
         return lists[0]
+        
