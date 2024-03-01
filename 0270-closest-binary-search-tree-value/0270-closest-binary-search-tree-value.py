@@ -7,16 +7,17 @@
 class Solution:
     def closestValue(self, root: Optional[TreeNode], target: float) -> int:
         answer = root.val
-        
         def dfs(root):
             nonlocal answer
             if not root:
-                return
+                return 
             
-            answer = min(root.val, answer, key=lambda x: (abs(target-x),x))
+            answer = min(root.val, answer, key=lambda x: (abs(target-x), x))
+            
             if root.val > target:
                 dfs(root.left)
             elif root.val < target:
                 dfs(root.right)
+                
         dfs(root)
         return answer
