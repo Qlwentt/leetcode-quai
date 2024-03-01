@@ -2,10 +2,12 @@ class Solution:
     def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
         ROWS = len(mat)
         COLS = len(mat[0])
+        
         r = 0
         c = 0
         answer = []
         while r in range(ROWS) and c in range(COLS):
+            
             while r in range(ROWS) and c in range(COLS):
                 answer.append(mat[r][c])
                 r -= 1
