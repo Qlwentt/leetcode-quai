@@ -10,9 +10,8 @@ class Solution:
         if not root:
             return []
         
-        q = deque([root])
-        
         answer = []
+        q = deque([root])
         
         while q:
             haveAppended = False
@@ -21,9 +20,12 @@ class Solution:
                 if not haveAppended:
                     answer.append(node.val)
                     haveAppended = True
+                    
                 if node.right:
                     q.append(node.right)
+                    
                 if node.left:
                     q.append(node.left)
         
         return answer
+                    
