@@ -15,22 +15,20 @@ class Solution:
         
         current = head
         prev = None
-        
         while current:
             copy = Node(current.val)
             if prev:
-                prevCopy = originalToCopy[prev]
-                prevCopy.next = copy
-            prev = current
+                copyPrev = originalToCopy[prev]
+                copyPrev.next = copy
             originalToCopy[current] = copy
+            prev = current
             current = current.next
         
         current = head
-        
         while current:
+            randomCopy = originalToCopy[current.random] if current.random else None
             copy = originalToCopy[current]
-            copy.random = originalToCopy[current.random] if current.random else None
+            copy.random = randomCopy
             current = current.next
-            
-        return originalToCopy[head]
         
+        return originalToCopy[head]
