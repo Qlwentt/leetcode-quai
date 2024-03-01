@@ -3,23 +3,21 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        [1,2,3,0,0,0]
-      #      I     P
-        [2,5,6]
-      #      J
-    
-        P = len(nums1) - 1
-        i = m - 1
-        j = n - 1
+        p1 = m - 1
+        p2 = n - 1
+        p3 = len(nums1) -1
         
-        while P >= 0:
-            num1 = nums1[i] if i in range(len(nums1)) else float('-inf')
-            num2 = nums2[j] if j in range(len(nums2)) else float('-inf')
-            if num1 > num2:
-                nums1[P], nums1[i] = nums1[i], nums1[P]
-                i -= 1
+        while p3 >= 0:
+            val1 = nums1[p1] if p1 >= 0 else float('-inf')
+            val2 = nums2[p2] if p2 >= 0 else float('-inf')
+            
+            if val1 > val2:
+                nums1[p3] = val1
+                p1 -= 1
             else:
-                nums1[P], nums2[j] = nums2[j], nums1[P]
-                j -= 1
-            P -= 1
+                nums1[p3] = val2
+                p2 -= 1
+            p3 -= 1
         
+        
+                                        
