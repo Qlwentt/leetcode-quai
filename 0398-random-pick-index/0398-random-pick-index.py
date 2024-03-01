@@ -2,14 +2,13 @@ from collections import defaultdict
 class Solution:
 
     def __init__(self, nums: List[int]):
-        self.numsDict = defaultdict(list)
+        self.choices = defaultdict(list)
         for i, num in enumerate(nums):
-            self.numsDict[num].append(i)
+            self.choices[num].append(i)
         
 
     def pick(self, target: int) -> int:
-        return random.choice(self.numsDict[target])
-        
+        return random.choice(self.choices[target])
 
 
 # Your Solution object will be instantiated and called as such:
