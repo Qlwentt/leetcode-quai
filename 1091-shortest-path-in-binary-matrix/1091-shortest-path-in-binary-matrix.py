@@ -1,28 +1,31 @@
 from collections import deque
 class Solution:
     def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
-        q = deque([])
-        if grid[0][0] != 1:
-            q.append((0,0,1))
-        visited = set([(0,0)])
-        n = len(grid)
+        N = len(grid)
         
-        directions = [[0,1],[1,0],[-1,0],[0,-1],[1,1], [-1,-1], [-1,1],[1,-1]]
-        answer = -1
+        q = deque([(0,0,1)])
+        
+        if grid[0][0] == 1:
+            return -1
+        directions = [[0,1],[1,0], [0,-1], [-1,0], [1,1], [-1,-1], [-1, 1], [1, -1]]
+        visited = set()
         while q:
-            r, c, level = q.popleft()
+            r,c, distance = q.popleft()
             
-            if (r,c) == (n-1,n-1):
-                return level
+            if r == N - 1 and c == N -1:
+                return distance
             
             for dr, dc in directions:
-                newR, newC = dr + r, dc + c
-                if (newR in range(n) and
-                    newC in range(n) and
-                    (newR,newC) not in visited and
-                    grid[newR][newC] != 1
-                   ):
-                    q.append((newR,newC, level+1))
+                newR = dr + r
+                newC = dc + c
+                if (
+                    newR in range(N) and
+                    newC in range(N) and
+                    grid[newR][newC] != 1 and
+                    (newR, newC) not in visited
+                ):
+                    q.append((newR, newC, distance + 1))
                     visited.add((newR, newC))
-        return answer
                     
+        return -1
+        
