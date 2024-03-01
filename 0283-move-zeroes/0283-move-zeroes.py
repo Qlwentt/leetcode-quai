@@ -3,6 +3,7 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
+        
         P = 0
         for Q in range(len(nums)):
             if nums[Q] != 0:
