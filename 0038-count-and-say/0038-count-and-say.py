@@ -4,9 +4,11 @@ class Solution:
             return "1"
         
         last = self.countAndSay(n-1)
-        count = 0
+        
         prev = None
+        count = 0
         answer = []
+        
         for num in last:
             if prev and num != prev:
                 answer.append(str(count) + prev)
@@ -14,6 +16,6 @@ class Solution:
             else:
                 count += 1
             prev = num
-        answer.append(str(count) + prev)
+        answer.append(str(count)+prev)
         return "".join(answer)
-        
+                
