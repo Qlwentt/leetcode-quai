@@ -7,26 +7,25 @@
 from collections import defaultdict, deque
 class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
-        if not root:
-            return []
+        
         adjList = defaultdict(list)
         
-        def dfs(root):
+        def buildList(root):
             if not root:
                 return
             
             if root.left:
                 adjList[root].append(root.left)
                 adjList[root.left].append(root)
-                
+            
             if root.right:
                 adjList[root].append(root.right)
                 adjList[root.right].append(root)
-                
-            dfs(root.left)
-            dfs(root.right)
-        
-        dfs(root)
+            
+            buildList(root.left)
+            buildList(root.right)
+    
+        buildList(root)
         q = deque([(target, 0)])
         visited = set([target])
         answer = []
@@ -34,9 +33,13 @@ class Solution:
             node, distance = q.popleft()
             if distance == k:
                 answer.append(node.val)
+            elif distance > k:
+                break
             
             for neigh in adjList[node]:
                 if neigh not in visited:
-                    q.append((neigh, distance+1))
+                    q.append((neigh, distance +1))
                     visited.add(neigh)
         return answer
+        
+        
