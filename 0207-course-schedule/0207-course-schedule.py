@@ -13,12 +13,11 @@ class Solution:
                 return True
             
             visiting.add(course)
-            
+            visited.add(course)
             for neigh in adjList[course]:
                 if not dfs(neigh):
                     return False
             visiting.remove(course)
-            visited.add(course)
             return True
         
         for i in range(numCourses):
