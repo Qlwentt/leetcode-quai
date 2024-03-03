@@ -14,17 +14,16 @@ class Solution:
             return L
         
         i = findClosest(x)
-        
         L = i - 1
-        R = i 
+        R = i
         
         while R - L - 1 < k:
-            left = arr[L] if L >= 0 else float('inf')
-            right = arr[R] if R < len(arr) else float('inf')
-            if abs(right - x) < abs(left-x):
+            left = arr[L] if L in range(len(arr)) else float('inf')
+            right = arr[R] if R in range(len(arr)) else float('inf')
+            
+            if abs(right - x) < abs(left - x):
                 R += 1
             else:
                 L -= 1
-            
-            
+        
         return arr[L+1:R]
