@@ -8,10 +8,10 @@ class Solution:
             
         times.sort()
         rooms = 0
-        minRooms = 0 
+        maxRooms = 0
         for time, incr in times:
             rooms += incr
-            minRooms = max(minRooms, rooms)
-            
-        return minRooms
-            
+            maxRooms = max(rooms, maxRooms)
+                    
+        return maxRooms
+        
