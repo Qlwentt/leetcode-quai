@@ -1,26 +1,26 @@
-from collections import defaultdict
+from collections import Counter, defaultdict
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        countT = {char: 0 for char in t}
-        countS = defaultdict(int)
+        if len(t) > len(s):
+            return ""
         
-        for char in t:
-            countT[char]+= 1
+        counterS = defaultdict(int)
+        counterT = Counter(t)
+        
         
         L = 0
-        minWindow = float('inf')
         ansL = None
         ansR = None
+        minLength = float('inf')
         for R in range(len(s)):
-            countS[s[R]] += 1
+            counterS[s[R]] += 1
             
-            while all([countS[char] >= countT[char] for char in countT]):
-                if R-L+1 < minWindow:
+            while all(counterS[char] >= counterT[char] for char in counterT):
+                minLength = min((R - L + 1), minLength)
+                if R - L + 1 == minLength:
                     ansL = L
                     ansR = R
-                minWindow = min(minWindow, R-L+1)
-                countS[s[L]] -= 1
+                counterS[s[L]] -= 1
                 L += 1
-            
         
         return s[ansL:ansR+1] if ansL != None else ""
