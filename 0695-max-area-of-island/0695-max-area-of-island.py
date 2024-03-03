@@ -3,6 +3,7 @@ class Solution:
         ROWS = len(grid)
         COLS = len(grid[0])
         visited = set()
+        
         def dfs(r,c):
             if (
                 r not in range(ROWS) or
@@ -11,11 +12,9 @@ class Solution:
                 grid[r][c] == 0
             ):
                 return 0
-            
             visited.add((r,c))
-            
             up = dfs(r-1, c)
-            down = dfs(r+1,c)
+            down = dfs(r+1, c)
             left = dfs(r, c-1)
             right = dfs(r, c+1)
             
@@ -24,4 +23,5 @@ class Solution:
         for r in range(ROWS):
             for c in range(COLS):
                 maxArea = max(dfs(r,c), maxArea)
+                
         return maxArea
