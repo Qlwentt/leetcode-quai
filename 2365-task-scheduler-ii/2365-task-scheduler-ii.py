@@ -1,10 +1,11 @@
 from collections import defaultdict
 class Solution:
     def taskSchedulerII(self, tasks: List[int], space: int) -> int:
-        dayCanComplete = defaultdict(int)
+        dayToPerformTask = defaultdict(int)
         day = 0
         for task in tasks:
-            day = day + 1 if day >= dayCanComplete[task] else dayCanComplete[task]
-            dayCanComplete[task] = day + space + 1
+            day += 1
+            day = dayToPerformTask[task] if day < dayToPerformTask[task] else day
+            dayToPerformTask[task] = day + space + 1
         
         return day
