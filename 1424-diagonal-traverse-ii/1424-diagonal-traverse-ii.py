@@ -5,11 +5,13 @@ class Solution:
         
         for r in range(len(nums)):
             for c in range(len(nums[r])):
-                groups[r+c].appendleft(nums[r][c])
+                groups[(r+c)].appendleft(nums[r][c])
+                
+        low = min(groups)
+        high = max(groups)
         
         answer = []
-        for i in range(max(groups)+1):
+        for i in range(low, high+1):
             answer.extend(groups[i])
             
         return answer
-            
