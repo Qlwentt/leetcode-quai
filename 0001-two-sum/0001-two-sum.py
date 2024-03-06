@@ -1,11 +1,8 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        comps = {}
-        
+        numDict = {}
         for i, num in enumerate(nums):
-            comp = target - num
-            if comp in comps:
-                return [i, comps[comp]]
-            comps[num] = i
-            
-        return -1
+            if target - num in numDict:
+                return [numDict[target-num], i]
+            numDict[num] = i
+        
