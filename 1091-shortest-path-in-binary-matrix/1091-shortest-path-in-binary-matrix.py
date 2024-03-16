@@ -1,31 +1,40 @@
 from collections import deque
 class Solution:
     def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
-        N = len(grid)
-        
-        q = deque([(0,0,1)])
-        
-        if grid[0][0] == 1:
-            return -1
-        directions = [[0,1],[1,0], [0,-1], [-1,0], [1,1], [-1,-1], [-1, 1], [1, -1]]
+        ROWS = len(grid)
+        COLS = len(grid[0])
         visited = set()
+        q = deque([])
+        
+        if grid[0][0] == 0:
+            q.append((0,0,1, [(0,0)]))
+            visited.add((0,0))
+        
+        directions = [[0,1],[1,0], [0,-1], [-1,0], [1,1], [-1,-1], [-1,1], [1, -1]]
+        
         while q:
-            r,c, distance = q.popleft()
+            r, c, level, curPath = q.popleft()
             
-            if r == N - 1 and c == N -1:
-                return distance
+            
+            if (r,c) == (ROWS-1, COLS-1):
+                resultPath = curPath
+                # print(resultPath)
+                return level
             
             for dr, dc in directions:
-                newR = dr + r
-                newC = dc + c
-                if (
-                    newR in range(N) and
-                    newC in range(N) and
-                    grid[newR][newC] != 1 and
-                    (newR, newC) not in visited
-                ):
-                    q.append((newR, newC, distance + 1))
+                newR = r + dr
+                newC = c + dc
+                
+                if (newR in range(ROWS) and
+                    newC in range(COLS) and
+                    (newR, newC) not in visited and
+                    grid[newR][newC] != 1
+                   ):
+                    
+                    q.append((newR, newC, level +1, curPath + [(newR, newC)]))
                     visited.add((newR, newC))
                     
+        
+        # print([])
         return -1
         
