@@ -8,3 +8,4 @@ class Solution:
                 stack.append(char)
         
         return "".join(stack)
+        
