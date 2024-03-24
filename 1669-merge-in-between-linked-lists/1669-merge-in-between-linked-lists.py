@@ -25,10 +25,6 @@ class Solution:
         break1.next = list2
         tailL2.next = break2
         
-        cur = list1
-        while cur:
-            print(cur.val)
-            cur = cur.next
         return list1
             
         
