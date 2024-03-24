@@ -7,17 +7,31 @@
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
         
+        lenA = 0
+        curA = headA
+        while curA:
+            lenA += 1
+            curA = curA.next
+            
+        lenB = 0
+        curB = headB
+        while curB:
+            lenB += 1
+            curB = curB.next
+            
         curA = headA
         curB = headB
-        setA = set()
-        
-        while curA:
-            setA.add(curA)
+        while lenA > lenB:
             curA = curA.next
+            lenA -= 1
         
-        while curB:
-            if curB in setA:
-                return curB
+        while lenB > lenA:
             curB = curB.next
-        
+            lenB -= 1
+            
+        while curA and curB:
+            if curA == curB:
+                return curA
+            curA = curA.next
+            curB = curB.next
         return None
