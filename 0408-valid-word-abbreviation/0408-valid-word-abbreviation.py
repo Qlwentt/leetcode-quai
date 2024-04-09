@@ -1,19 +1,22 @@
+import re
 class Solution:
     def validWordAbbreviation(self, word: str, abbr: str) -> bool:
-        abbr = re.split(r'(\d+)', abbr)
+        abbr = re.split(r"(\d*|[a-z]*)", abbr)
         abbr = [item for item in abbr if item != ""]
         
-        p1 = 0
+        i = 0
         
-        for p2 in range(len(abbr)):
-            if abbr[p2].isnumeric():
-                length = int(abbr[p2])
-                if abbr[p2][0] == "0" or p1 + length - 1 not in range(len(word)):
+        for item in abbr:
+            if item.isnumeric():
+                if item[0] == "0" or int(item) + i > len(word):
                     return False
+                i += int(item)
             else:
-                length = len(abbr[p2])
-                if p1 + length -1 not in range(len(word)) or word[p1:p1+length] != abbr[p2]:
+                if i + len(item) > len(word) or word[i:i+len(item)] != item:
                     return False
-            p1 += length
-        return p1 == len(word)
+                i += len(item)
         
+        return i == len(word)
+    
+   # Time: O(N+M)
+   # Space: O(M)
