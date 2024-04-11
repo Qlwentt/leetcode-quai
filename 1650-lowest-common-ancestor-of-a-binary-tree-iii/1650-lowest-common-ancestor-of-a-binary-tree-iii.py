@@ -10,29 +10,30 @@ class Node:
 
 class Solution:
     def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
-        pDistance = 0
+        distP = 0
+        distQ = 0
         
-        curr = p
-        while curr:
-            curr = curr.parent
-            pDistance += 1
+        cur = p
+        while cur:
+            distP += 1
+            cur = cur.parent
         
-        curr = q
-        qDistance = 0
-        while curr:
-            curr = curr.parent
-            qDistance += 1
-            
-        while pDistance > qDistance:
+        cur = q
+        while cur:
+            distQ += 1
+            cur = cur.parent
+        
+        while distP > distQ:
             p = p.parent
-            pDistance -= 1
+            distP -= 1
         
-        while qDistance > pDistance:
+        while distQ > distP:
+            distQ -= 1
             q = q.parent
-            qDistance -= 1
             
+        
         while p != q:
             p = p.parent
             q = q.parent
-        
+            
         return p
