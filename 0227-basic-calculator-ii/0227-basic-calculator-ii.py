@@ -8,7 +8,6 @@ class Solution:
         answer = 0
         i = 0
         stack = []
-        print(s)
         while i < len(s):
             item = s[i]
             if item == "+":
