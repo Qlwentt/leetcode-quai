@@ -3,6 +3,7 @@ class Solution:
     def validWordAbbreviation(self, word: str, abbr: str) -> bool:
         abbr = re.split(r'(\d*|[a-z]*)', abbr)
         abbr = [item for item in abbr if item != ""]
+        
         i = 0
         for item in abbr:
             if item.isnumeric():
@@ -14,4 +15,5 @@ class Solution:
                 if i + length > len(word) or word[i:i+length] != item:
                     return False
             i += length
+        
         return i == len(word)
