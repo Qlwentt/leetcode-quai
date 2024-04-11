@@ -1,36 +1,42 @@
+import re
 class Solution:
     def calculate(self, s: str) -> int:
         s = s.replace(" ", "")
-        s = re.split(r'(\+|\-|\*|\/)', s)
+        s = re.split(r'(\d*)', s)
         s = [item for item in s if item != ""]
         
-        i = 0
         answer = 0
+        i = 0
         stack = []
+        print(s)
         while i < len(s):
-            if s[i] == "+":
+            item = s[i]
+            if item == "+":
                 answer += stack.pop()
                 stack.append(int(s[i+1]))
                 i += 2
-            elif s[i] == "-":
+            elif item == "-":
                 answer += stack.pop()
-                stack.append(int(s[i+1]) * -1)
+                stack.append(int(s[i+1])*-1)
                 i += 2
-            elif s[i] == "*":
+            elif item == "*":
                 a = stack.pop()
                 b = int(s[i+1])
                 stack.append(a*b)
                 i += 2
-            elif s[i] == "/":
+            elif item == "/":
                 a = stack.pop()
                 b = int(s[i+1])
                 stack.append(int(a/b))
                 i += 2
             else:
-                stack.append(int(s[i]))
+                stack.append(int(item))
                 i += 1
-            
+        
         if stack:
             answer += stack.pop()
             
         return answer
+                
+                
+        
