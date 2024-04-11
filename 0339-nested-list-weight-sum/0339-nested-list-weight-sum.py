@@ -44,13 +44,13 @@
 class Solution:
     def depthSum(self, nestedList: List[NestedInteger]) -> int:
         answer = 0
-        def calcSum(nestedList, depth):
+        def getSum(nestedList, depth):
             nonlocal answer
             for item in nestedList:
                 if item.isInteger():
                     answer += item.getInteger() * depth
                 else:
-                    calcSum(item.getList(), depth+1)
-        calcSum(nestedList, 1)
+                    getSum(item.getList(), depth + 1)
+        getSum(nestedList, 1)
         return answer
         
