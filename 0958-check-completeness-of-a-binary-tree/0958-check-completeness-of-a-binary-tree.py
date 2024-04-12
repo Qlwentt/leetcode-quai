@@ -8,17 +8,15 @@ from collections import deque
 class Solution:
     def isCompleteTree(self, root: Optional[TreeNode]) -> bool:
         q = deque([root])
-        seenEmpty = False
+        seenGap = False
         while q:
             node = q.popleft()
-            
-            if node != None:
-                if seenEmpty:
-                    return False
+            if seenGap and node:
+                return False
+            if not node:
+                seenGap = True
+            else:   
                 q.append(node.left)
                 q.append(node.right)
-            else:
-                seenEmpty = True
-        
         return True
-                
+    
