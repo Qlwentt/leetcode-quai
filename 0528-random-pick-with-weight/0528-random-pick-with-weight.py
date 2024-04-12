@@ -2,27 +2,27 @@ import random
 class Solution:
 
     def __init__(self, w: List[int]):
-        self.totalSum = 0
-        self.choices = [0]*len(w)
-        for i, weight in enumerate(w):
-            self.totalSum += weight
-            self.choices[i] = self.totalSum
+        self.picks = []
+        curSum = 0
+        for weight in w:
+            curSum += weight
+            self.picks.append(curSum)
         
 
     def pickIndex(self) -> int:
-        target = randint(1, self.totalSum)
-        lo = 0
-        hi = len(self.choices) - 1
+        target = randint(1, self.picks[-1])
+        L = 0
+        R = len(self.picks) - 1
         
-        while lo <= hi:
-            mid = (lo + hi) // 2
-            
-            if self.choices[mid] >= target:
-                hi = mid - 1
+        while L <= R:
+            mid = (L + R) // 2
+            if self.picks[mid] >= target: # too hi
+                R = mid - 1
             else:
-                lo = mid + 1
-                
-        return lo
+                L = mid + 1
+        return L
+        
+        
 
 
 # Your Solution object will be instantiated and called as such:
