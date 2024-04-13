@@ -1,15 +1,17 @@
 from collections import Counter
 class Solution:
     def customSortString(self, order: str, s: str) -> str:
-        count =  Counter(s)
+        counter = Counter(s)
         
         answer = []
-        
         for char in order:
-            answer.append(count[char] * char)
-            del count[char]
             
-        for char in count:
-            answer.append(count[char]*char)
+            if char in counter:
+                answer.append(char * counter[char])
+            del counter[char]
         
+        for char in counter:
+            answer.append(char * counter[char])
+            
         return "".join(answer)
+        
