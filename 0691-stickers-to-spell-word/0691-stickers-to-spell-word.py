@@ -24,7 +24,7 @@ class Solution:
                         minAnswer = min(minAnswer, backtrack(remainder, newSticker.copy()))
                 memo[remainder] = minAnswer
                 result += minAnswer
-                
+                    
             return result
         answer = backtrack(target, {})
         return answer if answer != float('inf') else -1 
