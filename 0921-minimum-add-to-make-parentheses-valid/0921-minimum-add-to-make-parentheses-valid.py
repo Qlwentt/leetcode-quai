@@ -8,10 +8,9 @@ class Solution:
                 balance += 1
             else:
                 balance -= 1
-                
-                if balance < 0:
-                    add += 1
-                    balance = 0
-        return balance + add
-        
+            
+            if balance < 0:
+                add += 1
+                balance = 0
+        return add + balance 
         
