@@ -1,19 +1,22 @@
 class Solution:
     def myPow(self, x: float, n: int) -> float:
-        
         def power(x,n):
             if n == 0:
                 return 1
-            if n == 1:
-                return x
-            
-            halfpower = power(x, n//2)
-            if n % 2:
-                return halfpower * halfpower * x
-            else:
-                return halfpower * halfpower
+
+            answer = 1
+            while n:
+                if n % 2:
+                    answer = answer * x
+                    n -= 1
+                else:
+                    x = x * x
+                    n = n // 2
+
+            return answer
         if n < 0:
             return 1/power(x,-n)
         else:
             return power(x,n)
+            
         
