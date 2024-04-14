@@ -1,47 +1,43 @@
 class Solution:
     def isNumber(self, s: str) -> bool:
-        def isDecimal(s, canHaveSign=True):
-            if s == "":
+        def isDecimal(num, allowSign=True):
+            if not num:
                 return False
-            if s[0] == "-" or s[0]== "+":
-                if not canHaveSign:
+            if num[0] in "-+":
+                if allowSign:
+                    return isDecimal(num[1:], False)
+                else:
                     return False
-                return isDecimal(s[1:], False)
-            s = s.split(".")
-            if len(s) != 2:
+            i = num.find(".")
+            if i == -1:
                 return False
-            if s[0] == "" and s[1] == "":
+            left = num[:i]
+            right = num[i+1:]
+            if left == "" and right == "":
                 return False
-            
-            return (isInteger(s[0], True) or s[0] == "")  and (isInteger(s[1], False) or s[1] == "")
-        def isInteger(s, canHaveSign):
-            if s == "":
+            return (left == "" or isInteger(left, False)) and (right == "" or isInteger(right, False))
+        
+        def isInteger(num, allowSign=True):
+            if not num:
                 return False
-            if s[0] == "-" or s[0] == "+":
-                if not canHaveSign:
+            if num[0] in "-+":
+                if allowSign:
+                    return isInteger(num[1:], False)
+            for char in num:
+                if not char.isnumeric():
                     return False
-                return isInteger(s[1:], False)
-            for i, char in enumerate(s):
-                if not char.isdigit():
-                    return False  
             return True
+            
         
         s = s.lower()
-        splitByE = re.split(r'e', s)
+        sParts = s.split("e")
         
-        if len(splitByE) > 2:
+        if len(sParts) > 2:
             return False
-        if len(splitByE) == 0:
+        if len(sParts) == 1:
+            return isDecimal(sParts[0]) or isInteger(sParts[0])
+        if len(sParts) == 2:
+            return (isDecimal(sParts[0]) or isInteger(sParts[0])) and isInteger(sParts[1])
+        else:
             return False
-        if len(splitByE) == 1 and "e" in s:
-            return False
-        if len(splitByE) == 1:
-            return isDecimal(splitByE[0]) or isInteger(splitByE[0], True)
-        # len is 2
-        
-        return (isDecimal(splitByE[0]) or isInteger(splitByE[0], True)) and isInteger(splitByE[1], True)
-            
-        
-        
-            
         
