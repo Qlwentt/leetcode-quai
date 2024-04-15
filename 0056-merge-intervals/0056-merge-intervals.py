@@ -1,19 +1,15 @@
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        intervals.sort(key= lambda x: x[0]) # sort by start
+        intervals.sort()
         answer = [intervals[0]]
         
-        prevEnd = intervals[0][1]
         for start, end in intervals[1:]:
-            if prevEnd >= start: # overlap
-                merged = [min(start, answer[-1][0]), max(end, prevEnd)]
-                answer[-1] = merged
-                prevEnd = max(end, prevEnd)
+            prevStart, prevEnd = answer[-1]
+            if start <= prevEnd: # need to merge
+                newStart = min(start, prevStart)
+                newEnd = max(end, prevEnd)
+                answer[-1] = [newStart, newEnd]
             else:
-                answer.append([start,end])
-                prevEnd = end
-        
+                answer.append([start, end])
+                
         return answer
-    
-# Time: O(N*log(N)) because you had to sort
-# Space: O(N) for answer
