@@ -3,7 +3,6 @@ class Solution:
         def power(x,n):
             if n == 0:
                 return 1
-
             answer = 1
             while n:
                 if n % 2:
@@ -12,7 +11,6 @@ class Solution:
                 else:
                     x = x * x
                     n = n // 2
-
             return answer
         if n < 0:
             return 1/power(x,-n)
