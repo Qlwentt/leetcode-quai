@@ -14,21 +14,18 @@ class Solution:
         originalToCopy = {}
         
         current = head
-        prev = None
-        while current:
-            copy = Node(current.val)
-            if prev:
-                copyPrev = originalToCopy[prev]
-                copyPrev.next = copy
-            originalToCopy[current] = copy
-            prev = current
-            current = current.next
         
+        while current:
+            originalToCopy[current] = Node(current.val)
+            current = current.next
+            
         current = head
         while current:
-            randomCopy = originalToCopy[current.random] if current.random else None
-            copy = originalToCopy[current]
-            copy.random = randomCopy
+            curCopy = originalToCopy[current]
+            if current.next:
+                curCopy.next = originalToCopy[current.next]
+            if current.random:
+                curCopy.random = originalToCopy[current.random]
             current = current.next
         
         return originalToCopy[head]
