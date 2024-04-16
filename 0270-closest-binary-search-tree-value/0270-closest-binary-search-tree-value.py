@@ -10,9 +10,8 @@ class Solution:
         def dfs(root):
             nonlocal answer
             if not root:
-                return 
-            
-            answer = min(root.val, answer, key=lambda x: (abs(target-x), x))
+                return
+            answer = min(root.val, answer, key = lambda x: (abs(target - x), x))
             
             if root.val > target:
                 dfs(root.left)
@@ -21,3 +20,5 @@ class Solution:
                 
         dfs(root)
         return answer
+            
+            
