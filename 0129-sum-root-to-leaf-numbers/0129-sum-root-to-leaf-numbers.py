@@ -6,18 +6,20 @@
 #         self.right = right
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
-        
         answer = 0
-        def preorder(root, path):
+        def dfs(root, path):
             nonlocal answer
             if not root:
                 return
             
-            path = path * 10 + root.val
+            
+            curPath = path *10 + root.val
             if not root.left and not root.right:
-                answer += path
-            preorder(root.left, path)
-            preorder(root.right, path)
-        preorder(root, 0)
+                answer += curPath
+            dfs(root.left, curPath)
+            dfs(root.right, curPath)
+            
+        dfs(root, 0)
         return answer
             
+        
