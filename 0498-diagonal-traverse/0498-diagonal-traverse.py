@@ -7,7 +7,6 @@ class Solution:
         c = 0
         answer = []
         while r in range(ROWS) and c in range(COLS):
-            
             while r in range(ROWS) and c in range(COLS):
                 answer.append(mat[r][c])
                 r -= 1
@@ -28,4 +27,5 @@ class Solution:
                 r += 1
             else:
                 c += 1
+        
         return answer
