@@ -11,18 +11,24 @@ class Solution:
             return []
         
         q = deque([root])
-        answer = []
+        answerRight = []
+        answerLeft = []
         while q:
-            hasOutputted = False
-            for _ in range(len(q)):
+            
+            length = len(q)
+            for i in range(length):
                 node = q.popleft()
-                if not hasOutputted:
-                    answer.append(node.val)
-                    hasOutputted = True
-                if node.right:
-                    q.append(node.right)
+                if i == length - 1:
+                    answerRight.append(node.val)
+                if i == 0:
+                    answerLeft.append(node.val)
+                
                 if node.left:
                     q.append(node.left)
-        return answer
+                if node.right:
+                    q.append(node.right)
+        answerLeft.reverse()
+        print(answerLeft)
+        return answerRight
             
         
