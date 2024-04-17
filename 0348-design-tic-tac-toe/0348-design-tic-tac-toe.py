@@ -17,15 +17,13 @@ class TicTacToe:
         if row + col == self.n - 1:
             self.negDiag += p
             
-        if (
-            abs(self.rows[row]) == self.n or
+        if (abs(self.rows[row])== self.n or
             abs(self.cols[col]) == self.n or
             abs(self.posDiag) == self.n or
             abs(self.negDiag) == self.n
-        ):
+           ):
             return player
         return 0
-        
         
 
 
