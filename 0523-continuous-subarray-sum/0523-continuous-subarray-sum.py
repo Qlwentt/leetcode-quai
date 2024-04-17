@@ -2,6 +2,7 @@ class Solution:
     def checkSubarraySum(self, nums: List[int], k: int) -> bool:
         prefixDict = {}
         prefixDict[0] = -1
+        
         curSum = 0
         for R, num in enumerate(nums):
             curSum += num
@@ -12,3 +13,4 @@ class Solution:
             else:
                 prefixDict[curSum % k] = R
         return False
+        
