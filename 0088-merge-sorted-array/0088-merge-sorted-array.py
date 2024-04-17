@@ -3,21 +3,21 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
+        # [1,2,3,0,0,0]
+        #            P3
         p1 = m - 1
         p2 = n - 1
-        p3 = len(nums1) -1
+        p3 = len(nums1) - 1
         
-        while p3 >= 0:
-            val1 = nums1[p1] if p1 >= 0 else float('-inf')
-            val2 = nums2[p2] if p2 >= 0 else float('-inf')
+        while p1 >= 0 or p2 >= 0:
+            num1 = nums1[p1] if p1 >= 0 else float('-inf')
+            num2 = nums2[p2] if p2 >= 0 else float('-inf')
             
-            if val1 > val2:
-                nums1[p3] = val1
+            if num1 > num2:
+                nums1[p1], nums1[p3] = nums1[p3], nums1[p1]
                 p1 -= 1
             else:
-                nums1[p3] = val2
+                nums2[p2], nums1[p3] = nums1[p3], nums2[p2]
                 p2 -= 1
             p3 -= 1
         
-        
-                                        
