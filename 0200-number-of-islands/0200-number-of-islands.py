@@ -5,24 +5,24 @@ class Solution:
         visited = set()
         
         def dfs(r,c):
-            if (
-                r not in range(ROWS) or
+            if (r not in range(ROWS) or
                 c not in range(COLS) or
-                grid[r][c] == "0" or
-                (r,c) in visited
-            ):
+                (r,c) in visited or
+                grid[r][c] == "0"):
                 return 0
+            
             visited.add((r,c))
-            dfs(r-1, c)
-            dfs(r+1, c)
-            dfs(r, c-1)
-            dfs(r, c+1)
+            
+            dfs(r-1,c)
+            dfs(r+1,c)
+            dfs(r,c-1)
+            dfs(r,c+1)
             return 1
         islands = 0
         for r in range(ROWS):
             for c in range(COLS):
                 if grid[r][c] == "1":
                     islands += dfs(r,c)
-                
         return islands
+            
         
