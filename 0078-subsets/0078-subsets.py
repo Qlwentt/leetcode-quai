@@ -1,20 +1,15 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        powerSet = []
-        def backtrack(i, curSet):
-            if i >= len(nums):
-                powerSet.append(curSet.copy())
+        answer = []
+        
+        def backtrack(i, curSubset):
+            if i == len(nums):
+                answer.append(curSubset.copy())
                 return
             
-            # include num in set
-            curSet.append(nums[i])
-            backtrack(i+1, curSet)
-
-            # don't include num in set
-            curSet.pop()
-            backtrack(i+1, curSet)
-            
+            curSubset.append(nums[i])
+            backtrack(i+1, curSubset)
+            curSubset.pop()
+            backtrack(i+1, curSubset)
         backtrack(0, [])
-        return powerSet
-            
-            
+        return answer
