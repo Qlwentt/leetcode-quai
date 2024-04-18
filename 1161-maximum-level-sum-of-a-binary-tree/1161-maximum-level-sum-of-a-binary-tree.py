@@ -4,27 +4,27 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+from collections import deque
 class Solution:
     def maxLevelSum(self, root: Optional[TreeNode]) -> int:
-        q = deque([root])
         maxSum = float('-inf')
+        q = deque([(root, 1)])
         ansLevel = None
-        curLevel = 0
         while q:
             curSum = 0
-            curLevel += 1
             for _ in range(len(q)):
-                node = q.popleft()
+                node, level = q.popleft()
                 curSum += node.val
                 
                 if node.left:
-                    q.append(node.left)
-                    
+                    q.append((node.left, level + 1))
+                
                 if node.right:
-                    q.append(node.right)
+                    q.append((node.right, level + 1))
             if curSum > maxSum:
-                ansLevel = curLevel
-            maxSum = max(maxSum, curSum)
+                maxSum = curSum
+                ansLevel = level
         
         return ansLevel
+        
         
