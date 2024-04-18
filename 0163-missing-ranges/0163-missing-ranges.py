@@ -13,4 +13,13 @@ class Solution:
         if nums[-1] != upper:
             answer.append([nums[-1]+1, upper])
             
+        def formatt(answer):
+            formatted = []
+            for start, end in answer:
+                if start == end:
+                    formatted.append(str(start))
+                else:
+                    formatted.append(f"{start}-{end}")
+            return formatted
+        print(formatt(answer))
         return answer
