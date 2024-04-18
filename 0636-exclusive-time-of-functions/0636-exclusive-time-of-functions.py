@@ -2,16 +2,16 @@ class Solution:
     def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:
         stack = []
         exclusiveTimes = [0] * n
+        
         for log in logs:
-            id_, command, timestamp = log.split(":")
+            id_,command, time = log.split(":")
             id_ = int(id_)
-            timestamp = int(timestamp)
+            time = int(time)
             if command == "start":
-                stack.append((id_,timestamp))
+                stack.append((id_, time))
             else:
-                end = timestamp
+                end = time
                 startId, start = stack.pop()
-                
                 delta = end - start + 1
                 exclusiveTimes[startId] += delta
                 if stack:
