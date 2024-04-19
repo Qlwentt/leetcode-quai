@@ -5,31 +5,28 @@ class Node:
         self.val = val
         self.neighbors = neighbors if neighbors is not None else []
 """
-from collections import deque
+
 from typing import Optional
+from collections import deque
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         if not node:
-            return None
-        
-        q = deque([node])
+            return node
         originalToCopy = {}
+        q = deque([node])
         visited = set([node])
+        
         while q:
-            original = q.popleft()
-            copy = originalToCopy[original] if original in originalToCopy else Node(original.val)
-            originalToCopy[original] = copy
+            curNode = q.popleft()
+            copy = originalToCopy.get(curNode, Node(curNode.val))
+            originalToCopy[curNode] = copy
             
-            for neigh in original.neighbors:
-                copyNeigh = originalToCopy[neigh] if neigh in originalToCopy else Node(neigh.val)
+            for neigh in curNode.neighbors:
+                copyNeigh = originalToCopy.get(neigh, Node(neigh.val))
                 originalToCopy[neigh] = copyNeigh
+                copy.neighbors.append(copyNeigh)
                 if neigh not in visited:
                     q.append(neigh)
                     visited.add(neigh)
-                copy.neighbors.append(copyNeigh)
-                
+        
         return originalToCopy[node]
-                
-            
-        
-        
