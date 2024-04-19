@@ -7,14 +7,15 @@ class Solution:
             numToIndex[num].append(i)
             
         arr.sort()
-        answer = [0] * len(arr)
-        rank = 1
+        
         i = 0
+        rank = 1
+        answer = [0]*len(arr)
         while i < len(arr):
             num = arr[i]
             for j in numToIndex[num]:
                 answer[j] = rank
-                i+=1
+                i += 1
             rank += 1
+            
         return answer
-        
