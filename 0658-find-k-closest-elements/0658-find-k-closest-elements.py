@@ -1,29 +1,20 @@
 class Solution:
     def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
-        def findClosest(target):
-            L = 0
-            R = len(arr) - 1
-            
-            while L <= R:
-                mid = (L+R) // 2
-                
-                if arr[mid] >= target:
-                    R = mid - 1
-                else:
-                    L = mid + 1
-            return L
         
-        i = findClosest(x)
-        L = i - 1
-        R = i
         
-        while R - L - 1 < k:
-            left = arr[L] if L in range(len(arr)) else float('inf')
-            right = arr[R] if R in range(len(arr)) else float('inf')
+        L = 0
+        R = len(arr) - k
+        
+        while L <= R:
+            mid = (L+R) // 2
             
-            if abs(right - x) < abs(left - x):
-                R += 1
+            if (mid +k not in range(len(arr)) or 
+                x - arr[mid] <= arr[mid+k] - x): # mid is closer, so R is too high
+                R = mid - 1
             else:
-                L -= 1
+                L = mid + 1
         
-        return arr[L+1:R]
+        return arr[L:L+k]
+                
+            
+        
