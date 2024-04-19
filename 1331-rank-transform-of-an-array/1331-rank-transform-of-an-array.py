@@ -9,10 +9,12 @@ class Solution:
         arr.sort()
         answer = [0] * len(arr)
         rank = 1
-        for i in range(len(arr)):
-            for j in numToIndex[arr[i]]:
+        i = 0
+        while i < len(arr):
+            num = arr[i]
+            for j in numToIndex[num]:
                 answer[j] = rank
-            if i+1 < len(arr) and  arr[i+1] != arr[i]:
-                rank += 1
+                i+=1
+            rank += 1
         return answer
         
