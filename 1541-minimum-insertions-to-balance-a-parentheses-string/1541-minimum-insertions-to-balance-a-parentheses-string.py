@@ -18,10 +18,8 @@ class Solution:
                 balance -= 2
                 
             if balance < 0:
-                if balance == -2:
-                    add += 1
-                else: # balance = -1
-                    add += 2
+                add += 1
+               
                 balance = 0
         return balance + add
         
