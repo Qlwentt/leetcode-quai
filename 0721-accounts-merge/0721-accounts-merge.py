@@ -1,21 +1,21 @@
+from collections import defaultdict
 class UnionFind:
     def __init__(self, n):
-        self.parents = [0] * n
-        self.ranks = [0] * n
-        
-        for i in range(n):
-            self.parents[i] = i
+        self.parents = {i: i for i in range(n)}
+        self.ranks = {i:1 for i in range(n)}
     
     def find(self, node):
         parent = self.parents[node]
         
-        while parent != self.parents[parent]:
+        while self.parents[parent] != parent:
             self.parents[parent] = self.parents[self.parents[parent]]
             parent = self.parents[parent]
+        
         return parent
     
     def union(self, node1, node2):
-        root1, root2 = self.find(node1), self.find(node2)
+        root1 = self.find(node1)
+        root2 = self.find(node2)
         if root1 == root2:
             return False
         
@@ -26,27 +26,27 @@ class UnionFind:
         else:
             self.parents[root1] = root2
             self.ranks[root2] += 1
-        return True
-    
         
-from collections import defaultdict
+        return True
+
 class Solution:
     def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
-        emailsToId = {}
+        emailToId = {}
         u = UnionFind(len(accounts))
         for i, account in enumerate(accounts):
             for email in account[1:]:
-                if email in emailsToId:
-                    u.union(i,emailsToId[email])
+                if email in emailToId:
+                    j = emailToId[email]
+                    u.union(i,j)
                 else:
-                    emailsToId[email] = i
-        groups = defaultdict(list)
-        for email, id_ in emailsToId.items():
-            root = u.find(id_)
-            groups[root].append(email)
-        
+                    emailToId[email] = i
+        emailGroups = defaultdict(list)
+        for email, id_ in emailToId.items():
+            baseAccount = u.find(id_)
+            emailGroups[baseAccount].append(email)
         answer = []
-        for id_, emails in groups.items():
-            answer.append([accounts[id_][0]] + sorted(emails))
+        for account, emails in emailGroups.items():
+            answer.append([accounts[account][0]] + sorted(emails))
         
         return answer
+        
