@@ -1,8 +1,7 @@
 class Solution:
     def myPow(self, x: float, n: int) -> float:
         def power(x,n):
-            if n == 0:
-                return 1
+            
             answer = 1
             while n:
                 if n % 2:
