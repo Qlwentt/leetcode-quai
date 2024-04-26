@@ -8,7 +8,7 @@ class Solution:
             
             if char in counter:
                 answer.append(char * counter[char])
-            del counter[char]
+                del counter[char]
         
         for char in counter:
             answer.append(char * counter[char])
