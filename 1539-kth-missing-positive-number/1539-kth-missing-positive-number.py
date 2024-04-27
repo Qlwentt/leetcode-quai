@@ -10,5 +10,9 @@ class Solution:
                 R = mid - 1
             else:
                 L = mid + 1
-        
-        return L + k
+        # arr[R] - (R+1)
+        # arr[R] - R - 1
+        # arr[R] + k - (arr[R] - R - 1)
+        # arr[R] +k -arr[R] + R + 1
+        #k + R+1
+        return k + R + 1
