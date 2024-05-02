@@ -1,20 +1,24 @@
 class Solution:
     def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:
+        times = [0]*n
         stack = []
-        exclusiveTimes = [0] * n
+        prevStart = 0
         
         for log in logs:
-            id_,command, time = log.split(":")
-            id_ = int(id_)
+            funcId, command, time = log.split(":")
+            
+            funcId = int(funcId)
             time = int(time)
+            
             if command == "start":
-                stack.append((id_, time))
-            else:
-                end = time
-                startId, start = stack.pop()
-                delta = end - start + 1
-                exclusiveTimes[startId] += delta
                 if stack:
-                    prevId = stack[-1][0]
-                    exclusiveTimes[prevId] -= delta
-        return exclusiveTimes
+                    times[stack[-1]] += time - prevStart
+                stack.append(funcId)
+                prevStart = time
+            else:
+                
+                end = time
+                delta = end - prevStart + 1
+                times[stack.pop()] +=  delta
+                prevStart = end + 1
+        return times
