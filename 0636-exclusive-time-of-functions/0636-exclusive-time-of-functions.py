@@ -1,24 +1,20 @@
 class Solution:
     def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:
-        times = [0]*n
         stack = []
-        prevStart = 0
+        answer = [0]* n
         
         for log in logs:
-            funcId, command, time = log.split(":")
-            
-            funcId = int(funcId)
-            time = int(time)
-            
+            id_, command, timestamp = log.split(":")
+            id_ = int(id_)
+            timestamp = int(timestamp)
             if command == "start":
-                if stack:
-                    times[stack[-1]] += time - prevStart
-                stack.append(funcId)
-                prevStart = time
+                stack.append((id_,timestamp))
             else:
-                
-                end = time
-                delta = end - prevStart + 1
-                times[stack.pop()] +=  delta
-                prevStart = end + 1
-        return times
+                end = timestamp
+                startId, start = stack.pop()
+                delta = end - start + 1
+                answer[startId] += delta
+                if stack:
+                    prevId, prevtime = stack[-1]
+                    answer[prevId] -= delta
+        return answer
