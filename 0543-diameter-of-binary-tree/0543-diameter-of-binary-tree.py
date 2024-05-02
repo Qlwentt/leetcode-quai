@@ -12,15 +12,13 @@ class Solution:
             if not root:
                 return [-1,-1]
             
-            leftL, leftR = dfs(root.left)
-            rightL, rightR = dfs(root.right)
+            leftL,leftR = dfs(root.left)
+            rightL,rightR = dfs(root.right)
             
-            left = max(leftL, leftR) + 1
-            right = max(rightL, rightR) + 1
+            left = max(leftL,leftR) + 1
+            right = max(rightL,rightR) + 1
             
-            diameter = left + right
-            maxDiameter = max(diameter, maxDiameter)
+            maxDiameter = max(left+right, maxDiameter)
             return [left, right]
         dfs(root)
         return maxDiameter
-        
