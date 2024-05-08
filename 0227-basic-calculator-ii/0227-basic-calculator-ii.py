@@ -18,7 +18,6 @@ class Solution:
                 answer += lastNumber
                 nextNumber, newI = getNextNumber(i+1)  
                 lastNumber = nextNumber
-                print(nextNumber, newI)
                 i = newI
             elif item == "-":
                 answer += lastNumber
