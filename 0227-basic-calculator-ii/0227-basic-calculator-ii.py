@@ -1,38 +1,47 @@
+import re
 class Solution:
     def calculate(self, s: str) -> int:
+        def getNextNumber(j):
+            nextNumber = 0
+            while j < len(s) and s[j].isdigit():
+                nextNumber = nextNumber * 10 + int(s[j])
+                j += 1
+            return  (nextNumber, j)
         s = s.replace(" ", "")
-        s = re.split(r'(\+|\-|\*|\/)', s)
-        s = [item for item in s if item != ""]
         
-        i = 0
-        stack = []
         answer = 0
+        i = 0
+        lastNumber = 0
         while i < len(s):
-            char = s[i]
-            if char == "+":
-                answer += stack.pop()
-                stack.append(int(s[i+1]))
-                i += 2
-            elif char == "-":
-                answer += stack.pop()
-                a = int(s[i+1]) * -1
-                stack.append(a)
-                i += 2
-            elif char == "*":
-                a = stack.pop()
-                b = int(s[i+1])
-                stack.append(a*b)
-                i += 2
-            elif char == "/":
-                a = stack.pop()
-                b = int(s[i+1])
-                stack.append(int(a/b))
-                i += 2
+            item = s[i]
+            if item == "+":
+                answer += lastNumber
+                nextNumber, newI = getNextNumber(i+1)  
+                lastNumber = nextNumber
+                print(nextNumber, newI)
+                i = newI
+            elif item == "-":
+                answer += lastNumber
+                nextNumber, newI = getNextNumber(i+1)
+                lastNumber = nextNumber * -1
+                i = newI
+            elif item == "*":
+                a = lastNumber
+                b, newI = getNextNumber(i+1)
+                lastNumber = a *b
+                i = newI
+            elif item == "/":
+                a = lastNumber
+                b, newI = getNextNumber(i+1)
+                lastNumber = int(a/b)
+                i = newI
             else:
-                stack.append(int(char))
+                lastNumber = lastNumber * 10 + int(item)
                 i += 1
-                
-        if stack:
-            answer += stack.pop()
+        
+        answer += lastNumber
             
         return answer
+                
+                
+        
