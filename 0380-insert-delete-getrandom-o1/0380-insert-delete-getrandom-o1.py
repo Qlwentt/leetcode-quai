@@ -18,8 +18,7 @@ class RandomizedSet:
         if val not in self.dict:
             return False
         i, lastEle = self.dict[val], self.list[-1]
-        self.dict[lastEle] = i
-        self.list[i] =  lastEle
+        self.dict[lastEle], self.list[i] = i, lastEle
         del self.dict[val]
         self.list.pop()
     
