@@ -18,13 +18,14 @@ class Solution:
         def isIPv6(s):
             s = s.split(":")
             s = [item for item in s if item != ""]
+            validChars = set(list('abcdefABCDEF0123456789'))
             if len(s) != 8:
                 return "Neither"
             for item in s:
                 if len(item) < 1 or len(item) > 4:
                     return "Neither"
                 for char in item:
-                    if char not in set(list('abcdefABCDEF0123456789')):
+                    if char not in validChars:
                         return "Neither"
             return "IPv6"
         if queryIP.count(".") == 3:
