@@ -1,12 +1,14 @@
-import re
 class Solution:
     def calculate(self, s: str) -> int:
         def getNextNumber(j):
             nextNumber = 0
+            while j < len(s) and s[j] == " ":
+                j += 1
             while j < len(s) and s[j].isdigit():
                 nextNumber = nextNumber * 10 + int(s[j])
                 j += 1
             return  (nextNumber, j)
+    
         s = s.replace(" ", "")
         
         answer = 0
@@ -34,6 +36,8 @@ class Solution:
                 b, newI = getNextNumber(i+1)
                 lastNumber = int(a/b)
                 i = newI
+            elif item == " ":
+                i += 1
             else:
                 lastNumber = lastNumber * 10 + int(item)
                 i += 1
