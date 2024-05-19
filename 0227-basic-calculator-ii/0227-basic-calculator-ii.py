@@ -9,7 +9,6 @@ class Solution:
                 j += 1
             return  (nextNumber, j)
     
-        s = s.replace(" ", "")
         
         answer = 0
         i = 0
