@@ -1,16 +1,18 @@
 class Solution:
     def minAddToMakeValid(self, s: str) -> int:
-        balance = 0
+        bal = 0
         add = 0
         
         for char in s:
             if char == "(":
-                balance += 1
-            else:
-                balance -= 1
-            
-            if balance < 0:
+                bal += 1
+            else: # char == )
+                bal -= 1
+            if bal < 0:
                 add += 1
-                balance = 0
-        return add + balance 
+                bal = 0
         
+        return add + bal
+    
+# Time: O(N) iterate through string once
+# Space O(1) only use int vars
