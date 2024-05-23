@@ -7,13 +7,9 @@ class Solution:
         num = 0
         while i < len(s):
             char = s[i]
-            if char in subtractMap:
-                if i + 1 < len(s) and s[i+1] in subtractMap[char]:
-                    num += romanMap[s[i+1]] - romanMap[char]
-                    i += 2
-                else:
-                    num += romanMap[char]
-                    i += 1
+            if char in subtractMap and i + 1 < len(s) and s[i+1] in subtractMap[char]:
+                num += romanMap[s[i+1]] - romanMap[char]
+                i += 2  
             else:
                 num += romanMap[char]
                 i += 1
