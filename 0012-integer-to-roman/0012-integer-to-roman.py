@@ -2,8 +2,6 @@ class Solution:
     def intToRoman(self, num: int) -> str:
         convert = {1: "I", 5: "V", 10: "X",  50: "L", 100: "C",  500: "D", 1000: "M"}
         def toRoman(place, digit):
-            if digit == 0:
-                return ""
             if digit < 4: 
                 return convert[place] * digit
             elif digit == 4 or digit == 9:
