@@ -1,24 +1,21 @@
 class Solution:
     def numberOfBeams(self, bank: List[str]) -> int:
-        devicesCount = collections.defaultdict(int)
-        for r, row in enumerate(bank):
+        prev = 0
+        answer = 0
+        for row in bank:
+            count = 0
             for char in row:
                 if char == "1":
-                    devicesCount[r] += 1
-                
-        answer = 0
-        r1s = list(devicesCount.keys())
-        for i in range(len(r1s)):
-            r1 = r1s[i]
-            for j in range(i+1,len(r1s)):
-                r2 = r1s[j]
-                noDevices = True
-                for k in range(r1+1, r2):
-                    if devicesCount[k] > 0:
-                        noDevices = False
-                if noDevices:
-                    answer += (devicesCount[r1] * devicesCount[r2])
+                    count += 1
+            answer += prev * count
+            if count:
+                prev = count
+        
         return answer
+        
+                
+        
+            
                     
                     
                 
