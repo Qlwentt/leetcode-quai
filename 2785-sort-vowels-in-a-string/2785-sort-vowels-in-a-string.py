@@ -11,10 +11,11 @@ class Solution:
         for i, count in enumerate(bucket):
             sortedVowels.append(count * chr(i))
         
-        sortedVowels = collections.deque(list("".join(sortedVowels)))
+        sortedVowels = list("".join(sortedVowels))
+        sortedVowels.reverse()
         
         for i in vowelIndexes:
-            answer[i] = sortedVowels.popleft()
+            answer[i] = sortedVowels.pop()
                                          
         return "".join(answer)
         
