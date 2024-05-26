@@ -1,8 +1,7 @@
 class Solution:
     def simplifiedFractions(self, n: int) -> List[str]:
         answer = []
-        
-        answer = []
+
         fractions = set()
         
         for numerator in range(1, n):
