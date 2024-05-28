@@ -9,14 +9,21 @@ class Solution:
                     return False
             return True
         
-        maxDistance = 0
-        L = 0
-        for R in range(len(nums)):
-            while not isPrime(nums[L]):
-                L += 1
-            if isPrime(nums[R]):
-                maxDistance = max(R-L, maxDistance)
-        return maxDistance
+        
+        
+        L = None
+        for i, num in enumerate(nums):
+            if isPrime(num):
+                L = i
+                break
+        
+        for i, num in reversed(list(enumerate(nums))):
+            if isPrime(num):
+                R = i
+                break
+        
+                
+        return R - L
             
                 
                         
