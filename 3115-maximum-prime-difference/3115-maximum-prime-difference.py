@@ -1,5 +1,7 @@
 class Solution:
     def maximumPrimeDifference(self, nums: List[int]) -> int:
+        
+        @cache
         def isPrime(num):
             if num <= 1:
                 return False
@@ -8,7 +10,6 @@ class Solution:
                 if num % i == 0:
                     return False
             return True
-        
         
         
         L = None
@@ -21,8 +22,7 @@ class Solution:
             if isPrime(num):
                 R = i
                 break
-        
-                
+               
         return R - L
             
                 
