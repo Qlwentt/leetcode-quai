@@ -1,11 +1,17 @@
 class Solution:
     def findThePrefixCommonArray(self, A: List[int], B: List[int]) -> List[int]:
-        set1 = set()
-        set2 = set()
+        setA = set() 
+        setB = set()
+        common = 0
         answer = [0]* len(A)
         for i,(a,b) in enumerate(zip(A,B)):
-            set1.add(a)
-            set2.add(b)
-            answer[i] = len(set1.intersection(set2))
-        
+            setA.add(a)
+            setB.add(b)
+            
+            if b in setA:
+                common += 1
+            
+            if a in setB and a != b:
+                common += 1 
+            answer[i] = common
         return answer
