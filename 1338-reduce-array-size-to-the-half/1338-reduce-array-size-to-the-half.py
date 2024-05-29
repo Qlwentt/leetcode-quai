@@ -4,17 +4,16 @@ class Solution:
         bucket = [0] * (len(arr) + 1) # index = frequency, value = num of numbers with that frequency
         for num, count in counts.items():
             bucket[count] += 1
-        
-        # [0,1,1,1,1,0,0,0,0,0, 0]
-        #  0 1 2 3 4 5 6 7 8 9 10
             
         target = len(arr) // 2
         answer = 0
         for freq in range(len(bucket)-1, 0, -1):
             num_of_nums = bucket[freq]
-            while target > 0 and num_of_nums > 0:
-                target -= freq
-                num_of_nums -= 1
-                answer += 1
+            max_to_subtract = math.ceil(target / freq)
+            num_to_subtract = min(max_to_subtract, num_of_nums)
+            target -= freq * num_to_subtract
+            answer += num_to_subtract
+            if target <= 0:
+                break
         return answer
         
