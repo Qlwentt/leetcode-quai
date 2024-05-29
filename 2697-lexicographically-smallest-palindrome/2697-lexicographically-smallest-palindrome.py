@@ -1,7 +1,5 @@
 class Solution:
     def makeSmallestPalindrome(self, s: str) -> str:
-        #"egcfe"
-        #  L R
         L = 0
         R = len(s) - 1
         
