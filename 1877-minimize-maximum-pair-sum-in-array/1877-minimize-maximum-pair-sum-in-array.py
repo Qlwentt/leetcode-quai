@@ -1,9 +1,14 @@
 class Solution:
     def minPairSum(self, nums: List[int]) -> int:
-        sorted_nums = sorted(nums)
-        rev_sorted_nums = sorted(nums,reverse=True)
+        nums.sort()
+        L = 0
+        R = len(nums) - 1
         answer = 0
-        for a, b in zip(sorted_nums, rev_sorted_nums):
-            answer = max(answer, a+b)
-        
+        while L < R:
+            a = nums[L]
+            b = nums[R]
+            answer = max(a+b, answer)
+            L += 1
+            R -= 1
         return answer
+            
