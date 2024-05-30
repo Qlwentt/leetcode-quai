@@ -4,20 +4,13 @@ class Solution:
         # conv =  [4,6,14,12,20]
         # score [4,10,24,36,56]
         
-        maxes = []
+        score = []
         curMax = float('-inf')
+        curSum  = 0
         for num in nums:
             curMax = max(num, curMax)
-            maxes.append(curMax)
-        
-        conver = nums.copy()
-        for i in range(len(conver)):
-            conver[i] = conver[i] + maxes[i]
-            
-        score = []
-        curSum = 0
-        for num in conver:
-            curSum += num
+            curSum += curMax + num
             score.append(curSum)
-            
+        
+        
         return score
