@@ -1,28 +1,35 @@
-import random
+from random import randint
+from bisect import bisect_left
 class Solution:
 
     def __init__(self, w: List[int]):
-        curSum = 0
-        self.picks = []
-        for weight in w:
-            curSum += weight
-            self.picks.append(curSum)
+        self.choices = [0]* len(w)
+        self.sum = 0
+        
+        for i, weight in enumerate(w):
+            self.sum += weight
+            self.choices[i] = self.sum
         
 
     def pickIndex(self) -> int:
-        target = randint(1, self.picks[-1])
-        L = 0
-        R = len(self.picks) -1
-        
-        while L <= R:
-            mid = (L+R) // 2
+        target = randint(1,self.sum)
+    
+        def lowerBound(arr, target):
+            lo = 0
+            hi = len(arr) - 1
             
-            if self.picks[mid] >= target:
-                R = mid - 1
-            else:
-                L = mid + 1
-        return L
+            while lo <= hi:
+                mid = (lo + hi) // 2
+                if arr[mid] >= target:
+                    hi = mid - 1
+                else:
+                    
+                    lo = mid + 1
+            return lo
+        return lowerBound(self.choices, target)
 
+# Time __init__: O(N), pickIndex: O(log(N))
+# Space __init__: O(N), pickIndex: O(1)
 
 # Your Solution object will be instantiated and called as such:
 # obj = Solution(w)
