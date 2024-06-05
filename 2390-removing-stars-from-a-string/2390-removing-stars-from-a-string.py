@@ -1,7 +1,7 @@
 class Solution:
     def removeStars(self, s: str) -> str:
         stack = []
-        for i, char in enumerate(s):
+        for char in s:
             if char == "*":
                 stack.pop()
             else:
