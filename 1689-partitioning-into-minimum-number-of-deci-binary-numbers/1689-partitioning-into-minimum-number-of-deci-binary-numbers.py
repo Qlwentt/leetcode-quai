@@ -10,8 +10,4 @@ class Solution:
 #         7 hundreds
 #         3 tens
 #         4 ones
-        answer = float('-inf')
-        for digit in n:
-            answer = max(int(digit), answer)
-            
-        return answer
+        return int(max(n))
