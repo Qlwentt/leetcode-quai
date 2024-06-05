@@ -1,13 +1,14 @@
 class Solution:
     def removeStars(self, s: str) -> str:
-        heap = []
+        stack = []
         answer = list(s)
         for i, char in enumerate(s):
             if char == "*":
-                j = heapq.heappop(heap)
-                answer[-j] = ""
-                answer[i] = ""
+                if stack:
+                    j = stack.pop()
+                    answer[j] = ""
+                    answer[i] = ""
             else:
-                heapq.heappush(heap, -i)
+                stack.append(i)
             
         return "".join(answer)
