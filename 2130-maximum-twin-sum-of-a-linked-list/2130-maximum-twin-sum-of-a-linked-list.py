@@ -24,7 +24,7 @@ class Solution:
         second_half = prev
         first_half = head
         answer = float('-inf')
-        while second_half and first_half:
+        while second_half:
             a = first_half.val
             b = second_half.val
             answer = max(answer, a+b)
