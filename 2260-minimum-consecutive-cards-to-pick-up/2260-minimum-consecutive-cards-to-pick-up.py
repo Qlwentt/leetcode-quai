@@ -1,7 +1,5 @@
 class Solution:
     def minimumCardPickup(self, cards: List[int]) -> int:
-        if len(set(cards)) == len(cards):
-            return -1
         
         cards_dict = {}
         answer = float('inf')
@@ -10,4 +8,4 @@ class Solution:
                 answer = min(i - cards_dict[card] + 1, answer)
             cards_dict[card] = i
         
-        return answer
+        return answer if answer != float('inf') else -1
