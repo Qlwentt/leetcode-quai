@@ -8,10 +8,8 @@ class Solution:
     def kthLargestLevelSum(self, root: Optional[TreeNode], k: int) -> int:
         q = collections.deque([root])
         sums_ = []
-        levels = 0
         while q:
             level_sum = 0
-            levels += 1
             for _ in range(len(q)):
                 node = q.popleft()
                 
@@ -25,7 +23,7 @@ class Solution:
             
             sums_.append((level_sum))
         
-        if k > levels:
+        if k > len(sums_):
             return -1
         return heapq.nlargest(k, sums_)[-1]
         
