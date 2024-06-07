@@ -6,8 +6,8 @@ class Solution:
 #         # left =  start - found % 5 
 #         # right = found - start % 5
         answer = float('inf')
-        for i, word in enumerate(words):
-            if word == target:
+        for i in range(len(words)):
+            if words[i] == target:
                 left = (start - i) % len(words)
                 right = (i-start) % len(words)
                 answer = min(answer, left, right)     
