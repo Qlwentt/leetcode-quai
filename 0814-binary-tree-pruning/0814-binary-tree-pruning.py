@@ -9,19 +9,18 @@ class Solution:
         
         def dfs(root):
             if not root:
-                return False
+                return None
             
-            left_has_one = dfs(root.left)
-            right_has_one = dfs(root.right)
+            root.left = dfs(root.left)
+            root.right = dfs(root.right)
             
-            if not left_has_one:
-                root.left = None
             
-            if not right_has_one:
-                root.right = None
             
-            return left_has_one or right_has_one or root.val
+            if root.left or root.right or root.val:
+                return root
+            else:
+                return None
         
-        root_has_one = dfs(root)
-        return root if root_has_one else None
+    
+        return dfs(root)
         
