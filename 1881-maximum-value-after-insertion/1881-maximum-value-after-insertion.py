@@ -3,16 +3,12 @@ class Solution:
         n = list(n)
         
         def get_max(n, is_negative=False):
-            if not is_negative: 
-                for i, digit in enumerate(n):
-                    if int(digit) < x:
-                        return i
-                return len(n)
-            else:
-                for i , digit in enumerate(n):
-                    if int(digit) > x:
-                        return i + 1
-                return len(n) + 1
+            for i, digit in enumerate(n):
+                if int(digit) < x and not is_negative:
+                    return i
+                elif int(digit) > x and is_negative:
+                    return i + 1
+            return len(n) + is_negative
             
                     
         
