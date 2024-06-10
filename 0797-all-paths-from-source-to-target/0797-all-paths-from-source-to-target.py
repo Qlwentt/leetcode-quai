@@ -6,14 +6,16 @@ class Solution:
             if node is None:
                 return
             if node == len(graph) - 1:
-                path.append(node)
                 answer.append(path.copy())
                 return
             
-            path.append(node)
+            
             for neigh in adjList[node]:
-                dfs(neigh,path.copy())
-        dfs(0,[])
+                path.append(neigh)
+                dfs(neigh,path)
+                path.pop()
+        
+        dfs(0,[0])
         return answer
             
         
