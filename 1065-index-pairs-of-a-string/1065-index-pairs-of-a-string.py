@@ -7,5 +7,5 @@ class Solution:
                 if text[i:j+1] in words: 
                     answer.append([i,j])
                 
-        return sorted(answer)
+        return answer
         
