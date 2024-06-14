@@ -1,8 +1,11 @@
 class Solution:
     def minFlips(self, target: str) -> int:
-        flips = len([(k,group) for k, group in itertools.groupby(target)])
-        if target[0] == "1":
-            return flips
-        return flips - 1
-            
+        flips = 0
+        prev = '0'
+        for char in target:
+            if char != prev:
+                flips += 1
+            prev = char
+        
+        return flips
         
