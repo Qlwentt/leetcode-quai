@@ -11,31 +11,30 @@ class Solution:
 #         8:8,3:8,13:13,2:13,5:13
         
 #         0->5:13->2:13->13:13->3:8->8:8
-#          ->2:13 
-        arr = []
-        current = head
-        while current:
-            arr.append(current.val)
-            current = current.next
-        
-        max_val = 0
-        maxes = [0]* len(arr)
-        # [8,8,13,13,13]
-        for i in range(len(arr)-1,-1,-1):
-            max_val = max(arr[i], max_val)
-            maxes[i] = max_val
-        
-        
+#          ->2:13           
+        def reverse(head):
+            prev = None
+            current = head
+
+            while current:
+                nxt = current.next
+                current.next = prev
+                prev = current
+                current = nxt
+
+            return prev
+        head = reverse(head)
         dummy = ListNode(0, head)
         current = dummy
-        i = 0
+        max_val = 0
+        
         while current and current.next:
-            if current.next.val < maxes[i]:
+            max_val = max(max_val, current.next.val)
+            if current.next.val < max_val:
                 current.next = current.next.next
             else:
                 current = current.next
-            i += 1
-        return dummy.next
+        return reverse(dummy.next)
             
                        
         
