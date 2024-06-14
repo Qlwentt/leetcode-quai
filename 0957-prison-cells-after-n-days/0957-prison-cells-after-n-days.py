@@ -7,7 +7,6 @@ class Solution:
         
         while N:
             if tuple(cells) in cache_by_cells:
-                prev_i = cache_by_cells[tuple(cells)]
                 cycle_length = len(cache_by_i)
                 return cache_by_i[((n % cycle_length) -1 )%cycle_length]
             if i:
