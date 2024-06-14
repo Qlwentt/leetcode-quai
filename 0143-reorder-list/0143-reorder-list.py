@@ -8,36 +8,29 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-        # find middle
         slow = head
         fast = head
         
         while fast and fast.next:
-            fast = fast.next.next
             slow = slow.next
-        
-        # reverse second half
+            fast = fast.next.next
+            
         prev = None
         current = slow
+        
         while current:
-            next_ = current.next
+            nxt = current.next
             current.next = prev
             prev = current
-            current = next_
+            current = nxt
         
-        # connect first and second half
-        first = head
         second = prev
+        first = head
         
-        while second.next:
-            firstNext, secondNext = first.next, second.next
+        while second and second.next:
+            first_next, second_next = first.next, second.next
             first.next = second
-            second.next = firstNext
-            first = firstNext
-            second = secondNext
-        
-      
-        
-        
+            second.next = first_next
+            first = first_next
+            second = second_next
             
-        
