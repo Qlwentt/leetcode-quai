@@ -11,41 +11,30 @@ class Solution:
 #         8:8,3:8,13:13,2:13,5:13
         
 #         0->5:13->2:13->13:13->3:8->8:8
-#          ->2:13                      
-        prev = None
+#          ->2:13 
+        arr = []
         current = head
-        
         while current:
-            nxt = current.next
-            current.next = prev
-            prev = current
-            current = nxt
-        
-        current = prev
-        cur_max = 0
-        while current:
-            cur_max = max(cur_max, current.val)
-            current.val = (current.val, cur_max)
+            arr.append(current.val)
             current = current.next
         
-        current = prev
-        prev = None
+        max_val = 0
+        maxes = [0]* len(arr)
+        # [8,8,13,13,13]
+        for i in range(len(arr)-1,-1,-1):
+            max_val = max(arr[i], max_val)
+            maxes[i] = max_val
         
-        while current:
-            nxt = current.next
-            current.next = prev
-            prev = current
-            current = nxt
         
-        dummy = ListNode(0, prev)
+        dummy = ListNode(0, head)
         current = dummy
-        
+        i = 0
         while current and current.next:
-            if current.next.val[0] < current.next.val[1]:
+            if current.next.val < maxes[i]:
                 current.next = current.next.next
             else:
-                current.next.val = current.next.val[0]
                 current = current.next
+            i += 1
         return dummy.next
             
                        
