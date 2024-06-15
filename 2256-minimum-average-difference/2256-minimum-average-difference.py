@@ -1,7 +1,5 @@
 class Solution:
     def minimumAverageDifference(self, nums: List[int]) -> int:
-        [0, 2, 7, 10,19,24,27]
-        [27,25,20,17,8, 3, 0]
         
         left = [0]
         right = collections.deque([0])
