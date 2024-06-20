@@ -3,28 +3,40 @@ class Solution:
         counts = collections.Counter(power)
         keys = list(sorted(counts))
         N = len(keys)
-        next_i = [len(keys)] * len(keys)  
+        next_i = [N] * N 
                                           
         p = 0
         q = 0
-        while p < len(keys):
+        while p < N:
             if keys[p] > keys[q] + 2:
                 next_i[q] = p
                 q += 1
             else:
                 p += 1
-    
-        @cache
-        def dp(i):
-            if i == len(keys) -1:
-                return keys[i] * counts[keys[i]]
-            if i == len(keys):
-                return 0
-            # choose this number and next one available recursively
-            choose = dp(next_i[i]) + keys[i] * counts[keys[i]]
-            skip = dp(i+1)
-            return max(choose, skip)
-        return dp(0)
+        
+        dp = [0] * (N + 1)
+        dp[N] = 0
+        dp[N-1] = keys[N-1] * counts[keys[N-1]]
+        
+        i = N-2
+        while i >= 0:
+            choose = dp[next_i[i]] + keys[i] * counts[keys[i]]
+            skip = dp[i+1]
+            dp[i] = max(choose, skip)
+            i -= 1
+        return dp[0]
+        
+        # @cache
+        # def dp(i):
+        #     if i == len(keys) -1:
+        #         return keys[i] * counts[keys[i]]
+        #     if i == len(keys):
+        #         return 0
+        #     # choose this number and next one available recursively
+        #     choose = dp(next_i[i]) + keys[i] * counts[keys[i]]
+        #     skip = dp(i+1)
+        #     return max(choose, skip)
+        # return dp(0)
         
         
 #         dp = [0] * N
