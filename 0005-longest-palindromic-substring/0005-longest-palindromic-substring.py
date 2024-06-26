@@ -1,24 +1,37 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        longest = 0
-        longS = ""
-        
-        for i in range(len(s)):
-            # odd
-            L,R = i, i
-            while L in range(len(s)) and R in range(len(s)) and s[L] == s[R]:
-                longest = max(longest, R-L+1)
-                if longest == (R-L+1):
-                    longS = s[L:R+1]
-                L -= 1
-                R += 1
+        def longest_pal(L,R):
+            longest = 0
+            maxL = 0
+            maxR = 0
             
-            # even
-            L, R = i, i + 1
-            while L in range(len(s)) and R in range(len(s)) and s[L] == s[R]:
-                longest = max(longest, R-L+1)
-                if longest == (R-L+1):
-                    longS = s[L:R+1]
+            while L >= 0 and R < len(s):
+                if s[L] != s[R]:
+                    break
+                if R-L+1 > longest:
+                    maxL = L
+                    maxR = R
+                    longest = R-L+1
                 L -= 1
                 R += 1
-        return longS
+            return [longest, maxL, maxR]
+        maxL = 0
+        maxR = 0
+        longest = 0
+        for i in range(len(s)):
+            even_length, evenL, evenR = longest_pal(i,i+1)
+            odd_length,oddL, oddR = longest_pal(i,i)
+            longest = max(even_length, odd_length, longest)
+            if even_length == longest:
+                maxL = evenL
+                maxR = evenR
+            elif odd_length == longest:
+                maxL = oddL
+                maxR = oddR
+        return s[maxL:maxR+1]
+            
+            
+        
+        
+        
+        
