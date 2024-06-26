@@ -3,7 +3,7 @@ class Solution:
         word_dict = set(wordDict)
         @cache
         def dp(i):
-            if i >= len(s):
+            if i == len(s):
                 return True
             
             for j in range(i, len(s)):
@@ -14,5 +14,9 @@ class Solution:
             
             return False
         return dp(0)
+        # dp = collections.defaultdict(lambda:False)
+        # n = len(s)
+        # dp[n-1] = True
+        
             
         
