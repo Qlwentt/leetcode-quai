@@ -1,20 +1,17 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        if len(nums) == 1:
-            return nums[0]
-        def robLine(nums):
-            if len(nums) == 1:
-                return nums[0]
-            n = len(nums)
-            dp = [0] * (n+1)
-            dp[n-1] = nums[n-1]
-            dp[n-2] = max(nums[n-2] , dp[n-1])
-            
-            i = n - 3
-            
-            while i >= 0:
-                dp[i] = max(nums[i] + dp[i+2], nums[i+1] + dp[i+3])
-                i -= 1
-            return dp[0]
-            
-        return max(robLine(nums[1:]), robLine(nums[:-1]))
+        
+        def helper(i, nums, memo):
+            if i >= len(nums):
+                return 0
+            if i in memo:
+                return memo[i]
+            take = nums[i] + helper(i+2, nums, memo)
+            skip = helper(i+1, nums, memo)
+            ans = max(take,skip)
+            memo[i] = ans
+            return ans
+        if len(nums) >= 2:
+            return max(helper(0, nums[:-1], {}), helper(1, nums, {}))
+        return nums[0] 
+        
