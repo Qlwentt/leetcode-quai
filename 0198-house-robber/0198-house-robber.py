@@ -1,12 +1,12 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        n = len(nums)
-        dp = [0] * (n + 2)
-        dp[n-1] = nums[n-1]
-        
-        i = n - 2
-        while i >= 0:
-            dp[i] = max(nums[i] + dp[i+2], nums[i+1] +dp[i+3])
-            i -= 1
-        return dp[0]
+        @cache
+        def helper(i):
+            if i >= len(nums):
+                return 0
+            
+            take = nums[i] + helper(i+2)
+            skip = helper(i+1)
+            return max(take, skip)
+        return helper(0)
         
