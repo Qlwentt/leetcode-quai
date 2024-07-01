@@ -4,12 +4,12 @@ class Solution:
         curSum = 0
         answer = 0
         for R in range(len(arr)):
-            curSum += arr[R]
+            
             
             while R - L + 1 > k:
                 curSum -= arr[L]
                 L += 1
-            
+            curSum += arr[R]
             if R - L + 1 == k and curSum/k >= threshold:
                 answer += 1
         
