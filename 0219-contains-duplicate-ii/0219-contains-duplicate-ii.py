@@ -12,7 +12,7 @@ class Solution:
         L = 0
         numsSet = set()
         for R in range(len(nums)):
-            while R-L > k:
+            while R-L+1 > k+1:
                 numsSet.remove(nums[L])
                 L += 1
             if nums[R] in numsSet:
