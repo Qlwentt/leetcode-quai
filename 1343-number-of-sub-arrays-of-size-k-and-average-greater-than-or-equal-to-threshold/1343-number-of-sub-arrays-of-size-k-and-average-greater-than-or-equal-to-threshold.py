@@ -4,9 +4,7 @@ class Solution:
         curSum = 0
         answer = 0
         for R in range(len(arr)):
-            
-            
-            while R - L + 1 > k:
+            if R - L + 1 > k:
                 curSum -= arr[L]
                 L += 1
             curSum += arr[R]
