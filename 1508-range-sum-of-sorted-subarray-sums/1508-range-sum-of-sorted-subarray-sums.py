@@ -7,7 +7,6 @@ class Solution:
             cur_sum += num
             prefix_sums[i] = cur_sum
         prefix_sums.insert(0,0)
-        print(prefix_sums)
         sub_array_sums = []
         
         for i in range(1,len(prefix_sums)):
