@@ -3,7 +3,7 @@ class Solution:
         counts = collections.defaultdict(int)
         
         for row in mat:
-            for num in set(row):
+            for num in row:
                 counts[num] += 1
         
         for num in mat[0]:
