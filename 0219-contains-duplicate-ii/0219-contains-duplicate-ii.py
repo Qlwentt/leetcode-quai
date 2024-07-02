@@ -10,6 +10,7 @@ class Solution:
             if nums[R] in window:
                 return True
             window.add(nums[R])
+
         return False
             
                 
