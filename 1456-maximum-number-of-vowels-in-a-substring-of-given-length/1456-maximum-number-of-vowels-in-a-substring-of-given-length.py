@@ -5,7 +5,7 @@ class Solution:
         vowels = "aeiou"
         L = 0
         for R in range(len(s)):
-            while R-L+1 > k:
+            if R-L+1 > k:
                 cur_vowels -= 1 if s[L] in vowels else 0
                 L += 1
             cur_vowels += 1 if s[R] in vowels else 0
