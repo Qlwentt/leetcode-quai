@@ -13,4 +13,7 @@ class Solution:
                 max_vowels = max(cur_vowels, max_vowels)
         
         return max_vowels
+    
+    # Time: O(N)
+    # Space: O(1)
                 
