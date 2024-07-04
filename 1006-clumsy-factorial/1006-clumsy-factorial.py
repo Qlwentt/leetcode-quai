@@ -1,5 +1,6 @@
 class Solution:
     def clumsy(self, n: int) -> int:
+        answer = 0
         operator = "*/+-"
         i = 0
         stack = []
@@ -17,12 +18,14 @@ class Solution:
                 n -= 1
                 stack.append(int(a/b))
             elif op == "+":
+                answer += stack.pop()
                 stack.append(n-1)
                 n -= 1
             elif op == "-":
+                answer += stack.pop()
                 stack.append(-(n-1))
                 n -= 1
             i += 1
-            
-        return sum(stack)
+        answer += stack.pop()
+        return answer
                 
