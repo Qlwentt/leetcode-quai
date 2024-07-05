@@ -16,3 +16,6 @@ class Solution:
             if R-L+1 == k and len(nums_dict) == k:
                 max_sum = max(cur_sum, max_sum)
         return max_sum
+    
+    # Time: O(N)
+    # Space: O(k)
