@@ -1,8 +1,5 @@
 class Solution:
     def minNumberOfHours(self, initialEnergy: int, initialExperience: int, energy: List[int], experience: List[int]) -> int:
-        
-        # [1,4,3,2] energy  1
-        # [2,6,3,1] experience 15
         add = 0
         curEnergy = initialEnergy
         curExperience = initialExperience
