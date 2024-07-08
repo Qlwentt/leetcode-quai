@@ -3,12 +3,12 @@ class Solution:
         longest = 0
         L = 0
         seen = set()
-        for R in range(len(s)):
-            if s[R] not in seen:
-                longest = max(longest, R-L+1)
+        for R in range(len(s)):                
             while s[R] in seen:
                 seen.remove(s[L])
                 L += 1
+            else:
+                longest = max(longest, R-L+1)
             seen.add(s[R])
         return longest
             
