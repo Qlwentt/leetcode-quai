@@ -13,4 +13,7 @@ class Solution:
                 L += 1
             answer += R-L+1
         return answer
+    
+# Time: O(N)
+# Space: O(1)
         
