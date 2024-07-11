@@ -1,11 +1,5 @@
 class Solution:
     def totalFruit(self, fruits: List[int]) -> int:
-        # [1,1,2,3,2,2]  set: 
-       #      L
-       #            R
-       # [3,3,3,1,2,1,1,2,3,3,4]
-       #        L
-       #                  R
     
         fruit_dict = collections.defaultdict(int)
         L = 0
@@ -19,3 +13,6 @@ class Solution:
                 L += 1
             max_length = max(R-L+1, max_length)
         return max_length
+    
+    # Time: O(N)
+    # Space: O(1) (dictionary will be at most length 2 which is constant)
