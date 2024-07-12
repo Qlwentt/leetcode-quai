@@ -6,12 +6,10 @@ class Solution:
     
         L = 0
         maxLen = 0
-        for R in range(len(nums)):
-            decrK = 1 if nums[R] == 0 else 0
-            k -= decrK
+        for R in range(len(nums)): 
+            k -= 1 if nums[R] == 0 else 0
             while k < 0:
-                incrK = 1 if nums[L] == 0 else 0
-                k += incrK
+                k += 1 if nums[L] == 0 else 0
                 L += 1
             maxLen = max(maxLen, R-L+1)
         
