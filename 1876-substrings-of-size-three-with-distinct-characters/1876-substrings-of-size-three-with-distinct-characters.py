@@ -13,3 +13,6 @@ class Solution:
             if len(letter_dict) == 3:
                 count += 1
         return count
+    
+# Time: O(N)
+# Space: O(K) where K is 3 -- so essentially O(1)
