@@ -17,7 +17,6 @@ class Solution:
                 break
         high = high.replace(x1, "9")
         low = low.replace(x2, "1" if i == 0 or not found else "0")
-        print(high, low)
         return int(high) - int(low)
                 
             
