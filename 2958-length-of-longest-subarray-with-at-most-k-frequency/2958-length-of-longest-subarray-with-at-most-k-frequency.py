@@ -12,3 +12,6 @@ class Solution:
             longest = max(R-L+1, longest)
         
         return longest
+    
+# Time: O(N)
+# Space: O(N)
