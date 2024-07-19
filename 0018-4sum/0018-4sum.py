@@ -1,7 +1,6 @@
 class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
-        
-        [-2, -1, 0, 0, 1, 2]
+
         nums.sort()
         answer = set()
         for i in range(len(nums)):
