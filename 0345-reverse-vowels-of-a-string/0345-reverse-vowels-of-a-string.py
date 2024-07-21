@@ -7,7 +7,9 @@ class Solution:
         vowels = 'aeiou'
         while L < R:
             if s[L].lower() in vowels  and s[R].lower() in vowels:
-                s[L], s[R] = s[R], s[L]
+                temp = s[L]
+                s[L] = s[R]
+                s[R] = temp
                 L += 1
                 R -= 1
             else:
