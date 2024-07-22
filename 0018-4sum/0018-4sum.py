@@ -1,37 +1,33 @@
 class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
         # Iterative only 4 sum
-        '''
-        [-2,-1,-1,1,1,2,2]
-          
-        '''
-#         nums.sort()
-#         answer = []
-#         for i in range(len(nums)):
-#             a = nums[i]
-#             if i > 0 and a == nums[i-1]:
-#                 continue
-#             for j in range(i+1, len(nums)):
-#                 if j > i+1 and nums[j] == nums[j-1]:
-#                     continue
-#                 b = nums[j]
-#                 lo = j+1
-#                 hi = len(nums) - 1
+        nums.sort()
+        answer = []
+        for i in range(len(nums)):
+            a = nums[i]
+            if i > 0 and a == nums[i-1]:
+                continue
+            for j in range(i+1, len(nums)):
+                if j > i+1 and nums[j] == nums[j-1]:
+                    continue
+                b = nums[j]
+                lo = j+1
+                hi = len(nums) - 1
                 
-#                 while lo < hi:
-#                     if a + b + nums[lo] + nums[hi] > target:
-#                         hi -= 1
-#                     elif a + b + nums[lo] + nums[hi] < target:
-#                         lo += 1
-#                     else:
-#                         answer.append([a,b,nums[lo], nums[hi]])
+                while lo < hi:
+                    if a + b + nums[lo] + nums[hi] > target:
+                        hi -= 1
+                    elif a + b + nums[lo] + nums[hi] < target:
+                        lo += 1
+                    else:
+                        answer.append([a,b,nums[lo], nums[hi]])
                         
-#                         lo += 1
-#                         hi -= 1
-#                         while lo < hi and nums[lo] == nums[lo-1]:
-#                             lo += 1
+                        lo += 1
+                        hi -= 1
+                        while lo < hi and nums[lo] == nums[lo-1]:
+                            lo += 1
         
-#         return answer
+        return answer
 
 # # Recursive, k sum:
         def kSum(k, target, lo, hi):
