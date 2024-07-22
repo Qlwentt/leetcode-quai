@@ -34,24 +34,22 @@ class Solution:
 #         return answer
 
 # # Recursive, k sum:
-        def kSum(k, target, arr):
+        def kSum(k, target, lo, hi):
             answers = []
             if k == 2:
-                return twoSumII(target, arr)
+                return twoSumII(target, lo, hi)
             else:
-                for i in range(len(arr)):
-                    a = arr[i]
-                    if i > 0 and arr[i] == arr[i-1]:
+                for i in range(lo, len(nums)):
+                    a = nums[i]
+                    if i > lo and nums[i] == nums[i-1]:
                         continue
-                    kminus1Answers = kSum(k-1, target-a, arr[i+1:])
+                    kminus1Answers = kSum(k-1, target-a, i+1, hi)
                     for answer in kminus1Answers:
                         answers.append([a]+answer)
                         
             return answers
             
-        def twoSumII(target, nums):
-            lo = 0
-            hi = len(nums) - 1
+        def twoSumII(target, lo, hi):
             answer = []
             
             while lo < hi:
@@ -67,5 +65,5 @@ class Solution:
                         lo += 1
             return answer
         nums.sort()
-        return kSum(4, target, nums)
+        return kSum(4, target, 0, len(nums)-1)
         
