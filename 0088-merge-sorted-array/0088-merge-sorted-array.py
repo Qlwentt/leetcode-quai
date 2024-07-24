@@ -16,5 +16,9 @@ class Solution:
             else:
                 nums1[i] = num2
                 p2 -= 1
+                
+    # Time: O(N)
+    # Space: O(1)
+    
         
         
