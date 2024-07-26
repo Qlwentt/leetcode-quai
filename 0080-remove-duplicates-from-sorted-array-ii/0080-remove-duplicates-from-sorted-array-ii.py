@@ -14,4 +14,7 @@ class Solution:
                 count += 1
     
         return l
+    
+# Time: O(N)
+# Space: O(1)
             
