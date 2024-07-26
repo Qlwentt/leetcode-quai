@@ -1,8 +1,5 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        [1,1,1,2,2,3]
-      #  L
-      #  R
         current = None
         count = 0
         l = 0
@@ -15,8 +12,6 @@ class Solution:
                 count = 1
             else:
                 count += 1
-                
-            
-        
+    
         return l
             
