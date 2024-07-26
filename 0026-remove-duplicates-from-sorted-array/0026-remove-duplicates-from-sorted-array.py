@@ -8,4 +8,6 @@ class Solution:
                 nums[r], nums[l] = nums[l], nums[r]
                 l += 1
         return l
+# Time: O(N)
+# Space: O(1)
                 
