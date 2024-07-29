@@ -3,7 +3,6 @@ class Solution:
         answer = [0] * len(nums)
         pos = 0
         neg = 1
-        looking_for_positive = True
         for i in range(len(nums)):
             if nums[i] > 0:
                 answer[pos] = nums[i]
