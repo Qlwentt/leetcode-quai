@@ -1,7 +1,6 @@
 class Solution:
     def numRescueBoats(self, people: List[int], limit: int) -> int:
         people.sort()
-        print(people)
         boats = 0
         l = 0
         r = len(people) -1 
