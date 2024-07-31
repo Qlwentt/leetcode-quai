@@ -30,5 +30,8 @@ class Solution:
                 return False
             
         return True
+    
+    # Time: O(N+M)
+    # Space: O(1)
         
         
