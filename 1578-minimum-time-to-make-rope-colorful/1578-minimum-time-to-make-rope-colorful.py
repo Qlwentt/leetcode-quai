@@ -1,17 +1,18 @@
 from bisect import insort
 class Solution:
     def minCost(self, colors: str, neededTime: List[int]) -> int:
-        colors = colors + 'Z'
-        neededTime.append(0)
-        stack = [["A", []]]
-        time = 0
-        for i, color in enumerate(colors):
-            if color == stack[-1][0]:
-                heapq.heappush(stack[-1][1],neededTime[i])
-            else:
-                while len(stack[-1][1]) > 1:
-                    j = heapq.heappop(stack[-1][1])
-                    time += j
-                stack.append([color, [neededTime[i]]])
         
-        return time
+        prev = None
+        total = 0
+        neededTime.append(0)
+        times = []
+        for i, current in enumerate(colors + 'A'):
+            if current == prev:
+                heappush(times, neededTime[i])
+            else:
+                if prev != None:
+                    while len(times) > 1:
+                        total += heapq.heappop(times)
+                times = [neededTime[i]]
+            prev = current
+        return total
