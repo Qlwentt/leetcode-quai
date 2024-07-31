@@ -17,4 +17,4 @@ class Solution:
             
         return boats
 # Time: O(Nlog(N))
-# Space: O(1)
+# Space: O(N) (sorting in python uses O(N) space)
