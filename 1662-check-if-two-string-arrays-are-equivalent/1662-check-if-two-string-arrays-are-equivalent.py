@@ -31,7 +31,7 @@ class Solution:
             
         return True
     
-    # Time: O(N+M)
+    # Time: O(N)
     # Space: O(1)
         
         
