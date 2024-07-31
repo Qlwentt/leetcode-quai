@@ -7,10 +7,10 @@ class Solution:
         time = 0
         for i, color in enumerate(colors):
             if color == stack[-1][0]:
-                insort(stack[-1][1],neededTime[i])
+                heapq.heappush(stack[-1][1],neededTime[i])
             else:
                 while len(stack[-1][1]) > 1:
-                    j = stack[-1][1].pop(0)
+                    j = heapq.heappop(stack[-1][1])
                     time += j
                 stack.append([color, [neededTime[i]]])
         
