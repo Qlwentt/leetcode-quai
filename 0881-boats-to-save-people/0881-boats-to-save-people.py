@@ -5,9 +5,6 @@ class Solution:
         l = 0
         r = len(people) -1 
         
-       #[1, 2, 2, 3]
-       # L        
-       #       R
         while l <= r:
             if people[l] + people[r] <= limit: 
                 l += 1
@@ -19,3 +16,5 @@ class Solution:
             
             
         return boats
+# Time: O(Nlog(N))
+# Space: O(1)
