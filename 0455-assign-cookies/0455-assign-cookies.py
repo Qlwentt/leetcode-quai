@@ -1,18 +1,20 @@
 class Solution:
     def findContentChildren(self, g: List[int], s: List[int]) -> int:
+        # g = array of child greeds
+        # s = array of cookie sizes
         g.sort()
-        s.sort()
+        s.sort() 
         
         
-        p_child = 0
-        p_cookie = 0
+        child = 0
+        cookie = 0
         
-        while p_cookie < len(s) and p_child < len(g):
-            if s[p_cookie] >= g[p_child]:
-                p_child += 1
-            p_cookie += 1
+        while cookie < len(s) and child < len(g):
+            if s[cookie] >= g[child]:
+                child += 1
+            cookie += 1
         
-        return p_child
+        return child
         
     # Time: O(NlogN + MlogM)
     # Space: O(N+M) (because sorting in python takes O(N) space)
