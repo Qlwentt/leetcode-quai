@@ -10,11 +10,10 @@ class Solution:
         
         while p_cookie < len(s) and p_child < len(g):
             if s[p_cookie] >= g[p_child]:
-                p_cookie += 1
                 p_child += 1
                 content += 1
-            else:
-                p_cookie += 1
+            
+            p_cookie += 1
         
         return content
         
