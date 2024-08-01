@@ -12,9 +12,9 @@ class Solution:
             if s[p_cookie] >= g[p_child]:
                 p_child += 1
                 content += 1
-            
             p_cookie += 1
         
         return content
         
-        
+    # Time: O(NlogN + MlogM)
+    # Space: O(N+M) (because sorting in python takes O(N) space)
