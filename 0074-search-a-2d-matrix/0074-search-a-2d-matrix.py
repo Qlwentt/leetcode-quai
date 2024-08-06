@@ -1,43 +1,34 @@
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        
-        def binarySearchMatrix(matrix):
-            lo = 0
-            hi = len(matrix) -1
+        def find_row():
+            top = 0
+            bottom = len(matrix) - 1
             
-            while lo <= hi:
-                mid = (lo + hi) // 2
-                if target >= matrix[mid][0] and target <= matrix[mid][-1]:
-                    return matrix[mid]
+            while top <= bottom:
+                mid = (top+bottom) // 2
+                if target in range(matrix[mid][0], matrix[mid][-1]+1):
+                    return mid
                 elif target < matrix[mid][0]:
-                    hi = mid - 1
-                elif target > matrix[mid][0]:
-                    lo = mid + 1
+                    bottom = mid -1
+                else: # target > matrix[mid][-1]
+                    top = mid + 1
+            return -1
+        
+        def find_col(row):
+            l = 0
+            r = len(row) - 1
+            
+            while l <= r:
+                mid = (l+r) // 2
+                
+                if row[mid] > target:
+                    r = mid - 1
+                elif row[mid] < target:
+                    l = mid + 1
                 else:
-                    return False
-            
-     #         lo           mid            hi
-        # [[1,3,5,7],[10,11,16,20],[23,30,34,60]]
-        
-        
-        def binarySearchArr(arr):
-            L = 0
-            R = len(arr) - 1
-            
-            [1,3,5,7]
-        #    L
-        #          R
-        #        M
-            
-            while L <= R:
-                mid = (L+R) // 2
-                if arr[mid] == target:
                     return True
-                elif target < arr[mid]:
-                    R = mid - 1
-                else:
-                    L = mid + 1
             return False
-        
-        targetArr = binarySearchMatrix(matrix)
-        return binarySearchArr(targetArr) if targetArr else targetArr
+        row = find_row()
+        if row == -1:
+            return False
+        return find_col(matrix[row])
