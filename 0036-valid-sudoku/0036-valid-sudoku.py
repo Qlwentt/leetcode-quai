@@ -1,9 +1,8 @@
-from collections import defaultdict
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        rowsSet = defaultdict(set)
-        colsSet = defaultdict(set)
-        boxSet = defaultdict(set)
+        rows = collections.defaultdict(set)
+        cols = collections.defaultdict(set)
+        boxes = collections.defaultdict(set)
         
         ROWS = len(board)
         COLS = len(board[0])
@@ -13,19 +12,10 @@ class Solution:
                 num = board[r][c]
                 if num == ".":
                     continue
-                
-                if (num in rowsSet[r] or
-                    num in colsSet[c] or
-                    num in boxSet[(r//3, c//3)]):
+                if num in rows[r] or num in cols[c] or num in boxes[(r//3, c//3)]:
                     return False
-                
-                rowsSet[r].add(num)
-                colsSet[c].add(num)
-                boxSet[(r//3, c//3)].add(num)
+                rows[r].add(num)
+                cols[c].add(num)
+                boxes[(r//3, c//3)].add(num)
         return True
-                    
-                    
-                    
-                    
-                
                 
