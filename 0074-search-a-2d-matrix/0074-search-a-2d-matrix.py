@@ -6,24 +6,24 @@ class Solution:
             
             while top <= bottom:
                 mid = (top+bottom) // 2
-                if target < matrix[mid][0]:
-                    bottom = mid -1
-                elif target > matrix[mid][-1]:
-                    top = mid + 1
-                else:# target >= matrix[mid][0] and target <= matrix[mid][-1]
+                if target in range(matrix[mid][0], matrix[mid][-1]+1):
                     return mid
+                elif target < matrix[mid][0]:
+                    bottom = mid -1
+                else: # target > matrix[mid][-1]
+                    top = mid + 1
             return -1
         
-        def find_col(row):
+        def is_in_array(arr):
             l = 0
-            r = len(row) - 1
+            r = len(arr) - 1
             
             while l <= r:
                 mid = (l+r) // 2
                 
-                if row[mid] > target:
+                if arr[mid] > target:
                     r = mid - 1
-                elif row[mid] < target:
+                elif arr[mid] < target:
                     l = mid + 1
                 else:
                     return True
@@ -31,4 +31,4 @@ class Solution:
         row = find_row()
         if row == -1:
             return False
-        return find_col(matrix[row])
+        return is_in_array(matrix[row])
