@@ -6,7 +6,7 @@ class Solution:
             
             while top <= bottom:
                 mid = (top+bottom) // 2
-                if target in range(matrix[mid][0], matrix[mid][-1]+1):
+                if target >= matrix[mid][0] and target <= matrix[mid][-1]:
                     return mid
                 elif target < matrix[mid][0]:
                     bottom = mid -1
