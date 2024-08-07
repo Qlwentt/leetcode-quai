@@ -6,12 +6,12 @@ class Solution:
             
             while top <= bottom:
                 mid = (top+bottom) // 2
-                if target >= matrix[mid][0] and target <= matrix[mid][-1]:
-                    return mid
-                elif target < matrix[mid][0]:
+                if target < matrix[mid][0]:
                     bottom = mid -1
-                else: # target > matrix[mid][-1]
+                elif target > matrix[mid][-1]:
                     top = mid + 1
+                else:# target >= matrix[mid][0] and target <= matrix[mid][-1]
+                    return mid
             return -1
         
         def find_col(row):
