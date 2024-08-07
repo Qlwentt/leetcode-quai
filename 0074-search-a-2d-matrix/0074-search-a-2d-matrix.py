@@ -6,15 +6,15 @@ class Solution:
             
             while top <= bottom:
                 mid = (top+bottom) // 2
-                if target in range(matrix[mid][0], matrix[mid][-1]+1):
-                    return mid
-                elif target < matrix[mid][0]:
+                if target < matrix[mid][0]:
                     bottom = mid -1
-                else: # target > matrix[mid][-1]
+                elif target > matrix[mid][-1]:
                     top = mid + 1
+                else:# target >= matrix[mid][0] and target <= matrix[mid][-1]
+                    return mid
             return -1
         
-        def is_in_array(arr):
+        def is_in_arr(arr):
             l = 0
             r = len(arr) - 1
             
@@ -31,4 +31,4 @@ class Solution:
         row = find_row()
         if row == -1:
             return False
-        return is_in_array(matrix[row])
+        return is_in_arr(matrix[row])
