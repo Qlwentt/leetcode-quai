@@ -3,9 +3,9 @@ class Solution:
         
         best_sell_price = float('-inf')
         max_profit = 0
-        for i, buy_price in reversed(list(enumerate(prices))):
-            best_sell_price = max(best_sell_price,buy_price)
-            max_profit = max(max_profit, best_sell_price-buy_price)
+        for buy_day in range(len(prices)-1,-1,-1):
+            best_sell_price = max(best_sell_price,prices[buy_day])
+            max_profit = max(max_profit, best_sell_price-prices[buy_day])
         
         return max_profit
             
