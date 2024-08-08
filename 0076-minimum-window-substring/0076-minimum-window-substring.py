@@ -1,24 +1,24 @@
-from collections import defaultdict
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        if len(t) > len(s):
-            return ""
-        counterT = Counter(t)
-        counterS = defaultdict(int)
+        count_s = defaultdict(int)
+        count_t = {}
         
-        L = 0
-        minLen = len(s) + 1
-        ansL = None
-        ansR = None
-        for R in range(len(s)):
-            char = s[R]
-            counterS[char] += 1
-            while all([counterS[char] >= counterT[char] for char in counterT]):
-                if R - L + 1 < minLen:
-                    ansL = L
-                    ansR = R
-                minLen = min(minLen, R - L + 1)
-                counterS[s[L]] -= 1
-                L += 1
+        for char in t:
+            count_t[char] = count_t.get(char,0) + 1
+        
+        
+        l = 0
+        ans_l = None
+        ans_r = None
+        min_length = float('inf')
+        for r in range(len(s)):
+            count_s[s[r]] += 1
+            while all(count_s[item_t] >= count_t[item_t] for item_t in count_t):
+                if r - l + 1 < min_length:
+                    min_length = r - l + 1
+                    ans_l = l
+                    ans_r = r
+                count_s[s[l]] -= 1
+                l += 1
+        return s[ans_l:ans_r+1] if min_length != float('inf') else ""
                 
-        return s[ansL:ansR+1] if ansL != None else ""
