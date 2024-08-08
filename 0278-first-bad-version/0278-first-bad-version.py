@@ -16,6 +16,9 @@ class Solution:
                 lo = mid + 1
         return lo
         #return lowest_bad_version
+        
+# Time: O(log(N))
+# Space: O(1)
     
     
         
