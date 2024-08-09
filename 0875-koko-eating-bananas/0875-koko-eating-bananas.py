@@ -7,7 +7,7 @@ class Solution:
                 hours += math.ceil(bananas / k)
             return hours <= h
         
-        lo = 1
+        lo = math.ceil(max(piles) / h)
         hi = max(piles)
         
         while lo <= hi:
