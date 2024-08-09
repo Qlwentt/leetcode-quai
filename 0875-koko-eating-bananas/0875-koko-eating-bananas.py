@@ -11,10 +11,16 @@ class Solution:
         hi = max(piles)
         
         while lo <= hi:
-            mid = (lo + hi) // 2
+            mid = (lo + hi) // 2 # for a language with overflow # mid = lo + (hi - lo) // 2 
             
             if can_finish(mid):
                 hi = mid - 1
             else:
                 lo = mid + 1
         return lo
+    
+# n = length of piles array
+# m = value of the max pile
+
+# Time: O(N log(M))
+# Space: O(1)
