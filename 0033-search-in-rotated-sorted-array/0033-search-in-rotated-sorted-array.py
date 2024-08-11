@@ -1,31 +1,34 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        # [4,5,6,7,0,1,2] 
-      #    L     M     R
-            
-        L = 0
-        R = len(nums) - 1
+        # [4,5,6,7,8,0,1,2] target = 0
+        #  L           
+        #                R
+        #              M
         
-        while L <= R:
-            mid = (L + R) // 2
+        l = 0
+        r = len(nums) - 1
+        
+        while l <= r:
+            mid = (l+r) // 2
+            
             if nums[mid] == target:
                 return mid
-           
-            # is the array sorted between L and M ?
-            if nums[L] <= nums[mid]:
-                # search right
-                if target > nums[mid] or target < nums[L]:
-                    L = mid + 1
-                # search left
-                else:
-                    R = mid - 1
-            # array is sorted between M and R
-            else:
-                # search left
-                if target < nums[mid] or target > nums[R]:
-                    R = mid - 1
-                # search right
-                else:
-                    L = mid + 1
             
+            # all numbers from L to M are sorted:
+            if nums[l] <= nums[mid]:
+                if target > nums[mid] or target < nums[l]:
+                    l = mid + 1
+                else:
+                    r = mid - 1
+            else:
+                if target < nums[mid] or target > nums[r]:
+                    r = mid - 1
+                else:
+                    l = mid + 1
         return -1
+                
+        return -1
+                    
+                
+                
+            
