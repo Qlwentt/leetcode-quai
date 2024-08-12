@@ -28,4 +28,7 @@ class Solution:
                 r = mid - 1
         
         return [ansL, r]
+    
+# Time: O(log(N))
+# Space: O(1)
         
