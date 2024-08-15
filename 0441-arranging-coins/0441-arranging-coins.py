@@ -1,11 +1,14 @@
 class Solution:
     def arrangeCoins(self, n: int) -> int:
         
-        row = 0 
+        row = 1 
         
-        while n - (row + 1) >= 0:
-            n -= (row + 1)
+        while True:
+            n -= row
+            if n - row <= 0:
+                break
             row += 1
+            
             
         return row
         
@@ -14,14 +17,18 @@ class Solution:
 
 #         lo = 1
 #         hi = n                      
-#         last_complete = None
+#         # last_complete = None
 #         while lo <= hi:
 #             mid = (lo+hi) //2
 #             if is_filled(mid):
 #                 lo = mid + 1
-#                 last_complete = mid
+#                 # last_complete = mid
 #             else:
 #                 hi = mid - 1
-#         return last_complete
+#         # return last_complete
+#         return hi
+        
+
+
         
             
