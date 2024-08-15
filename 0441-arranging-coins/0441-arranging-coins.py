@@ -14,13 +14,14 @@ class Solution:
 
         lo = 1
         hi = n                      
-        
+        last_complete = None
         while lo <= hi:
             mid = (lo+hi) //2
             if is_filled(mid):
                 lo = mid + 1
+                last_complete = mid
             else:
                 hi = mid - 1
-        return hi
+        return last_complete
         
             
