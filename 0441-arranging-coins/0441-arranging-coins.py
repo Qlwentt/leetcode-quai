@@ -3,14 +3,11 @@ class Solution:
         
         row = 1 
         
-        while True:
+        while n - row > 0:
             n -= row
-            if n - row <= 0:
-                break
             row += 1
             
-            
-        return row
+        return row if n - row == 0 else row - 1
         
 #         def is_filled(row):
 #             return (row * (row+1)) / 2 <= n
