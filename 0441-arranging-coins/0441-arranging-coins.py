@@ -1,13 +1,13 @@
 class Solution:
     def arrangeCoins(self, n: int) -> int:
         
-        rows = 0 
+        row = 0 
         
-        while n - (rows + 1) >= 0:
-            n -= (rows + 1)
-            rows += 1
+        while n - (row + 1) >= 0:
+            n -= (row + 1)
+            row += 1
             
-        return rows
+        return row
         
 #         def is_filled(row):
 #             return (row * (row+1)) / 2 <= n
