@@ -3,9 +3,7 @@ class Solution:
         comps = {}
         
         for i, num in enumerate(nums):
-            comp = target - num
-            if comp in comps:
-                return [i, comps[comp]]
+            if target - num in comps:
+                return [i, comps[target-num]]
             comps[num] = i
-            
-        return -1
+        
