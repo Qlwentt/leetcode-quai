@@ -26,3 +26,6 @@ class Solution:
             today_profit = cur_max - price
             max_profit = max(today_profit, max_profit)
         return max_profit
+    
+# Time: O(N)
+# Space: O(1)
