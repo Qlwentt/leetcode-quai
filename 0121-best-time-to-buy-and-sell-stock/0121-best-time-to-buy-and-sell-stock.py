@@ -1,12 +1,15 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        
-        best_sell_price = float('-inf')
+        max_prices = collections.deque([])
+        cur_max = float('-inf')
+        for price in reversed(prices):
+            cur_max = max(cur_max, price)
+            max_prices.appendleft(cur_max)
+            
+        # [7,6,6,6,4]
         max_profit = 0
-        for buy_day in range(len(prices)-1,-1,-1):
-            best_sell_price = max(best_sell_price,prices[buy_day])
-            max_profit = max(max_profit, best_sell_price-prices[buy_day])
+        for i, buy_price in enumerate(prices):
+            today_profit = max_prices[i] - buy_price
+            max_profit = max(today_profit, max_profit)
         
         return max_profit
-            
-        
