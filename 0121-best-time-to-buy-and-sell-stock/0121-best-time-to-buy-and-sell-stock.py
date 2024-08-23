@@ -16,7 +16,6 @@ class Solution:
 # Time: O(N)
 # Space: O(N)
 
-    #[7,1,5,3,6,4]
 
 # constant space solution
         cur_max = float('-inf')
