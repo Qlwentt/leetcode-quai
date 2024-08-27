@@ -8,7 +8,6 @@ class NumMatrix:
             for col in range(len(matrix[0])):
                 prefix_row += matrix[row][col]
                 self.prefix_matrix[(row,col)] = self.prefix_matrix[(row-1,col)] + prefix_row 
-        print(self.prefix_matrix)
 
     def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
         cross = self.prefix_matrix[(row1-1,col1-1)]
