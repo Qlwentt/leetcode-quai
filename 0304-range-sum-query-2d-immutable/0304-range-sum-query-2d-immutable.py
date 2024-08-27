@@ -16,7 +16,8 @@ class NumMatrix:
         bottom_right = self.prefix_matrix[(row2,col2)]        
         return bottom_right - (left+top-cross)
         
-        
+# Time: init: O(N^2); sumRegion: O(1)
+# Space: init: O(N^2); sumRegion: O(1)
         
 
 
