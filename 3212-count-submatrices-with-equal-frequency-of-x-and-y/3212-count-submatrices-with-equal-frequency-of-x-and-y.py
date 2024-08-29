@@ -25,8 +25,8 @@ class Solution:
                     count += 1
         return count
     
-# Time: O(N^2)
-# Space: O(N^2)
+# Time: O(N*M)
+# Space: O(N*M)
                 
         
         
