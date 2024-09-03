@@ -1,7 +1,12 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        parens = { '(': ')', '{': '}', '[': ']'}
         stack = []
+        parens = {
+            "{" : "}",
+            "[" : "]",
+            "(" : ")"
+        }
+        
         for char in s:
             if char in parens:
                 stack.append(char)
@@ -10,4 +15,6 @@ class Solution:
             else:
                 return False
         return len(stack) == 0
-        
+    
+# Time: O(N)
+# Space: O(N)
