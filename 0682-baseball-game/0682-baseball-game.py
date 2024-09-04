@@ -13,3 +13,6 @@ class Solution:
             elif op == "+":
                 stack.append(stack[-1]+stack[-2])
         return sum(stack)
+    
+# Time: O(N)
+# Space: O(N)
