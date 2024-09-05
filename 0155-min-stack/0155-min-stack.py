@@ -12,11 +12,13 @@ class MinStack:
         self.stack.pop()
 
     def top(self) -> int:
-        return self.stack[-1][0] if self.stack else -1
+        return self.stack[-1][0] if self.stack else None
 
     def getMin(self) -> int:
         return self.stack[-1][1] if self.stack else None
 
+# Time: O(1) for all operations
+# Space: O(N)
 
 # Your MinStack object will be instantiated and called as such:
 # obj = MinStack()
