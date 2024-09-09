@@ -8,3 +8,6 @@ class Solution:
                 stack.append(char)
             
         return "".join(stack)
+    
+# Time: O(N)
+# Space: O(N)
