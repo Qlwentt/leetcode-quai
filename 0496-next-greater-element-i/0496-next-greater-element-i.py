@@ -11,4 +11,7 @@ class Solution:
                     answer[num_to_i[lesser]] = num
             stack.append(num)
         return answer
+    
+# Time: O(N)
+# Space: O(N)
                 
