@@ -2,7 +2,7 @@ class Solution:
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
         num_to_i = {num: i for i, num in enumerate(nums1)}
         
-        stack = [] # 
+        stack = [] 
         answer = [-1] * len(nums1)
         for num in nums2:
             while stack and stack[-1] < num:
@@ -12,6 +12,6 @@ class Solution:
             stack.append(num)
         return answer
     
-# Time: O(N)
-# Space: O(N)
+# Time: O(N+M)
+# Space: O(N+M)
                 
