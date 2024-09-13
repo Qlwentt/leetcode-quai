@@ -2,8 +2,6 @@ class StockSpanner:
 
     def __init__(self):
         self.stack = [] #price, span
-        
-        
     
     def next(self, price: int) -> int:
         answer = 1
@@ -13,7 +11,8 @@ class StockSpanner:
         self.stack.append((price,answer))
         return answer
         
-        
+# Time: O(N) where N is the length of the stream
+# Space: O(N)
 
 
 # Your StockSpanner object will be instantiated and called as such:
