@@ -1,16 +1,15 @@
 class StockSpanner:
 
     def __init__(self):
-        self.stack = [(float('inf'), 0)]
-        self.day = 1
-
+        self.stack = [] #price, span
+    
     def next(self, price: int) -> int:
-        while self.stack and price >= self.stack[-1][0]:
-            self.stack.pop()
-        span = self.day - self.stack[-1][1]
-        self.stack.append((price, self.day))
-        self.day += 1
-        return span
+        answer = 1
+        while self.stack and self.stack[-1][0] <= price:
+            lesser_price, span = self.stack.pop()
+            answer += span
+        self.stack.append((price,answer))
+        return answer
         
 # Time: O(N) where N is the length of the stream
 # Space: O(N)
