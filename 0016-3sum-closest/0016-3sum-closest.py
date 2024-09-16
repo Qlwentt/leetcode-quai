@@ -24,7 +24,7 @@ class Solution:
                 leftmost = l
                 best = min(best, a+b+ nums[leftmost-1] if leftmost - 1 > j  else float('inf'), key= lambda x: abs(x-target))     
                 best = min(best, a+b+ nums[leftmost] if leftmost < len(nums) and leftmost > j else float('inf'), key= lambda x: abs(x-target))
-                best = min(best, a+b+ nums[leftmost+1] if leftmost + 1 < len(nums) and leftmost+ 1 > j else float('inf') , key= lambda x: abs(x-target))
+                # best = min(best, a+b+ nums[leftmost+1] if leftmost + 1 < len(nums) and leftmost+ 1 > j else float('inf') , key= lambda x: abs(x-target))
         return best
         
         
