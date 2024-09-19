@@ -10,7 +10,7 @@ class Solution:
             q.append(r)
             if r - l + 1 == k:
                 answer.append(nums[q[0]])
-                if nums[l] == nums[q[0]]:
+                if l == q[0]:
                     q.popleft()
                 l += 1
                 
