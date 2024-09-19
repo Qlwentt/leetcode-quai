@@ -1,7 +1,5 @@
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
-      #  [1,3,-1,-3,5,3,6,7]
-       #    L    R
         answer = []
         # monotonically decreasing deque
         q = collections.deque([]) # index 
@@ -12,7 +10,7 @@ class Solution:
             q.append(r)
             if r - l + 1 == k:
                 answer.append(nums[q[0]])
-                if l == q[0]:
+                if nums[l] == nums[q[0]]:
                     q.popleft()
                 l += 1
                 
