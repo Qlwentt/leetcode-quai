@@ -10,11 +10,11 @@ class Solution:
 # Time: O(log(N))
 # Space: O(log(N))
 
-# Math solution that is technically log(N)because log function takes log(N)Time
+# Math solution
         # if n <= 0:
         #     return False
         # power = int(math.log2((n)))
         # return 2 ** power == n
-# Time: O(log(N))
+# Time: O(1)
 # Space: O(1)
         
