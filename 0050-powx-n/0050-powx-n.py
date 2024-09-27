@@ -1,25 +1,16 @@
 class Solution:
-    def myPow(self, x: float, n: int) -> float:
-#         # 2^10
-#         # 2*2*2*2*2 *2*2*2*2*2
-#         # 2^5 * 2^5
-#         # 2*2*2*2*2
-#         # 2^2 * 2^2 *2
-#         # 2^2
-#         # 2^1 * 2^1
-#         # 2^0 * 2
-#         # 2^0 = 1
-        
+    def myPow(self, x: float, n: int) -> float:      
         def power(x,n):
             if n == 0:
                 return 1
+            if n == 1:
+                return x
             
-            
-            halfPower = power(x, n // 2)
+            half = power(x, n // 2)
             if n % 2: # odd
-                return halfPower * halfPower * x
+                return half * half * x
             else: # even
-                return halfPower * halfPower
+                return half * half
         
         if n < 0:
             return 1/power(x,-n)
