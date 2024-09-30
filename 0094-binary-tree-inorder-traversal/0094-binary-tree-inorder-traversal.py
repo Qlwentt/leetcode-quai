@@ -7,15 +7,16 @@
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         answer = []
-        def dfs(node):
+        def inorder(node):
             if not node:
                 return 
             
-            dfs(node.left)
+            inorder(node.left)
             answer.append(node.val)
-            dfs(node.right)
-        dfs(root)
+            inorder(node.right)
+        inorder(root)
         return answer
-        
+# Time: O(N)
+# Space: O(H) where h is the height of the tree. O(N) for a skewed tree, O(log(N)) for a balanced tree
         
         
