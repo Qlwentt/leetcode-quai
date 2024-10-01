@@ -15,3 +15,5 @@ class Solution:
             preorder(node.right)
         preorder(root)
         return answer
+# Time: O(N)
+# Space: O(H) where H is the height of the tree
