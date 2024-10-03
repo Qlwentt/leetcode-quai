@@ -18,6 +18,8 @@ class Solution:
 #         return answer
 # Time: O(N)
 # Space: O(H) where h is the height of the tree. O(N) for a skewed tree, O(log(N)) for a balanced tree
+
+# iterative solution
         stack = [(root, False)]
         answer = []
         while stack:
@@ -32,7 +34,8 @@ class Solution:
                 stack.append((node.left, False))
             
         return answer
-            
+ # Time: O(N)
+ # Space: O(H)
         
         
         
