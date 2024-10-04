@@ -24,3 +24,6 @@ class Solution:
             i += 1
             result.append(level)
         return result
+    
+# Time: O(N)
+# Space: O(N) it is O(max number of nodes in a level) for tree with 2 children per node the number of nodes in the last level is (N+1)/2. If you ignore constants that's O(N) 
