@@ -16,11 +16,11 @@ class Solution:
             level = []
             while q and q[0][1] == i:
                 node, j = q.popleft()
+                level.append(node.val)
                 if node.left:
                     q.append((node.left, j+1))
                 if node.right:
                     q.append((node.right, j+1))
-                level.append(node.val)
             i += 1
             result.append(level)
         return result
