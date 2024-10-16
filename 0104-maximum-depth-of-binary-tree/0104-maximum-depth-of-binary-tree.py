@@ -7,13 +7,13 @@
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
 # recursive DFS solution
-#         if not root:
-#             return 0
+        if not root:
+            return 0
         
-#         left = self.maxDepth(root.left)
-#         right = self.maxDepth(root.right)
+        left = self.maxDepth(root.left)
+        right = self.maxDepth(root.right)
         
-#         return max(left, right) + 1
+        return max(left, right) + 1
 # Time: O(N)
 # Space: O(H)
 
@@ -33,6 +33,9 @@ class Solution:
                     q.append(node.right)
             level += 1
         return level
+    
+# Time: O(N)
+# Space: O(W) W is width of largest level
             
 
 
