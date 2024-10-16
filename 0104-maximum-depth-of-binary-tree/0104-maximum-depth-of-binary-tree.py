@@ -15,7 +15,7 @@ class Solution:
         
         return max(left, right) + 1
 # Time: O(N)
-# Space: O(H)
+# Space: O(H) H is height of the tree
 
 # BFS solution
         if not root:
