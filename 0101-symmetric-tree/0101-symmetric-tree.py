@@ -19,10 +19,10 @@ class Solution:
             if root1.val != root2.val:
                 return False
             
-            left = are_mirrors(root1.left, root2.right)
-            right = are_mirrors(root1.right, root2.left)
+            left_1_matches_right_2 = are_mirrors(root1.left, root2.right)
+            right1_matches_left_2 = are_mirrors(root1.right, root2.left)
             
-            return left and right
+            return left_1_matches_right_2 and right1_matches_left_2
         
         return are_mirrors(root.left, root.right)
 # Time: O(N)
