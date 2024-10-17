@@ -10,13 +10,13 @@ class Solution:
             return True
         
         def are_mirrors(root1,root2):
-            val1 = root1.val if root1 else float('-inf')
-            val2 = root2.val if root2 else float('-inf')
-    
-            if val1 != val2:
-                return False
-            if val1 == float('-inf'):
+            if not root1 and not root2:
                 return True
+            if (not root1 and root2) or (not root2 and root1):
+                return False
+            
+            if root1.val != root2.val:
+                return False
             
             left = are_mirrors(root1.left, root2.right)
             right = are_mirrors(root1.right, root2.left)
