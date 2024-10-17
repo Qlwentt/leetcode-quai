@@ -24,22 +24,26 @@ class Solution:
             return left and right
         
         return are_mirrors(root.left, root.right)
+# Time: O(N)
+# Space: O(H)
 
 # iterative BFS
-#         q = collections.deque([root])
+        q = collections.deque([root])
         
-#         while q:
-#             traversal = []
-#             for _ in range(len(q)):
-#                 node = q.popleft()
-#                 traversal.append(node.val if node else None)
-#                 if node:
-#                     q.append(node.left)
-#                     q.append(node.right)
-#             if traversal != traversal[::-1]:
-#                 return False
+        while q:
+            traversal = []
+            for _ in range(len(q)):
+                node = q.popleft()
+                traversal.append(node.val if node else None)
+                if node:
+                    q.append(node.left)
+                    q.append(node.right)
+            if traversal != traversal[::-1]:
+                return False
             
-#         return True
-        
+        return True
+
+# Time: O(N)
+# Space: O(W)
         
         
