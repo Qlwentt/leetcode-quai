@@ -19,6 +19,3 @@ class Solution:
         right = self.isSameTree(p.right, q.right)
         
         return left and right
-        
-        
-        
