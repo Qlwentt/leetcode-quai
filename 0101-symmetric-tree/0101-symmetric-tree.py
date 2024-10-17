@@ -38,7 +38,6 @@ class Solution:
                 if node:
                     q.append(node.left)
                     q.append(node.right)
-            print(traversal)
             if traversal != traversal[::-1]:
                 return False
             
