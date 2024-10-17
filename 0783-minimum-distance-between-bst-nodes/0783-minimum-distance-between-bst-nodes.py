@@ -16,7 +16,6 @@ class Solution:
                 current = current.left
             else:
                 current = stack.pop()
-                # visit node
                 if prev is not None:
                     min_diff = min(min_diff, abs(prev -current.val))
                 prev = current.val
