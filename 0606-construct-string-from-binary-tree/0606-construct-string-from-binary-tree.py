@@ -8,8 +8,6 @@ class Solution:
     def tree2str(self, root: Optional[TreeNode]) -> str:
         array = []
         def dfs(root):
-            if not root:
-                return
             
             array.append(str(root.val))
             if root.left:
@@ -26,3 +24,6 @@ class Solution:
                 array.append(")")
         dfs(root)
         return "".join(array)
+    
+# Time: O(N)
+# Space: O(H) where H is the height of the tree
