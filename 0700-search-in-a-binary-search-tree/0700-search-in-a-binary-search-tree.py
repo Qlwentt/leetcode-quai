@@ -14,4 +14,7 @@ class Solution:
         else:
             return self.searchBST(root.right, val)
         
+# Time: O(H) logN for a balanced tree, N for skewed tree
+# Space: O(H) logN for a balanced tree, N for a skewed tree
+        
         
