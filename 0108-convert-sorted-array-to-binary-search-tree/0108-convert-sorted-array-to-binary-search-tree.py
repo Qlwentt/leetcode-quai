@@ -15,3 +15,5 @@ class Solution:
             root.right = make_tree(mid+1,R)
             return root
         return make_tree(0, len(nums)-1)
+# Time: O(N)
+# Space: O(log(N)) because the tree is balanced
