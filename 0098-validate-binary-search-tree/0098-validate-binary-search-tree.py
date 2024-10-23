@@ -12,13 +12,14 @@ class Solution:
             if not root:
                 return True
             
-        
             left = inorder(root.left)
-            
-            if prev >= root.val:
-                return False
+            isValid = root.val > prev
             prev = root.val
             right = inorder(root.right)
             
-            return left and right
+            return left and right and isValid
+        
         return inorder(root)
+# Time: O(N)
+# Space: O(H)
+        
