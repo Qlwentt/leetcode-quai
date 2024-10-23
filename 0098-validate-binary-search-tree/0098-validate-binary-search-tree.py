@@ -13,11 +13,11 @@ class Solution:
                 return True
             
             left = inorder(root.left)
-            isValid = root.val > prev
+            root_valid = root.val > prev
             prev = root.val
             right = inorder(root.right)
             
-            return left and right and isValid
+            return left and right and root_valid
         
         return inorder(root)
 # Time: O(N)
