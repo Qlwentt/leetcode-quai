@@ -15,3 +15,6 @@ class Solution:
             root.right = self.insertIntoBST(root.right, val)
         
         return root
+    
+# Time: O(log(N))
+# Space: O(log(N))
