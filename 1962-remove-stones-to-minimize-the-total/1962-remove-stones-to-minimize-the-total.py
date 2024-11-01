@@ -3,7 +3,7 @@ class Solution:
         max_heap = [-pile for pile in piles]
         heapq.heapify(max_heap)
         
-        while k:
+        while k != 0:
             greatest = heapq.heappop(max_heap) * -1
             greatest -= int(greatest/2)
             heapq.heappush(max_heap, -greatest)
