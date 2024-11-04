@@ -3,7 +3,7 @@ class Solution:
         power_set = []
         
         def backtrack(i, cur_set):
-            if i >= len(nums):
+            if i == len(nums):
                 power_set.append(cur_set.copy())
                 return
             
