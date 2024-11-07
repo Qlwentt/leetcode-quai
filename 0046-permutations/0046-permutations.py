@@ -15,3 +15,6 @@ class Solution:
                 
         backtrack([], nums)
         return perms
+    
+    # Time: O(N!*N)
+    # Space: O(N)
