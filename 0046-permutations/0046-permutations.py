@@ -3,17 +3,18 @@ class Solution:
         
         perms = []
 
-        def backtrack(curPerm, curNums):
+        def backtrack(curPerm):
             if len(curPerm) == len(nums):
                 perms.append(curPerm.copy())
                 return
             
-            for i in range(len(curNums)):
-                curPerm.append(curNums[i])
-                backtrack(curPerm, curNums[:i] + curNums[i+1:])
-                curPerm.pop()
+            for i in range(len(nums)):
+                if not nums[i] in curPerm:
+                    curPerm.append(nums[i])
+                    backtrack(curPerm)
+                    curPerm.pop()
                 
-        backtrack([], nums)
+        backtrack([])
         return perms
     
     # Time: O(N!*N)
