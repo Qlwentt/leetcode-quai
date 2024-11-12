@@ -8,7 +8,6 @@ class Solution:
                 combs.append(curComb.copy())
                 return
            
-             
             for j in range(i, n+1):
                 curComb.append(j)
                 backtrack(j+1, curComb)
@@ -16,3 +15,5 @@ class Solution:
 
         backtrack(1, [])
         return combs
+# Time: O( k * n!/(k!(n-k)!))
+# Space: O(k)
