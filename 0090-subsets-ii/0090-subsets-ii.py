@@ -4,7 +4,7 @@ class Solution:
         nums.sort()
 
         def backtrack(i, curSet):
-            if i >= len(nums):
+            if i == len(nums):
                 powerSet.append(curSet.copy())
                 return
             
