@@ -1,25 +1,25 @@
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        powerSet = []
+        answer = []
         nums.sort()
 
-        def backtrack(i, curSet):
+        def backtrack(i, cur_set):
             if i == len(nums):
-                powerSet.append(curSet.copy())
+                answer.append(cur_set.copy())
                 return
             
             # include between 1 and multiple of the number
-            curSet.append(nums[i])
-            backtrack(i+1, curSet)
+            cur_set.append(nums[i])
+            backtrack(i+1, cur_set)
             
             # do not include the number
-            curSet.pop()
+            cur_set.pop()
             while i + 1 < len(nums) and nums[i] == nums[i+1]:
                 i += 1
-            backtrack(i+1, curSet)
+            backtrack(i+1, cur_set)
         
         backtrack(0, [])
-        return powerSet
+        return answer
     
 # Time: O(N*2^N)
 # Space: O(N)
