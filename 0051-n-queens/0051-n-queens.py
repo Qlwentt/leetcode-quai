@@ -5,28 +5,28 @@ class Solution:
         pos_diag = set()
         neg_diag = set()
         answer = []
-        def backtrack(row, cur_board):
+        def backtrack(r, cur_board):
             if len(cur_board) == n:
                 answer.append(cur_board.copy())
                 return
 
             line = ["."] * n
             for c in range(n):
-                if c in cols or row+c in pos_diag or row-c in neg_diag:
+                if c in cols or r+c in pos_diag or r-c in neg_diag:
                     continue
                 cols.add(c)
-                pos_diag.add(row+c)
-                neg_diag.add(row-c)
+                pos_diag.add(r+c)
+                neg_diag.add(r-c)
                 line[c] = "Q"
                 
                 cur_board.append("".join(line))
-                backtrack(row+1, cur_board) 
+                backtrack(r+1, cur_board) 
                 cur_board.pop()
                 
                 line[c] = "."
                 cols.remove(c)
-                pos_diag.remove(row+c)
-                neg_diag.remove(row-c)
+                pos_diag.remove(r+c)
+                neg_diag.remove(r-c)
     
         backtrack(0,[])
         return answer
