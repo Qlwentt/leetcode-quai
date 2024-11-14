@@ -1,32 +1,32 @@
 from collections import defaultdict
 class Solution:
     def solveNQueens(self, n: int) -> List[List[str]]:
-        cols = defaultdict(lambda: False)
-        xdiag = defaultdict(lambda: False)
-        ydiag = defaultdict(lambda: False)
+        cols = set()
+        pos_diag = set()
+        neg_diag = set()
         answer = []
-        def backtrack(row, curBoard):
-            if len(curBoard) == n:
-                answer.append(curBoard.copy())
+        def backtrack(row, cur_board):
+            if len(cur_board) == n:
+                answer.append(cur_board.copy())
                 return
 
             line = ["."] * n
             for c in range(n):
-                if cols[c] or xdiag[c-row] or ydiag[c+row]:
+                if c in cols or row+c in pos_diag or row-c in neg_diag:
                     continue
-                cols[c] = True
-                xdiag[c-row] = True
-                ydiag[c+row] = True
+                cols.add(c)
+                pos_diag.add(row+c)
+                neg_diag.add(row-c)
                 line[c] = "Q"
                 
-                curBoard.append("".join(line))
-                backtrack(row+1, curBoard) 
-                curBoard.pop()
+                cur_board.append("".join(line))
+                backtrack(row+1, cur_board) 
+                cur_board.pop()
                 
                 line[c] = "."
-                cols[c] = False
-                xdiag[c-row] = False
-                ydiag[c+row] = False
+                cols.remove(c)
+                pos_diag.remove(row+c)
+                neg_diag.remove(row-c)
     
         backtrack(0,[])
         return answer
