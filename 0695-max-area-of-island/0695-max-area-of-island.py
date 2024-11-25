@@ -18,14 +18,14 @@ class Solution:
             right = dfs(r, c+1)
             
             return up + down + left + right + 1
-        maxArea = 0
+        max_area = 0
         for r in range(ROWS):
             for c in range(COLS):
                 if grid[r][c] == 1:
                     area = dfs(r,c)    
-                    maxArea = max(area, maxArea)
+                    max_area = max(area, max_area)
                     
-        return maxArea
+        return max_area
     
 # Time: O (M*N)
 # Space: O(M*N)
