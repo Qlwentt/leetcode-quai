@@ -1,26 +1,25 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        adjList = {i: [] for i in range(numCourses)}
+        adjList = {i:[] for i in range(numCourses)}
         
         for course, prereq in prerequisites:
             adjList[course].append(prereq)
-        
+            
         visited = set()
         visiting = set()
-        
-        def dfs(node):
-            if node in visiting:
+        def dfs(course):
+            if course in visiting:
                 return False
-            if node in visited:
+            if course in visited:
                 return True
             
-            visiting.add(node)
-            visited.add(node)
+            visited.add(course)
+            visiting.add(course)
             
-            for neigh in adjList[node]:
+            for neigh in adjList[course]:
                 if not dfs(neigh):
                     return False
-            visiting.remove(node)
+            visiting.remove(course)
             return True
         
         for i in range(numCourses):
@@ -28,4 +27,6 @@ class Solution:
                 return False
             
         return True
-        
+    
+# Time: O(M+N)
+# Space: O(M+N)
