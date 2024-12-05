@@ -3,10 +3,10 @@ import copy
 
 class Solution:
     def checkIfPrerequisite(self, numCourses: int, prerequisites: List[List[int]], queries: List[List[int]]) -> List[bool]:
-        adjList = {course: set() for course in range(numCourses)}
+        adjList = {course: [] for course in range(numCourses)}
         fullPreMap = {course: set() for course in range(numCourses)}
         for pre, course in prerequisites:
-            adjList[course].add(pre)
+            adjList[course].append(pre)
                 
         visited = set()
         
@@ -17,8 +17,8 @@ class Solution:
             for neigh in adjList[course]:
                 fullPreMap[course].add(neigh)
                 fullPreMap[course].update(dfs(neigh))
-            if not adjList[course]:
-                return set([course])
+            # if not adjList[course]:
+            #     return set([course])
             return fullPreMap[course]            
            
         for course in range(numCourses):
