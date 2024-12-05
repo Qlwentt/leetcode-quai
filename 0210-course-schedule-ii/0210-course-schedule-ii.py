@@ -1,31 +1,36 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        adjList = {i: [] for i in range(numCourses)}
+        adjList = { course: [] for course in range(numCourses)}
         
         for course, pre in prerequisites:
             adjList[course].append(pre)
             
-        answer = []
+        order = []
         visited = set()
         visiting = set()
+        
         def dfs(course):
             if course in visiting:
                 return False
             if course in visited:
                 return True
+            
+            visited.add(course)
             visiting.add(course)
+            
             for neigh in adjList[course]:
                 if not dfs(neigh):
                     return False
             
-            visited.add(course)
+            order.append(course)
             visiting.remove(course)
-            answer.append(course)
             return True
-            
-        for i in range(numCourses):
-            if not dfs(i):
+        
+        
+        for course in range(numCourses):
+            if not dfs(course):
                 return []
-        
-        return answer
-        
+        return order
+    
+# Time: O(M+N)
+# Space: O(M+N)
