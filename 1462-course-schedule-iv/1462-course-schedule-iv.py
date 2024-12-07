@@ -1,10 +1,11 @@
-from collections import deque
-import copy
+
 
 class Solution:
     def checkIfPrerequisite(self, numCourses: int, prerequisites: List[List[int]], queries: List[List[int]]) -> List[bool]:
+        
         adjList = {course: [] for course in range(numCourses)}
         fullPreMap = {course: set() for course in range(numCourses)}
+        
         for pre, course in prerequisites:
             adjList[course].append(pre)
                 
@@ -14,11 +15,11 @@ class Solution:
             if course in visited:
                 return fullPreMap[course]
             visited.add(course)
+            
             for neigh in adjList[course]:
                 fullPreMap[course].add(neigh)
                 fullPreMap[course].update(dfs(neigh))
-            # if not adjList[course]:
-            #     return set([course])
+            
             return fullPreMap[course]            
            
         for course in range(numCourses):
@@ -29,3 +30,6 @@ class Solution:
             answers.append(pre in fullPreMap[course])
 
         return answers
+    
+# Time: O((V^2+E)) + Q)
+# Space: O(V+E)
