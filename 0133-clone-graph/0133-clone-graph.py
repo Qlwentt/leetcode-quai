@@ -11,22 +11,52 @@ from collections import deque
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         if not node:
-            return node
-        originalToCopy = {}
-        q = deque([node])
-        visited = set([node])
+            return None
         
-        while q:
-            curNode = q.popleft()
-            copy = originalToCopy.get(curNode, Node(curNode.val))
-            originalToCopy[curNode] = copy
+        original_to_copy = {}
+        visited = set()
+        def dfs(node):
+            if not node:
+                return None
+            if node in visited:
+                return original_to_copy[node]
             
-            for neigh in curNode.neighbors:
-                copyNeigh = originalToCopy.get(neigh, Node(neigh.val))
-                originalToCopy[neigh] = copyNeigh
-                copy.neighbors.append(copyNeigh)
-                if neigh not in visited:
-                    q.append(neigh)
-                    visited.add(neigh)
+            visited.add(node)
+            
+            copy = Node(node.val)
+            original_to_copy[node] = copy
+            for neigh in node.neighbors:
+                copy.neighbors.append(dfs(neigh))
+            
+            return copy
+        dfs(node)
+        return original_to_copy[node]
+                
+            
         
-        return originalToCopy[node]
+#         if not node:
+#             return node
+        
+#         originalToCopy = {}
+#         visited = set([node])
+#         q = deque([node])
+        
+#         while q:
+#             cur = q.popleft()
+#             curCopy = originalToCopy[cur] if cur in originalToCopy else Node(cur.val)
+#             originalToCopy[cur] = curCopy
+            
+#             for neigh in cur.neighbors:
+#                 neighCopy = originalToCopy[neigh] if neigh in originalToCopy else Node(neigh.val)
+#                 originalToCopy[neigh] = neighCopy
+#                 curCopy.neighbors.append(neighCopy)
+#                 if neigh not in visited:
+#                     q.append(neigh)
+#                     visited.add(neigh)
+                
+            
+        
+        # return originalToCopy[node]
+        
+        
+        
