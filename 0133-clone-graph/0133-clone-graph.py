@@ -29,8 +29,7 @@ class Solution:
                 copy.neighbors.append(dfs(neigh))
             
             return copy
-        dfs(node)
-        return original_to_copy[node]
+        return dfs(node)
                 
             
         
