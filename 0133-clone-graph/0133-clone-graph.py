@@ -14,14 +14,12 @@ class Solution:
             return None
         
         original_to_copy = {}
-        visited = set()
         def dfs(node):
             if not node:
                 return None
-            if node in visited:
+            if node in original_to_copy:
                 return original_to_copy[node]
             
-            visited.add(node)
             
             copy = Node(node.val)
             original_to_copy[node] = copy
