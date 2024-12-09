@@ -10,26 +10,27 @@ from typing import Optional
 from collections import deque
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-#         if not node:
-#             return None
+    # DFS solution
+        if not node:
+            return None
         
-#         original_to_copy = {}
-#         def dfs(node):
-#             if not node:
-#                 return None
-#             if node in original_to_copy:
-#                 return original_to_copy[node]
+        original_to_copy = {}
+        def dfs(node):
+            if not node:
+                return None
+            if node in original_to_copy:
+                return original_to_copy[node]
             
-#             copy = Node(node.val)
-#             original_to_copy[node] = copy
-#             for neigh in node.neighbors:
-#                 copy.neighbors.append(dfs(neigh))
+            copy = Node(node.val)
+            original_to_copy[node] = copy
+            for neigh in node.neighbors:
+                copy.neighbors.append(dfs(neigh))
             
-#             return copy
-#         return dfs(node)
+            return copy
+        return dfs(node)
                 
             
-        
+# BFS solution 
         if not node:
             return None
         
@@ -50,10 +51,9 @@ class Solution:
                 if neigh not in visited:
                     q.append(neigh)
                     visited.add(neigh)
-                
-            
         
         return original_to_copy[node]
         
-        
+# Time: O(V+E)
+# Space: O(V)
         
