@@ -10,50 +10,50 @@ from typing import Optional
 from collections import deque
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+#         if not node:
+#             return None
+        
+#         original_to_copy = {}
+#         def dfs(node):
+#             if not node:
+#                 return None
+#             if node in original_to_copy:
+#                 return original_to_copy[node]
+            
+#             copy = Node(node.val)
+#             original_to_copy[node] = copy
+#             for neigh in node.neighbors:
+#                 copy.neighbors.append(dfs(neigh))
+            
+#             return copy
+#         return dfs(node)
+                
+            
+        
         if not node:
             return None
         
         original_to_copy = {}
-        def dfs(node):
-            if not node:
-                return None
-            if node in original_to_copy:
-                return original_to_copy[node]
+        visited = set([node])
+        
+        q = deque([node])
+        
+        while q:
+            cur = q.popleft()
+            cur_copy = original_to_copy[cur] if cur in original_to_copy else Node(cur.val)
+            original_to_copy[cur] = cur_copy
             
-            
-            copy = Node(node.val)
-            original_to_copy[node] = copy
-            for neigh in node.neighbors:
-                copy.neighbors.append(dfs(neigh))
-            
-            return copy
-        return dfs(node)
+            for neigh in cur.neighbors:
+                neigh_copy = original_to_copy[neigh] if neigh in original_to_copy else Node(neigh.val)
+                original_to_copy[neigh] = neigh_copy
+                cur_copy.neighbors.append(neigh_copy)
+                if neigh not in visited:
+                    q.append(neigh)
+                    visited.add(neigh)
                 
             
         
-#         if not node:
-#             return node
-        
-#         originalToCopy = {}
-#         visited = set([node])
-#         q = deque([node])
-        
-#         while q:
-#             cur = q.popleft()
-#             curCopy = originalToCopy[cur] if cur in originalToCopy else Node(cur.val)
-#             originalToCopy[cur] = curCopy
-            
-#             for neigh in cur.neighbors:
-#                 neighCopy = originalToCopy[neigh] if neigh in originalToCopy else Node(neigh.val)
-#                 originalToCopy[neigh] = neighCopy
-#                 curCopy.neighbors.append(neighCopy)
-#                 if neigh not in visited:
-#                     q.append(neigh)
-#                     visited.add(neigh)
-                
-            
-        
-        # return originalToCopy[node]
+        return original_to_copy[node]
         
         
         
