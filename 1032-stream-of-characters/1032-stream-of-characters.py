@@ -34,7 +34,6 @@ class StreamChecker:
         self.trie = SuffixTrie()
         for word in words:
             self.trie.add_word(word)
-        print(self.trie.root.children)
 
     def query(self, letter: str) -> bool:
         self.cur_word += letter
