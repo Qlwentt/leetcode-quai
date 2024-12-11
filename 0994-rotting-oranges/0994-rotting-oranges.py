@@ -31,7 +31,7 @@ class Solution:
                     visited.add((newR,newC))
 
         return minMins if numFresh == 0 else -1
-            
-            
+    # Time: O(N*M)
+    # Space: O(N*M)
         
         
