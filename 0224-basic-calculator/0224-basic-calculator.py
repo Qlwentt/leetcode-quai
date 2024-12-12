@@ -1,6 +1,5 @@
 class Solution:
     def calculate(self, s: str) -> int:
-    
         s = s.replace(" ", "")
         s = re.split(r'(\d*)', s)
         s = [item for item in s if item != ""]
@@ -36,5 +35,4 @@ class Solution:
             else:
                 i += 1
         return sum(stack)
-                
-                
+            
