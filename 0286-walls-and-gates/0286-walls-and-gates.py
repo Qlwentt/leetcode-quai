@@ -21,15 +21,14 @@ class Solution:
         while q:
             r, c, distance = q.popleft()
             
-            
             for dr, dc in directions:
-                newR = dr + r
-                newC = dc + c
-                if (newR in range(ROWS) and 
-                    newC in range(COLS) and
-                   rooms[newR][newC] == INF):
-                    q.append((newR, newC, distance + 1))
-                    rooms[newR][newC] = distance+1
+                new_r = dr + r
+                new_c = dc + c
+                if (new_r in range(ROWS) and 
+                    new_c in range(COLS) and
+                   rooms[new_r][new_c] == INF):
+                    q.append((new_r, new_c, distance + 1))
+                    rooms[new_r][new_c] = distance+1
                     
         
                     
