@@ -30,6 +30,9 @@ class Solution:
                     q.append((new_r, new_c, distance + 1))
                     rooms[new_r][new_c] = distance+1
                     
+# Time: O(M*N)
+# Space: O(M*N)
+                    
         
                     
             
