@@ -6,17 +6,18 @@ class Solution:
             adj_list[src].append((dst, w))
             
         min_heap = [(0, k)]
-        times = defaultdict(lambda: float('inf'))
-        times[k] = 0
+        visited = defaultdict(lambda: float('inf'))
+        visited[k] = 0
         while min_heap:
             time, node = heapq.heappop(min_heap)
             
             for neigh, neigh_time in adj_list[node]:
-                if neigh_time+time < times[neigh]:
+                if neigh_time+time < visited[neigh]:
                     heapq.heappush(min_heap, (neigh_time+time, neigh))
-                    times[neigh] = neigh_time+time
+                    visited[neigh] = neigh_time+time
             
-        return max(times.values()) if len(times) == n else -1
-            
+        return max(visited.values()) if len(visited) == n else -1
+ # Time O(Elog(E) + V)
+# Space: O(E+V)
                 
             
