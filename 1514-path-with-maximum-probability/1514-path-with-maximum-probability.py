@@ -12,13 +12,12 @@ class Solution:
         while max_heap:
             cur_weight, node = heapq.heappop(max_heap)
             if node == end_node:
-                return cur_weight * -1
+                return -cur_weight
             visited.add(node)
             
             for neigh, weight in adj_list[node]:
                 if neigh not in visited:
-                    heapq.heappush(max_heap, (weight*cur_weight, neigh))
-                    
+                    heapq.heappush(max_heap, (weight*cur_weight, neigh))     
         return 0
 
 #         max_heap = [(-1, start_node)]
