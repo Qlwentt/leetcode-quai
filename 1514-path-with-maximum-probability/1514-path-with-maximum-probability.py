@@ -12,7 +12,7 @@ class Solution:
         while max_heap:
             cur_weight, node = heapq.heappop(max_heap)
             if node == end_node:
-                return -cur_weight
+                return cur_weight * -1
             visited.add(node)
             
             for neigh, weight in adj_list[node]:
