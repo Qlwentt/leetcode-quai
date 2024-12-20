@@ -2,7 +2,7 @@ class Solution:
     def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start_node: int, end_node: int) -> float:
         max_heap = [(-1, start_node)]
         visited = set() 
-        adj_list = {i:[] for i in range(n)}
+        adj_list = collections.defaultdict(list)
         
         for i, (n1, n2) in enumerate(edges):
             adj_list[n1].append((n2, succProb[i]))
@@ -19,8 +19,6 @@ class Solution:
             
             for neigh, weight in adj_list[node]:
                 heapq.heappush(max_heap, (weight*cur_weight, neigh))
-                    
-            
                     
         return 0
                     
