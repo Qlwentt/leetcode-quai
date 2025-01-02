@@ -4,13 +4,13 @@ class Solution:
         # ["aba","bcb","ece","aa","e"]
         #    1     1     2     3   4
         
-        prefix_count = [0]*len(words)
+        prefix_count = [0]*(len(words)+1)
         count = 0
         for i, word in enumerate(words):
             if word[0] in "aeiou" and word[-1] in "aeiou":
                 count += 1
-            prefix_count[i] = count
-        prefix_count = [0] + prefix_count
+            prefix_count[i+1] = count
+        
 
         answer = []
         for l, r in queries:
