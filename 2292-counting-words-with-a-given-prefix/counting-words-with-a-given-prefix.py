@@ -25,8 +25,13 @@ class Trie:
         return current.count
 class Solution:
     def prefixCount(self, words: List[str], pref: str) -> int:
-        trie = Trie()
-        for word in words:
-            trie.insert(word)
+        # trie = Trie()
+        # for word in words:
+        #     trie.insert(word)
 
-        return trie.prefix_count(pref)
+        # return trie.prefix_count(pref)
+        count = 0
+        for word in words:
+            if len(pref) <= len(word) and word[:len(pref)] == pref:
+                count += 1
+        return count
