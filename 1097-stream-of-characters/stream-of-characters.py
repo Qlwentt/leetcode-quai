@@ -29,14 +29,18 @@ class StreamChecker:
     
 
     def __init__(self, words: List[str]):
-        self.cur_word = []
         self.trie = SuffixTrie()
+        self.stream = collections.deque([])
+        self.len_stream = 0
         for word in words:
             self.trie.add_word(word)
+            self.len_stream = max(len(word), self.len_stream)
 
     def query(self, letter: str) -> bool:
-        self.cur_word.append(letter)
-        return self.trie.is_suffix(self.cur_word)
+        self.stream.append(letter)
+        if len(self.stream) > self.len_stream:
+            self.stream.popleft()
+        return self.trie.is_suffix(self.stream)
 
 # Constructor: 
 # N = # of words
@@ -45,10 +49,9 @@ class StreamChecker:
 # Space: O(N*M)
 
 # Query Function:
-# Q = number of queries
 # M = length of longest word
 # Time: O(M)
-# Space: O(Q) (for current word)
+# Space: O(M) (stream datastructure is limited to length of longest word)
 
 # Your StreamChecker object will be instantiated and called as such:
 # obj = StreamChecker(words)
