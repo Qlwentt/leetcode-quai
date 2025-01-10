@@ -23,7 +23,6 @@ class SuffixTrie:
             cur = cur.children[char]
             if cur.end_of_word:
                 return True
-            
         return False
             
 class StreamChecker:
