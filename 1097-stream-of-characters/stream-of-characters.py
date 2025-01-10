@@ -37,8 +37,18 @@ class StreamChecker:
     def query(self, letter: str) -> bool:
         self.cur_word.append(letter)
         return self.trie.is_suffix(self.cur_word)
-        
 
+# Constructor: 
+# N = # of words
+# M = length of longest word       
+# Time: O(N*M)
+# Space: O(N*M)
+
+# Query Function:
+# Q = number of queries
+# M = length of longest word
+# Time: O(M)
+# Space: O(Q) (for current word)
 
 # Your StreamChecker object will be instantiated and called as such:
 # obj = StreamChecker(words)
