@@ -1,6 +1,6 @@
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        intervals.sort(key= lambda x: x[0]) # sort by start
+        intervals.sort() 
         answer = [intervals[0]]
         for start, end in intervals[1:]:
             if answer[-1][1] >= start: # overlap
