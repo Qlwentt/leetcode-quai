@@ -2,8 +2,9 @@ class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         intervals.sort() 
         answer = [intervals[0]]
-        for start, end in intervals[1:]:
+        for start, end in intervals:
             if answer[-1][1] >= start: # overlap
+                # merge
                 answer[-1] = [min(start, answer[-1][0]), max(end, answer[-1][1])]
             else:
                 answer.append([start,end])
