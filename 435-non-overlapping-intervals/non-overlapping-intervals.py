@@ -7,9 +7,11 @@ class Solution:
         for i in range(1, len(intervals)):
             start, end = intervals[i]
             # overlap
-            if start < prevEnd:
+            if prevEnd > start:
                 prevEnd = min(end, prevEnd)
                 answer += 1
             else:
                 prevEnd = end
         return answer
+    # Time: O(NlogN)
+    # Space: O(1)
