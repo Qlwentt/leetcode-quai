@@ -9,3 +9,6 @@ class Solution:
             answer ^= ord(char)
         
         return chr(answer)
+
+# Time: O(N)
+# Space: O(1)
