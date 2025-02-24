@@ -10,14 +10,14 @@ class Solution:
         # # Time: O(N)
         # # Space: O(N)
 
-        # # one liner
-        # return len(set(nums)) != len(nums)
-        # # Time: O(N)
-        # # Space: O(N)
+        # one liner
+        return len(set(nums)) != len(nums)
+        # Time: O(N)
+        # Space: O(N)
 
-        # counter
-        counts = collections.Counter(nums)
-        return max(counts.values()) > 1
+        # # counter
+        # counts = collections.Counter(nums)
+        # return max(counts.values()) > 1
 
         # # sorting
         # nums.sort()
