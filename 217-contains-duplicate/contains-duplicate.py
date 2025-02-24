@@ -15,9 +15,16 @@ class Solution:
         # # Time: O(N)
         # # Space: O(N)
 
-        nums.sort()
-        for i in range(len(nums)-1):
-            if nums[i] == nums[i+1]:
-                return True
-        return False
+        # counter
+        counts = collections.Counter(nums)
+        return max(counts.values()) > 1
+
+        # # sorting
+        # nums.sort()
+        # for i in range(len(nums)-1):
+        #     if nums[i] == nums[i+1]:
+        #         return True
+        # return False
+        # # Time: O(NlogN)
+        # # Space: O(1)
 
