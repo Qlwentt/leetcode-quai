@@ -1,6 +1,6 @@
 class Solution:
     def frequencySort(self, s: str) -> str:
-        # dictionary and bucket sort
+        #dictionary and bucket sort
         # char_to_count = defaultdict(int)
         # for char in s:
         #     char_to_count[char] += 1
@@ -19,14 +19,33 @@ class Solution:
     # Space: O(N)  
 
     # using Counter
-
-        counts = collections.Counter(s)
-        answer = []
-        for char, count in counts.most_common():
-            answer.append(char*count)
-        return "".join(answer)
+        # counts = collections.Counter(s)
+        # answer = []
+        # for char, count in counts.most_common():
+        #     answer.append(char*count)
+        # return "".join(answer)
     # Time: O(NlogN)
     # Space: O(N)
+
+        # sort and group
+        s = list(s)
+        s.sort()
+        groups = []
+        current = [s[0]]
+        for char in s[1:]:
+            if current[-1] != char:
+                groups.append("".join(current))
+                current = []
+            current.append(char)
+        groups.append("".join(current))
+        groups.sort(key=lambda sub_s : len(sub_s), reverse=True)
+        return "".join(groups)
+    # Time: O(NlogN) but less optimal that dict solution in practice
+    # Space: O(N)
+
+            
+
+
 
 
 
