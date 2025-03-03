@@ -1,9 +1,10 @@
 class Solution:
     def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+
         # one-liner intersection of two sets
         return list(set(nums1) & set(nums2))
 
-        # Time: O(min(n,m))
+        # Time: O(n+m)
         # Space: O(n+m)
 
 
@@ -18,6 +19,6 @@ class Solution:
 
         return [num for num in set1 if num in set2]
 
-        # Time: O(min(n,m))
+        # Time: O((n+m))
         # Space: O(n+m)
         
