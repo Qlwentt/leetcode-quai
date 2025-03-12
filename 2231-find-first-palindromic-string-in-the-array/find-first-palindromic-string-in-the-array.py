@@ -22,4 +22,4 @@ class Solution:
                 return word
         return ""
     # Time: O(N*M)
-    # Space: O(N)
+    # Space: O(M)
