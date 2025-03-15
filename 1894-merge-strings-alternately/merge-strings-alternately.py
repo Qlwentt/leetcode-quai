@@ -19,4 +19,6 @@ class Solution:
             pointer2 += 1
         
         return "".join(answer)
-        
+    
+    # Time: O(N+M)
+    # Space: O(1) (not counting answer)
