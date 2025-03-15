@@ -1,25 +1,25 @@
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        answer = set()
-        nums.sort()
-        target = 0
-        for i in range(len(nums)):
-            lo = i + 1
-            hi = len(nums) -1
-            a = nums[i]
-            while lo < hi:
-                if a + nums[lo] + nums[hi] < target:
-                    # too small, increase sum
-                    lo += 1
-                elif a + nums[lo] + nums[hi] > target:
-                    # too large, decrase sum
-                    hi -= 1
-                else:
-                    # equals target
-                    answer.add(tuple([a, nums[lo], nums[hi]]))
-                    lo += 1
-                    hi -= 1
-        return list(answer)
+        # answer = set()
+        # nums.sort()
+        # target = 0
+        # for i in range(len(nums)):
+        #     lo = i + 1
+        #     hi = len(nums) -1
+        #     a = nums[i]
+        #     while lo < hi:
+        #         if a + nums[lo] + nums[hi] < target:
+        #             # too small, increase sum
+        #             lo += 1
+        #         elif a + nums[lo] + nums[hi] > target:
+        #             # too large, decrase sum
+        #             hi -= 1
+        #         else:
+        #             # equals target
+        #             answer.add(tuple([a, nums[lo], nums[hi]]))
+        #             lo += 1
+        #             hi -= 1
+        # return list(answer)
 
         answer = []
         nums.sort()
@@ -44,6 +44,8 @@ class Solution:
                     hi -= 1
                     while lo < hi and nums[lo] == nums[lo-1]:
                         lo += 1
+                    while lo < hi and nums[hi] == nums[hi+1]:
+                        hi -= 1
         return answer 
 
 
